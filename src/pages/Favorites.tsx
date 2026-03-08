@@ -85,6 +85,7 @@ const Favorites = () => {
                 images={property.images || []}
                 tags={property.tags || []}
                 status={property.status}
+                isFeatured={false}
               />
             ))}
           </div>
