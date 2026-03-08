@@ -254,10 +254,10 @@ const Index = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <ScrollAnimation direction="left">
               <div className="luxury-divider justify-start mb-4">
-                <span className="text-accent font-accent text-sm tracking-[0.2em] uppercase">Prime Locations</span>
+              <span className="text-white/80 font-accent text-sm tracking-[0.2em] uppercase">Prime Locations</span>
               </div>
-              <h2 className="text-3xl md:text-4xl font-display font-bold text-secondary mb-4">Explore Our Most<br />Popular Areas</h2>
-              <p className="text-secondary/60 mb-10 max-w-md leading-relaxed">See what these exclusive areas have to offer and find your perfect home in Nigeria's most prestigious neighborhoods.</p>
+              <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-4">Explore Our Most<br />Popular Areas</h2>
+              <p className="text-white/60 mb-10 max-w-md leading-relaxed">See what these exclusive areas have to offer and find your perfect home in Nigeria's most prestigious neighborhoods.</p>
               <div className="space-y-5 mb-10">
                 {[
                   { name: "Lekki, Lagos", desc: "Discover coastal luxury living in one of Lagos' most desirable neighborhoods" },
