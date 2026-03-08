@@ -132,8 +132,8 @@ const Index = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {stats.map((stat) => (
               <div key={stat.label} className="text-center">
-                <div className="text-2xl md:text-3xl font-display font-bold text-accent">{stat.num}</div>
-                <div className="text-xs text-primary-foreground/60 tracking-wider uppercase mt-1">{stat.label}</div>
+                <div className="text-2xl md:text-3xl font-display font-bold text-white">{stat.num}</div>
+                <div className="text-xs text-white/60 tracking-wider uppercase mt-1">{stat.label}</div>
               </div>
             ))}
           </div>
