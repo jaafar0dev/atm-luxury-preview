@@ -17,6 +17,9 @@ import { toast } from "sonner";
 const Index = () => {
   const [inquiryForm, setInquiryForm] = useState({ name: "", email: "", phone: "", whatsapp: "", propertyType: "", subject: "", usagePurpose: "", message: "" });
   const [sending, setSending] = useState(false);
+  const [heroType, setHeroType] = useState("");
+  const [heroCity, setHeroCity] = useState("");
+  const [heroStatus, setHeroStatus] = useState("");
 
   const { data: properties } = useQuery({
     queryKey: ["featured-properties"],
