@@ -53,7 +53,8 @@ const Index = () => {
     <PublicLayout>
       {/* Hero */}
       <section className="relative h-[70vh] min-h-[500px] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/90 to-primary/70" />
+        <img src={heroBg} alt="" className="absolute inset-0 w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/80 via-primary/70 to-primary/60" />
         <div className="relative z-10 text-center px-4">
           <h1 className="text-4xl md:text-6xl font-display font-bold text-primary-foreground mb-4 animate-bounce-text">
             Welcome To ATM Luxury Properties
