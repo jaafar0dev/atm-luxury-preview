@@ -68,9 +68,9 @@ const Index = () => {
         
         {/* Decorative elements */}
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-          <div className="absolute top-20 left-10 w-px h-32 bg-accent/20" />
-          <div className="absolute bottom-20 right-10 w-px h-32 bg-accent/20" />
-          <div className="absolute top-1/4 right-20 w-24 h-px bg-accent/20" />
+          <div className="absolute top-20 left-10 w-px h-32 bg-white/20" />
+          <div className="absolute bottom-20 right-10 w-px h-32 bg-white/20" />
+          <div className="absolute top-1/4 right-20 w-24 h-px bg-white/20" />
         </div>
 
         <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
