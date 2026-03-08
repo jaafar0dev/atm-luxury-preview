@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ConsultationDialog } from "@/components/ConsultationDialog";
+import logo from "@/assets/logo.png";
 
 const navLinks = [
   { label: "HOME", path: "/" },
@@ -32,8 +33,7 @@ export const Navbar = () => {
       <nav className="sticky top-0 z-40 glass-nav">
         <div className="section-container flex items-center justify-between h-18 py-4">
           <Link to="/" className="flex items-center gap-2">
-            <span className="font-display text-2xl font-bold text-primary tracking-tight">ATM</span>
-            <span className="hidden sm:block text-xs text-muted-foreground tracking-[0.15em] uppercase border-l border-border pl-2">Luxury Properties</span>
+            <img src={logo} alt="ATM Luxury Properties" className="h-12 w-auto" />
           </Link>
 
           {/* Desktop nav */}

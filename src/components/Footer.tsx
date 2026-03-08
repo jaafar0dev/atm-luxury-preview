@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { MapPin, Phone, Mail, ArrowRight } from "lucide-react";
+import logo from "@/assets/logo.png";
 
 export const Footer = () => {
   return (
@@ -11,7 +12,7 @@ export const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <div className="font-display text-3xl font-bold tracking-tight mb-4">ATM</div>
+            <img src={logo} alt="ATM Luxury Properties" className="h-16 w-auto mb-4 brightness-0 invert" />
             <p className="text-sm text-primary-foreground/60 leading-relaxed max-w-sm mb-6">
               Your premier luxury real estate marketing agency. We specialize in exclusive properties across Nigeria's most prestigious locations.
             </p>
