@@ -44,6 +44,7 @@ const App = () => (
           <Route path="/contact" element={<Contact />} />
           <Route path="/mortgage-calculator" element={<MortgageCalculator />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/favorites" element={<Favorites />} />
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin" element={<AdminLayout />}>
             <Route index element={<AdminDashboard />} />
