@@ -265,12 +265,12 @@ const Index = () => {
                   { name: "Asokoro, Abuja", desc: "Premium residential district with world-class amenities" },
                 ].map((area) => (
                   <div key={area.name} className="flex items-start gap-4 group cursor-pointer">
-                    <div className="shrink-0 w-10 h-10 rounded-sm bg-accent/10 border border-accent/20 flex items-center justify-center">
-                      <MapPin size={16} className="text-accent" />
+                    <div className="shrink-0 w-10 h-10 rounded-sm bg-white/10 border border-white/20 flex items-center justify-center">
+                      <MapPin size={16} className="text-white" />
                     </div>
                     <div>
-                      <h3 className="font-display font-semibold text-secondary group-hover:text-accent transition-colors">{area.name}</h3>
-                      <p className="text-sm text-secondary/50">{area.desc}</p>
+                      <h3 className="font-display font-semibold text-white group-hover:text-white/80 transition-colors">{area.name}</h3>
+                      <p className="text-sm text-white/50">{area.desc}</p>
                     </div>
                   </div>
                 ))}
