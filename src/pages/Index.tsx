@@ -68,20 +68,20 @@ const Index = () => {
         
         {/* Decorative elements */}
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-          <div className="absolute top-20 left-10 w-px h-32 bg-accent/20" />
-          <div className="absolute bottom-20 right-10 w-px h-32 bg-accent/20" />
-          <div className="absolute top-1/4 right-20 w-24 h-px bg-accent/20" />
+          <div className="absolute top-20 left-10 w-px h-32 bg-white/20" />
+          <div className="absolute bottom-20 right-10 w-px h-32 bg-white/20" />
+          <div className="absolute top-1/4 right-20 w-24 h-px bg-white/20" />
         </div>
 
         <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
           <div className="luxury-divider mb-6">
-            <span className="text-accent font-accent text-sm tracking-[0.3em] uppercase">Luxury Real Estate</span>
+            <span className="text-white/80 font-accent text-sm tracking-[0.3em] uppercase">Luxury Real Estate</span>
           </div>
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold text-secondary mb-6 leading-tight animate-bounce-text">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold text-white mb-6 leading-tight animate-bounce-text">
             ATM Luxury Properties
           </h1>
-          <p className="text-lg md:text-xl font-accent text-secondary/70 mb-4 italic tracking-wide">Choosing The Right Luxury</p>
-          <p className="text-sm text-secondary/50 max-w-xl mx-auto mb-10">
+          <p className="text-lg md:text-xl font-accent text-white/70 mb-4 italic tracking-wide">Choosing The Right Luxury</p>
+          <p className="text-sm text-white/50 max-w-xl mx-auto mb-10">
             Nigeria's premier destination for exclusive residential and commercial properties. Experience real estate excellence.
           </p>
 
@@ -120,9 +120,9 @@ const Index = () => {
         </div>
 
         {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-secondary/40 animate-bounce-text">
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/40 animate-bounce-text">
           <span className="text-xs tracking-widest uppercase font-accent">Scroll</span>
-          <div className="w-px h-8 bg-accent/30" />
+          <div className="w-px h-8 bg-white/30" />
         </div>
       </section>
 
@@ -132,8 +132,8 @@ const Index = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {stats.map((stat) => (
               <div key={stat.label} className="text-center">
-                <div className="text-2xl md:text-3xl font-display font-bold text-accent">{stat.num}</div>
-                <div className="text-xs text-primary-foreground/60 tracking-wider uppercase mt-1">{stat.label}</div>
+                <div className="text-2xl md:text-3xl font-display font-bold text-white">{stat.num}</div>
+                <div className="text-xs text-white/60 tracking-wider uppercase mt-1">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -192,9 +192,9 @@ const Index = () => {
         <div className="relative z-10 section-container grid grid-cols-1 lg:grid-cols-2 gap-16">
           <ScrollAnimation direction="left">
             <div className="luxury-divider justify-start mb-4">
-              <span className="text-accent font-accent text-sm tracking-[0.2em] uppercase">Our Promise</span>
+              <span className="text-white/80 font-accent text-sm tracking-[0.2em] uppercase">Our Promise</span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-secondary mb-10">Why Should You<br />Deal With Us?</h2>
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-10">Why Should You<br />Deal With Us?</h2>
             <div className="space-y-8">
               {[
                 { icon: Shield, num: "01", title: "Amazing Attention To Detail", desc: "Our meticulous approach ensures nothing is overlooked. The relationship we maintain between quality investment is unparalleled in the industry." },
@@ -202,12 +202,12 @@ const Index = () => {
                 { icon: Award, num: "03", title: "Superior Negotiating Skills", desc: "We fight for the best deal by acquiring a price that fits an affordable budget for our clients, ensuring maximum value for every transaction." },
               ].map((item) => (
                 <div key={item.num} className="flex gap-5 group">
-                  <div className="shrink-0 w-12 h-12 rounded-sm bg-accent/10 border border-accent/20 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
-                    <item.icon size={20} className="text-accent" />
+                  <div className="shrink-0 w-12 h-12 rounded-sm bg-white/10 border border-white/20 flex items-center justify-center group-hover:bg-white/20 transition-colors">
+                    <item.icon size={20} className="text-white" />
                   </div>
                   <div>
-                    <h3 className="font-display font-semibold text-secondary mb-1.5 text-lg">{item.title}</h3>
-                    <p className="text-sm text-secondary/60 leading-relaxed">{item.desc}</p>
+                    <h3 className="font-display font-semibold text-white mb-1.5 text-lg">{item.title}</h3>
+                    <p className="text-sm text-white/60 leading-relaxed">{item.desc}</p>
                   </div>
                 </div>
               ))}
@@ -254,10 +254,10 @@ const Index = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <ScrollAnimation direction="left">
               <div className="luxury-divider justify-start mb-4">
-                <span className="text-accent font-accent text-sm tracking-[0.2em] uppercase">Prime Locations</span>
+              <span className="text-white/80 font-accent text-sm tracking-[0.2em] uppercase">Prime Locations</span>
               </div>
-              <h2 className="text-3xl md:text-4xl font-display font-bold text-secondary mb-4">Explore Our Most<br />Popular Areas</h2>
-              <p className="text-secondary/60 mb-10 max-w-md leading-relaxed">See what these exclusive areas have to offer and find your perfect home in Nigeria's most prestigious neighborhoods.</p>
+              <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-4">Explore Our Most<br />Popular Areas</h2>
+              <p className="text-white/60 mb-10 max-w-md leading-relaxed">See what these exclusive areas have to offer and find your perfect home in Nigeria's most prestigious neighborhoods.</p>
               <div className="space-y-5 mb-10">
                 {[
                   { name: "Lekki, Lagos", desc: "Discover coastal luxury living in one of Lagos' most desirable neighborhoods" },
@@ -265,18 +265,18 @@ const Index = () => {
                   { name: "Asokoro, Abuja", desc: "Premium residential district with world-class amenities" },
                 ].map((area) => (
                   <div key={area.name} className="flex items-start gap-4 group cursor-pointer">
-                    <div className="shrink-0 w-10 h-10 rounded-sm bg-accent/10 border border-accent/20 flex items-center justify-center">
-                      <MapPin size={16} className="text-accent" />
+                    <div className="shrink-0 w-10 h-10 rounded-sm bg-white/10 border border-white/20 flex items-center justify-center">
+                      <MapPin size={16} className="text-white" />
                     </div>
                     <div>
-                      <h3 className="font-display font-semibold text-secondary group-hover:text-accent transition-colors">{area.name}</h3>
-                      <p className="text-sm text-secondary/50">{area.desc}</p>
+                      <h3 className="font-display font-semibold text-white group-hover:text-white/80 transition-colors">{area.name}</h3>
+                      <p className="text-sm text-white/50">{area.desc}</p>
                     </div>
                   </div>
                 ))}
               </div>
               <Link to="/listings">
-                <Button variant="outline" className="rounded-sm border-accent/30 text-secondary hover:bg-accent/10 px-8 h-11 tracking-wide">
+                <Button variant="outline" className="rounded-sm border-white/30 text-white hover:bg-white/10 px-8 h-11 tracking-wide">
                   View All Areas <ArrowRight size={16} className="ml-2" />
                 </Button>
               </Link>
@@ -285,27 +285,27 @@ const Index = () => {
             <ScrollAnimation direction="right">
               <div className="hidden lg:grid grid-cols-2 gap-4">
                 <div className="space-y-4">
-                  <div className="bg-accent/10 border border-accent/20 rounded-sm p-6 text-center">
-                    <Building2 size={28} className="text-accent mx-auto mb-3" />
-                    <div className="text-2xl font-display font-bold text-secondary">120+</div>
-                    <div className="text-xs text-secondary/50 tracking-wider uppercase mt-1">Lekki Properties</div>
+                  <div className="bg-white/10 border border-white/20 rounded-sm p-6 text-center">
+                    <Building2 size={28} className="text-white mx-auto mb-3" />
+                    <div className="text-2xl font-display font-bold text-white">120+</div>
+                    <div className="text-xs text-white/50 tracking-wider uppercase mt-1">Lekki Properties</div>
                   </div>
-                  <div className="bg-accent/10 border border-accent/20 rounded-sm p-6 text-center">
-                    <Building2 size={28} className="text-accent mx-auto mb-3" />
-                    <div className="text-2xl font-display font-bold text-secondary">85+</div>
-                    <div className="text-xs text-secondary/50 tracking-wider uppercase mt-1">Maitama Properties</div>
+                  <div className="bg-white/10 border border-white/20 rounded-sm p-6 text-center">
+                    <Building2 size={28} className="text-white mx-auto mb-3" />
+                    <div className="text-2xl font-display font-bold text-white">85+</div>
+                    <div className="text-xs text-white/50 tracking-wider uppercase mt-1">Maitama Properties</div>
                   </div>
                 </div>
                 <div className="space-y-4 mt-8">
-                  <div className="bg-accent/10 border border-accent/20 rounded-sm p-6 text-center">
-                    <Building2 size={28} className="text-accent mx-auto mb-3" />
-                    <div className="text-2xl font-display font-bold text-secondary">60+</div>
-                    <div className="text-xs text-secondary/50 tracking-wider uppercase mt-1">Asokoro Properties</div>
+                  <div className="bg-white/10 border border-white/20 rounded-sm p-6 text-center">
+                    <Building2 size={28} className="text-white mx-auto mb-3" />
+                    <div className="text-2xl font-display font-bold text-white">60+</div>
+                    <div className="text-xs text-white/50 tracking-wider uppercase mt-1">Asokoro Properties</div>
                   </div>
-                  <div className="bg-accent/10 border border-accent/20 rounded-sm p-6 text-center">
-                    <Phone size={28} className="text-accent mx-auto mb-3" />
-                    <div className="text-sm font-display font-semibold text-secondary">Get Expert Advice</div>
-                    <div className="text-xs text-secondary/50 mt-1">+234-810-681-5300</div>
+                  <div className="bg-white/10 border border-white/20 rounded-sm p-6 text-center">
+                    <Phone size={28} className="text-white mx-auto mb-3" />
+                    <div className="text-sm font-display font-semibold text-white">Get Expert Advice</div>
+                    <div className="text-xs text-white/50 mt-1">+234-810-681-5300</div>
                   </div>
                 </div>
               </div>

@@ -16,14 +16,14 @@ export const Footer = () => {
             <p className="text-sm text-primary-foreground/60 leading-relaxed max-w-sm mb-6">
               Your premier luxury real estate marketing agency. We specialize in exclusive properties across Nigeria's most prestigious locations.
             </p>
-            <Link to="/listings" className="inline-flex items-center gap-2 text-accent text-sm font-medium hover:text-accent/80 transition-colors">
+            <Link to="/listings" className="inline-flex items-center gap-2 text-white/80 text-sm font-medium hover:text-white transition-colors">
               View Our Properties <ArrowRight size={14} />
             </Link>
           </div>
 
           {/* Discover */}
           <div>
-            <h3 className="font-display font-bold text-sm tracking-[0.1em] uppercase mb-5 text-accent">Discover</h3>
+            <h3 className="font-display font-bold text-sm tracking-[0.1em] uppercase mb-5 text-white">Discover</h3>
             <ul className="space-y-3 text-sm text-primary-foreground/60">
               <li><Link to="/listings?city=Abuja" className="hover:text-accent transition-colors">Abuja</Link></li>
               <li><Link to="/listings?city=Lagos" className="hover:text-accent transition-colors">Lagos</Link></li>
@@ -33,7 +33,7 @@ export const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-display font-bold text-sm tracking-[0.1em] uppercase mb-5 text-accent">Quick Links</h3>
+            <h3 className="font-display font-bold text-sm tracking-[0.1em] uppercase mb-5 text-white">Quick Links</h3>
             <ul className="space-y-3 text-sm text-primary-foreground/60">
               <li><Link to="/" className="hover:text-accent transition-colors">Home</Link></li>
               <li><Link to="/listings" className="hover:text-accent transition-colors">Listings</Link></li>
@@ -45,21 +45,21 @@ export const Footer = () => {
 
           {/* Contact */}
           <div>
-            <h3 className="font-display font-bold text-sm tracking-[0.1em] uppercase mb-5 text-accent">Contact</h3>
+            <h3 className="font-display font-bold text-sm tracking-[0.1em] uppercase mb-5 text-white">Contact</h3>
             <ul className="space-y-4 text-sm text-primary-foreground/60">
               <li className="flex items-start gap-2.5">
-                <MapPin size={14} className="mt-1 shrink-0 text-accent/60" />
+                <MapPin size={14} className="mt-1 shrink-0 text-white/60" />
                 <span>Suite D 47, Anon Plaza Gudu District, Abuja</span>
               </li>
               <li className="flex items-start gap-2.5">
-                <Phone size={14} className="mt-1 shrink-0 text-accent/60" />
+                <Phone size={14} className="mt-1 shrink-0 text-white/60" />
                 <div className="space-y-1">
                   <a href="tel:+2348106815300" className="hover:text-accent block transition-colors">+234-810-681-5300</a>
                   <a href="tel:+2349037075934" className="hover:text-accent block transition-colors">+234-903-707-5934</a>
                 </div>
               </li>
               <li className="flex items-start gap-2.5">
-                <Mail size={14} className="mt-1 shrink-0 text-accent/60" />
+                <Mail size={14} className="mt-1 shrink-0 text-white/60" />
                 <a href="mailto:Info@atmluxuryproperties.com" className="hover:text-accent transition-colors">Info@atmluxuryproperties.com</a>
               </li>
             </ul>
