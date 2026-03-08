@@ -64,15 +64,14 @@ const Index = () => {
           {/* Search bar */}
           <div className="bg-background rounded-lg p-4 max-w-3xl mx-auto">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-              <Select>
+              <Select value={heroType} onValueChange={setHeroType}>
                 <SelectTrigger><SelectValue placeholder="Property Type" /></SelectTrigger>
                 <SelectContent>
                   <SelectItem value="land">Land</SelectItem>
-                  <SelectItem value="duplex">Duplex</SelectItem>
-                  <SelectItem value="house">House</SelectItem>
+                  <SelectItem value="houses">Houses</SelectItem>
                 </SelectContent>
               </Select>
-              <Select>
+              <Select value={heroCity} onValueChange={setHeroCity}>
                 <SelectTrigger><SelectValue placeholder="City" /></SelectTrigger>
                 <SelectContent>
                   <SelectItem value="abuja">Abuja</SelectItem>
@@ -80,16 +79,14 @@ const Index = () => {
                   <SelectItem value="ibadan">Ibadan</SelectItem>
                 </SelectContent>
               </Select>
-              <Select>
-                <SelectTrigger><SelectValue placeholder="Bedrooms" /></SelectTrigger>
+              <Select value={heroStatus} onValueChange={setHeroStatus}>
+                <SelectTrigger><SelectValue placeholder="Status" /></SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="1">1</SelectItem>
-                  <SelectItem value="2">2</SelectItem>
-                  <SelectItem value="3">3</SelectItem>
-                  <SelectItem value="4">4+</SelectItem>
+                  <SelectItem value="for-sale">For Sale</SelectItem>
+                  <SelectItem value="for-rent">For Rent</SelectItem>
                 </SelectContent>
               </Select>
-              <Link to="/listings">
+              <Link to={`/listings?type=${heroType}&status=${heroStatus}&city=${heroCity}`}>
                 <Button className="btn-primary w-full h-10">
                   <Search size={16} className="mr-2" /> Search
                 </Button>
