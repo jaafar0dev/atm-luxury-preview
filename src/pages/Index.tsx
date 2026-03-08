@@ -188,7 +188,7 @@ const Index = () => {
       {/* Why Choose Us + Inquiry */}
       <section className="relative section-padding overflow-hidden">
         <img src={sectionBg} alt="" className="absolute inset-0 w-full h-full object-cover" />
-        <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, hsla(215,60%,12%,0.88), hsla(215,50%,8%,0.92))" }} />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, hsla(212,60%,16%,0.88), hsla(207,80%,20%,0.92))" }} />
         <div className="relative z-10 section-container grid grid-cols-1 lg:grid-cols-2 gap-16">
           <ScrollAnimation direction="left">
             <div className="luxury-divider justify-start mb-4">
