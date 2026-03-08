@@ -192,7 +192,7 @@ const Index = () => {
         <div className="relative z-10 section-container grid grid-cols-1 lg:grid-cols-2 gap-16">
           <ScrollAnimation direction="left">
             <div className="luxury-divider justify-start mb-4">
-              <span className="text-accent font-accent text-sm tracking-[0.2em] uppercase">Our Promise</span>
+              <span className="text-white/80 font-accent text-sm tracking-[0.2em] uppercase">Our Promise</span>
             </div>
             <h2 className="text-3xl md:text-4xl font-display font-bold text-secondary mb-10">Why Should You<br />Deal With Us?</h2>
             <div className="space-y-8">
