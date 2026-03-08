@@ -202,12 +202,12 @@ const Index = () => {
                 { icon: Award, num: "03", title: "Superior Negotiating Skills", desc: "We fight for the best deal by acquiring a price that fits an affordable budget for our clients, ensuring maximum value for every transaction." },
               ].map((item) => (
                 <div key={item.num} className="flex gap-5 group">
-                  <div className="shrink-0 w-12 h-12 rounded-sm bg-accent/10 border border-accent/20 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
-                    <item.icon size={20} className="text-accent" />
+                  <div className="shrink-0 w-12 h-12 rounded-sm bg-white/10 border border-white/20 flex items-center justify-center group-hover:bg-white/20 transition-colors">
+                    <item.icon size={20} className="text-white" />
                   </div>
                   <div>
-                    <h3 className="font-display font-semibold text-secondary mb-1.5 text-lg">{item.title}</h3>
-                    <p className="text-sm text-secondary/60 leading-relaxed">{item.desc}</p>
+                    <h3 className="font-display font-semibold text-white mb-1.5 text-lg">{item.title}</h3>
+                    <p className="text-sm text-white/60 leading-relaxed">{item.desc}</p>
                   </div>
                 </div>
               ))}
