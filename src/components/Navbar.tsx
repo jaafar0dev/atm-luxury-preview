@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ConsultationDialog } from "@/components/ConsultationDialog";
 import logo from "@/assets/logo.png";
@@ -67,6 +67,13 @@ export const Navbar = () => {
                 )}
               </div>
             ))}
+            <Link
+              to="/favorites"
+              className={`nav-link flex items-center gap-1.5 text-xs tracking-[0.1em] ${location.pathname === "/favorites" ? "text-accent font-semibold" : "text-foreground"}`}
+            >
+              <Heart size={14} />
+              FAVORITES
+            </Link>
           </div>
 
           <div className="hidden lg:block">
@@ -75,10 +82,15 @@ export const Navbar = () => {
             </Button>
           </div>
 
-          {/* Mobile toggle */}
-          <button className="lg:hidden text-foreground" onClick={() => setMobileOpen(!mobileOpen)}>
-            {mobileOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          {/* Mobile toggle area */}
+          <div className="flex lg:hidden items-center gap-3">
+            <Link to="/favorites" className="text-foreground hover:text-accent transition-colors">
+              <Heart size={22} className={location.pathname === "/favorites" ? "fill-accent text-accent" : ""} />
+            </Link>
+            <button className="text-foreground" onClick={() => setMobileOpen(!mobileOpen)}>
+              {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile menu */}

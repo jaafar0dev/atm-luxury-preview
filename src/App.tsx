@@ -13,6 +13,7 @@ import Contact from "./pages/Contact";
 import MortgageCalculator from "./pages/MortgageCalculator";
 import Blog from "./pages/Blog";
 import TeamMember from "./pages/TeamMember";
+import Favorites from "./pages/Favorites";
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminLayout from "./pages/admin/AdminLayout";
 import AdminDashboard from "./pages/admin/AdminDashboard";
@@ -43,6 +44,7 @@ const App = () => (
           <Route path="/contact" element={<Contact />} />
           <Route path="/mortgage-calculator" element={<MortgageCalculator />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/favorites" element={<Favorites />} />
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin" element={<AdminLayout />}>
             <Route index element={<AdminDashboard />} />
