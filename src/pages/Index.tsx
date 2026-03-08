@@ -174,7 +174,7 @@ const Index = () => {
                   <SelectContent>
                     <SelectItem value="residential-land">Residential Land</SelectItem>
                     <SelectItem value="commercial-land">Commercial Land</SelectItem>
-                    <SelectItem value="duplex">Duplex</SelectItem>
+                    <SelectItem value="house">House</SelectItem>
                   </SelectContent>
                 </Select>
                 <Input placeholder="Use / living / rental" value={inquiryForm.usagePurpose} onChange={(e) => setInquiryForm({ ...inquiryForm, usagePurpose: e.target.value })} />

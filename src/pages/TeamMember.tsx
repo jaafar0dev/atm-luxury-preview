@@ -86,9 +86,9 @@ const TeamMember = () => {
                 )}
               </div>
               <div className="mt-4">
-                <ConsultationDialog>
+                <Link to="/contact">
                   <Button className="w-full btn-primary">Send Message</Button>
-                </ConsultationDialog>
+                </Link>
               </div>
             </div>
 
