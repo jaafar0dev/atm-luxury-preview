@@ -3,8 +3,7 @@ import { PageHero } from "@/components/PageHero";
 import { useParams, Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
-import { ConsultationDialog } from "@/components/ConsultationDialog";
-import { MapPin, Globe, Mail, Phone } from "lucide-react";
+import { MapPin, Mail, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const TeamMember = () => {
