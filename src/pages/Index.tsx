@@ -75,7 +75,7 @@ const Index = () => {
 
         <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
           <div className="luxury-divider mb-6">
-            <span className="text-accent font-accent text-sm tracking-[0.3em] uppercase">Luxury Real Estate</span>
+            <span className="text-white/80 font-accent text-sm tracking-[0.3em] uppercase">Luxury Real Estate</span>
           </div>
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold text-secondary mb-6 leading-tight animate-bounce-text">
             ATM Luxury Properties
