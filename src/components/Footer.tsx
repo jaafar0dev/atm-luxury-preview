@@ -33,7 +33,7 @@ export const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-display font-bold text-sm tracking-[0.1em] uppercase mb-5 text-accent">Quick Links</h3>
+            <h3 className="font-display font-bold text-sm tracking-[0.1em] uppercase mb-5 text-white">Quick Links</h3>
             <ul className="space-y-3 text-sm text-primary-foreground/60">
               <li><Link to="/" className="hover:text-accent transition-colors">Home</Link></li>
               <li><Link to="/listings" className="hover:text-accent transition-colors">Listings</Link></li>
