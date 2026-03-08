@@ -136,8 +136,10 @@ const Index = () => {
       </section>
 
       {/* Why Choose Us + Inquiry */}
-      <section className="bg-primary py-16">
-        <div className="section-container grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <section className="relative py-16 overflow-hidden">
+        <img src={sectionBg} alt="" className="absolute inset-0 w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-primary/75" />
+        <div className="relative z-10 section-container grid grid-cols-1 lg:grid-cols-2 gap-12">
           <ScrollAnimation direction="left">
             <h2 className="text-3xl font-display font-bold text-primary-foreground mb-8">Why Should You Deal With Us?</h2>
             <div className="space-y-6">
