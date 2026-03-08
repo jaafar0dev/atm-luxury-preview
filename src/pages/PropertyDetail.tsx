@@ -92,8 +92,8 @@ const PropertyDetail = () => {
                 <Link to="/contact">
                   <Button className="btn-primary">Contact Us About This Property</Button>
                 </Link>
-                <Button variant="outline" size="icon">
-                  <Heart size={18} />
+                <Button variant="outline" size="icon" onClick={() => setIsFavorited(toggleFavorite(property.id))}>
+                  <Heart size={18} className={isFavorited ? "fill-destructive text-destructive" : ""} />
                 </Button>
               </div>
             </div>
