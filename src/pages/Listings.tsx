@@ -44,8 +44,8 @@ const Listings = () => {
       <section className="section-container py-10">
         {/* Filters */}
         <div className="flex flex-wrap gap-3 mb-8 items-center">
-          <Input placeholder="Enter Keyword..." value={keyword} onChange={(e) => setKeyword(e.target.value)} className="max-w-[200px]" />
-          <Select value={statusFilter} onValueChange={setStatusFilter}>
+          <Input placeholder="Enter Keyword..." value={keyword} onChange={(e) => { setKeyword(e.target.value); setPage(1); }} className="max-w-[200px]" />
+          <Select value={statusFilter} onValueChange={(v) => { setStatusFilter(v); setPage(1); }}>
             <SelectTrigger className="w-[130px]"><SelectValue placeholder="Status" /></SelectTrigger>
             <SelectContent>
               <SelectItem value="for-sale">For Sale</SelectItem>
