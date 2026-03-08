@@ -276,7 +276,7 @@ const Index = () => {
                 ))}
               </div>
               <Link to="/listings">
-                <Button variant="outline" className="rounded-sm border-accent/30 text-secondary hover:bg-accent/10 px-8 h-11 tracking-wide">
+                <Button variant="outline" className="rounded-sm border-white/30 text-white hover:bg-white/10 px-8 h-11 tracking-wide">
                   View All Areas <ArrowRight size={16} className="ml-2" />
                 </Button>
               </Link>
