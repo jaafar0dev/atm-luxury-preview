@@ -16,7 +16,7 @@ export const Footer = () => {
             <p className="text-sm text-primary-foreground/60 leading-relaxed max-w-sm mb-6">
               Your premier luxury real estate marketing agency. We specialize in exclusive properties across Nigeria's most prestigious locations.
             </p>
-            <Link to="/listings" className="inline-flex items-center gap-2 text-accent text-sm font-medium hover:text-accent/80 transition-colors">
+            <Link to="/listings" className="inline-flex items-center gap-2 text-white/80 text-sm font-medium hover:text-white transition-colors">
               View Our Properties <ArrowRight size={14} />
             </Link>
           </div>
