@@ -20,14 +20,15 @@ const Listings = () => {
   const [page, setPage] = useState(1);
   const perPage = 6;
 
-  const { data, refetch } = useQuery({
-    queryKey: ["properties", keyword, statusFilter, typeFilter, page],
+  const { data } = useQuery({
+    queryKey: ["properties", keyword, statusFilter, typeFilter, cityFilter, page],
     queryFn: async () => {
       let query = supabase.from("properties").select("*", { count: "exact" });
       if (keyword) query = query.ilike("title", `%${keyword}%`);
       if (statusFilter) query = query.eq("status", statusFilter);
       if (typeFilter === "land") query = query.ilike("property_type", "%Land%");
       if (typeFilter === "houses") query = query.not("property_type", "ilike", "%Land%");
+      if (cityFilter) query = query.ilike("city", `%${cityFilter}%`);
       query = query.order("created_at", { ascending: false }).range((page - 1) * perPage, page * perPage - 1);
       const { data, count } = await query;
       return { properties: data || [], total: count || 0 };
