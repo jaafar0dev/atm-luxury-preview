@@ -16,6 +16,7 @@ export default {
       fontFamily: {
         display: ['"Playfair Display"', 'serif'],
         body: ['"DM Sans"', 'sans-serif'],
+        accent: ['"Cormorant Garamond"', 'serif'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -58,6 +59,14 @@ export default {
         warning: {
           DEFAULT: "hsl(var(--warning))",
           foreground: "hsl(var(--warning-foreground))",
+        },
+        gold: {
+          DEFAULT: "hsl(var(--gold))",
+          light: "hsl(var(--gold-light))",
+        },
+        navy: {
+          DEFAULT: "hsl(var(--navy))",
+          light: "hsl(var(--navy-light))",
         },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",

@@ -1,81 +1,72 @@
 import { Link } from "react-router-dom";
-import { MapPin, Phone, Mail } from "lucide-react";
+import { MapPin, Phone, Mail, ArrowRight } from "lucide-react";
 
 export const Footer = () => {
   return (
     <footer className="bg-primary text-primary-foreground">
-      <div className="section-container py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+      {/* Top accent line */}
+      <div className="h-1" style={{ background: "var(--gold-gradient)" }} />
+      
+      <div className="section-container py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
+          {/* Brand */}
+          <div className="lg:col-span-2">
+            <div className="font-display text-3xl font-bold tracking-tight mb-4">ATM</div>
+            <p className="text-sm text-primary-foreground/60 leading-relaxed max-w-sm mb-6">
+              Your premier luxury real estate marketing agency. We specialize in exclusive properties across Nigeria's most prestigious locations.
+            </p>
+            <Link to="/listings" className="inline-flex items-center gap-2 text-accent text-sm font-medium hover:text-accent/80 transition-colors">
+              View Our Properties <ArrowRight size={14} />
+            </Link>
+          </div>
+
           {/* Discover */}
           <div>
-            <h3 className="font-display font-bold text-lg mb-4">Discover</h3>
-            <ul className="space-y-2 text-sm text-primary-foreground/80">
-              <li><Link to="/listings?city=Abuja" className="hover:text-primary-foreground transition-colors">Abuja</Link></li>
-              <li><Link to="/listings?city=Lagos" className="hover:text-primary-foreground transition-colors">Lagos</Link></li>
-              <li><Link to="/listings?city=Ibadan" className="hover:text-primary-foreground transition-colors">Ibadan</Link></li>
-            </ul>
-          </div>
-
-          {/* Contact Us */}
-          <div>
-            <h3 className="font-display font-bold text-lg mb-4">Contact Us</h3>
-            <ul className="space-y-3 text-sm text-primary-foreground/80">
-              <li className="flex items-start gap-2">
-                <MapPin size={16} className="mt-0.5 shrink-0" />
-                <span>Suite D 47, Anon Plaza Gudu District, Abuja</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <MapPin size={16} className="mt-0.5 shrink-0" />
-                <span>KM 48, BRG Building, Beside Skymall, Sangotedo, Lekki Lagos Nigeria.</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <Phone size={16} className="mt-0.5 shrink-0" />
-                <div>
-                  <a href="tel:+2348106815300" className="hover:text-primary-foreground block">+234-810-681-5300</a>
-                  <a href="tel:+2349037075934" className="hover:text-primary-foreground block">+234-903-707-5934</a>
-                  <a href="tel:+2348159160550" className="hover:text-primary-foreground block">+234-815-916-0550</a>
-                </div>
-              </li>
-              <li className="flex items-start gap-2">
-                <Mail size={16} className="mt-0.5 shrink-0" />
-                <a href="mailto:Info@atmluxuryproperties.com" className="hover:text-primary-foreground">Info@atmluxuryproperties.com</a>
-              </li>
-            </ul>
-          </div>
-
-          {/* Services */}
-          <div>
-            <h3 className="font-display font-bold text-lg mb-4">Services</h3>
-            <ul className="space-y-2 text-sm text-primary-foreground/80">
-              <li>Brokerage</li>
-              <li>Investment</li>
-              <li>Advisory</li>
+            <h3 className="font-display font-bold text-sm tracking-[0.1em] uppercase mb-5 text-accent">Discover</h3>
+            <ul className="space-y-3 text-sm text-primary-foreground/60">
+              <li><Link to="/listings?city=Abuja" className="hover:text-accent transition-colors">Abuja</Link></li>
+              <li><Link to="/listings?city=Lagos" className="hover:text-accent transition-colors">Lagos</Link></li>
+              <li><Link to="/listings?city=Ibadan" className="hover:text-accent transition-colors">Ibadan</Link></li>
             </ul>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-display font-bold text-lg mb-4">Quick Links</h3>
-            <ul className="space-y-2 text-sm text-primary-foreground/80">
-              <li><Link to="/" className="hover:text-primary-foreground transition-colors">Home</Link></li>
-              <li><Link to="/listings" className="hover:text-primary-foreground transition-colors">Listings</Link></li>
-              <li><Link to="/blog" className="hover:text-primary-foreground transition-colors">Blog</Link></li>
-              <li><Link to="/about" className="hover:text-primary-foreground transition-colors">About</Link></li>
-              <li><Link to="/contact" className="hover:text-primary-foreground transition-colors">Contact</Link></li>
-              <li><Link to="/faq" className="hover:text-primary-foreground transition-colors">FAQs</Link></li>
+            <h3 className="font-display font-bold text-sm tracking-[0.1em] uppercase mb-5 text-accent">Quick Links</h3>
+            <ul className="space-y-3 text-sm text-primary-foreground/60">
+              <li><Link to="/" className="hover:text-accent transition-colors">Home</Link></li>
+              <li><Link to="/listings" className="hover:text-accent transition-colors">Listings</Link></li>
+              <li><Link to="/blog" className="hover:text-accent transition-colors">Blog</Link></li>
+              <li><Link to="/about" className="hover:text-accent transition-colors">About</Link></li>
+              <li><Link to="/contact" className="hover:text-accent transition-colors">Contact</Link></li>
             </ul>
           </div>
 
-          {/* Brand */}
+          {/* Contact */}
           <div>
-            <div className="font-display text-3xl font-bold italic mb-3">atm</div>
-            <p className="text-sm text-primary-foreground/80">
-              Your first choice real estate marketing agency. We specialize in luxury properties across Nigeria.
-            </p>
+            <h3 className="font-display font-bold text-sm tracking-[0.1em] uppercase mb-5 text-accent">Contact</h3>
+            <ul className="space-y-4 text-sm text-primary-foreground/60">
+              <li className="flex items-start gap-2.5">
+                <MapPin size={14} className="mt-1 shrink-0 text-accent/60" />
+                <span>Suite D 47, Anon Plaza Gudu District, Abuja</span>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <Phone size={14} className="mt-1 shrink-0 text-accent/60" />
+                <div className="space-y-1">
+                  <a href="tel:+2348106815300" className="hover:text-accent block transition-colors">+234-810-681-5300</a>
+                  <a href="tel:+2349037075934" className="hover:text-accent block transition-colors">+234-903-707-5934</a>
+                </div>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <Mail size={14} className="mt-1 shrink-0 text-accent/60" />
+                <a href="mailto:Info@atmluxuryproperties.com" className="hover:text-accent transition-colors">Info@atmluxuryproperties.com</a>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
-      <div className="border-t border-primary-foreground/20 py-4 text-center text-sm text-primary-foreground/60">
+
+      <div className="border-t border-primary-foreground/10 py-5 text-center text-xs text-primary-foreground/40 tracking-wider">
         © {new Date().getFullYear()} ATM Luxury Properties. All rights reserved.
       </div>
     </footer>

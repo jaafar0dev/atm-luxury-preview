@@ -29,14 +29,15 @@ export const Navbar = () => {
 
   return (
     <>
-      <nav className="sticky top-0 z-40 bg-background border-b border-border">
-        <div className="section-container flex items-center justify-between h-16">
-          <Link to="/" className="font-display text-2xl font-bold text-primary italic">
-            atm
+      <nav className="sticky top-0 z-40 glass-nav">
+        <div className="section-container flex items-center justify-between h-18 py-4">
+          <Link to="/" className="flex items-center gap-2">
+            <span className="font-display text-2xl font-bold text-primary tracking-tight">ATM</span>
+            <span className="hidden sm:block text-xs text-muted-foreground tracking-[0.15em] uppercase border-l border-border pl-2">Luxury Properties</span>
           </Link>
 
           {/* Desktop nav */}
-          <div className="hidden lg:flex items-center gap-6">
+          <div className="hidden lg:flex items-center gap-7">
             {navLinks.map((link) => (
               <div
                 key={link.path}
@@ -46,18 +47,18 @@ export const Navbar = () => {
               >
                 <Link
                   to={link.path}
-                  className={`nav-link flex items-center gap-1 ${location.pathname === link.path ? "text-primary font-semibold" : "text-foreground"}`}
+                  className={`nav-link flex items-center gap-1 text-xs tracking-[0.1em] ${location.pathname === link.path ? "text-accent font-semibold" : "text-foreground"}`}
                 >
                   {link.label}
-                  {link.dropdown && <ChevronDown size={14} />}
+                  {link.dropdown && <ChevronDown size={12} />}
                 </Link>
                 {link.dropdown && dropdownOpen === link.label && (
-                  <div className="absolute top-full left-0 mt-1 bg-card border border-border rounded-md shadow-lg py-2 min-w-[160px] animate-fade-in">
+                  <div className="absolute top-full left-0 mt-2 bg-card border border-border rounded-sm shadow-lg py-2 min-w-[180px] animate-fade-in">
                     {link.dropdown.map((item) => (
                       <Link
                         key={item.path}
                         to={item.path}
-                        className="block px-4 py-2 text-sm text-foreground hover:bg-muted transition-colors"
+                        className="block px-5 py-2.5 text-xs tracking-wide text-foreground hover:bg-muted hover:text-accent transition-colors"
                       >
                         {item.label}
                       </Link>
@@ -69,7 +70,7 @@ export const Navbar = () => {
           </div>
 
           <div className="hidden lg:block">
-            <Button onClick={() => setConsultationOpen(true)} className="btn-primary rounded-full px-6">
+            <Button onClick={() => setConsultationOpen(true)} className="btn-gold rounded-sm px-6 text-xs tracking-[0.1em] h-9">
               Book Consultation
             </Button>
           </div>
@@ -82,14 +83,14 @@ export const Navbar = () => {
 
         {/* Mobile menu */}
         {mobileOpen && (
-          <div className="lg:hidden bg-background border-t border-border animate-fade-in">
-            <div className="section-container py-4 space-y-3">
+          <div className="lg:hidden bg-card border-t border-border animate-fade-in">
+            <div className="section-container py-6 space-y-3">
               {navLinks.map((link) => (
                 <div key={link.path}>
                   <Link
                     to={link.path}
                     onClick={() => setMobileOpen(false)}
-                    className={`block py-2 nav-link ${location.pathname === link.path ? "text-primary font-semibold" : "text-foreground"}`}
+                    className={`block py-2.5 text-sm tracking-wide ${location.pathname === link.path ? "text-accent font-semibold" : "text-foreground"}`}
                   >
                     {link.label}
                   </Link>
@@ -98,14 +99,14 @@ export const Navbar = () => {
                       key={item.path}
                       to={item.path}
                       onClick={() => setMobileOpen(false)}
-                      className="block py-1 pl-4 text-sm text-muted-foreground hover:text-primary"
+                      className="block py-1.5 pl-4 text-xs text-muted-foreground hover:text-accent"
                     >
                       {item.label}
                     </Link>
                   ))}
                 </div>
               ))}
-              <Button onClick={() => { setConsultationOpen(true); setMobileOpen(false); }} className="btn-primary rounded-full w-full">
+              <Button onClick={() => { setConsultationOpen(true); setMobileOpen(false); }} className="btn-gold rounded-sm w-full tracking-wide">
                 Book Consultation
               </Button>
             </div>
