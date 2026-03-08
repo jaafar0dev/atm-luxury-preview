@@ -4,18 +4,17 @@ import { motion, AnimatePresence } from "framer-motion";
 
 export const FloatingHelp = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [shouldPulse, setShouldPulse] = useState(false);
+  const [shouldVibrate, setShouldVibrate] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setShouldPulse(true);
-      setTimeout(() => setShouldPulse(false), 2000);
-    }, 30000);
+      setShouldVibrate(true);
+      setTimeout(() => setShouldVibrate(false), 1000);
+    }, 10000);
 
-    // Initial pulse after 3 seconds
     const initialTimeout = setTimeout(() => {
-      setShouldPulse(true);
-      setTimeout(() => setShouldPulse(false), 2000);
+      setShouldVibrate(true);
+      setTimeout(() => setShouldVibrate(false), 1000);
     }, 3000);
 
     return () => {
@@ -57,7 +56,7 @@ export const FloatingHelp = () => {
 
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`w-14 h-14 rounded-full bg-primary text-primary-foreground shadow-lg flex items-center justify-center transition-all hover:bg-primary/90 ${shouldPulse ? "animate-pulse-help" : ""}`}
+        className={`w-14 h-14 rounded-full bg-primary text-primary-foreground shadow-lg flex items-center justify-center transition-all hover:bg-primary/90 ${shouldVibrate ? "animate-vibrate" : ""}`}
       >
         {isOpen ? <X size={24} /> : <MessageCircle size={24} />}
       </button>

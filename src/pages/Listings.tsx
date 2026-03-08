@@ -16,17 +16,19 @@ const Listings = () => {
   const [keyword, setKeyword] = useState("");
   const [statusFilter, setStatusFilter] = useState(searchParams.get("status") || "");
   const [typeFilter, setTypeFilter] = useState(searchParams.get("type") || "");
+  const [cityFilter, setCityFilter] = useState(searchParams.get("city") || "");
   const [page, setPage] = useState(1);
   const perPage = 6;
 
-  const { data, refetch } = useQuery({
-    queryKey: ["properties", keyword, statusFilter, typeFilter, page],
+  const { data } = useQuery({
+    queryKey: ["properties", keyword, statusFilter, typeFilter, cityFilter, page],
     queryFn: async () => {
       let query = supabase.from("properties").select("*", { count: "exact" });
       if (keyword) query = query.ilike("title", `%${keyword}%`);
       if (statusFilter) query = query.eq("status", statusFilter);
       if (typeFilter === "land") query = query.ilike("property_type", "%Land%");
       if (typeFilter === "houses") query = query.not("property_type", "ilike", "%Land%");
+      if (cityFilter) query = query.ilike("city", `%${cityFilter}%`);
       query = query.order("created_at", { ascending: false }).range((page - 1) * perPage, page * perPage - 1);
       const { data, count } = await query;
       return { properties: data || [], total: count || 0 };
@@ -42,24 +44,29 @@ const Listings = () => {
       <section className="section-container py-10">
         {/* Filters */}
         <div className="flex flex-wrap gap-3 mb-8 items-center">
-          <Input placeholder="Enter Keyword..." value={keyword} onChange={(e) => setKeyword(e.target.value)} className="max-w-[200px]" />
-          <Select value={statusFilter} onValueChange={setStatusFilter}>
+          <Input placeholder="Enter Keyword..." value={keyword} onChange={(e) => { setKeyword(e.target.value); setPage(1); }} className="max-w-[200px]" />
+          <Select value={statusFilter} onValueChange={(v) => { setStatusFilter(v); setPage(1); }}>
             <SelectTrigger className="w-[130px]"><SelectValue placeholder="Status" /></SelectTrigger>
             <SelectContent>
               <SelectItem value="for-sale">For Sale</SelectItem>
               <SelectItem value="for-rent">For Rent</SelectItem>
             </SelectContent>
           </Select>
-          <Select value={typeFilter} onValueChange={setTypeFilter}>
+          <Select value={typeFilter} onValueChange={(v) => { setTypeFilter(v); setPage(1); }}>
             <SelectTrigger className="w-[130px]"><SelectValue placeholder="Type" /></SelectTrigger>
             <SelectContent>
               <SelectItem value="land">Land</SelectItem>
               <SelectItem value="houses">Houses</SelectItem>
             </SelectContent>
           </Select>
-          <Button onClick={() => refetch()} className="btn-primary">
-            <Search size={16} className="mr-2" /> Search
-          </Button>
+          <Select value={cityFilter} onValueChange={(v) => { setCityFilter(v); setPage(1); }}>
+            <SelectTrigger className="w-[130px]"><SelectValue placeholder="City" /></SelectTrigger>
+            <SelectContent>
+              <SelectItem value="abuja">Abuja</SelectItem>
+              <SelectItem value="lagos">Lagos</SelectItem>
+              <SelectItem value="ibadan">Ibadan</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
 
         {/* Grid */}

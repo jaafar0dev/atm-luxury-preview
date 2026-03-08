@@ -3,6 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ScrollToTop } from "@/components/ScrollToTop";
 import Index from "./pages/Index";
 import Listings from "./pages/Listings";
 import PropertyDetail from "./pages/PropertyDetail";
@@ -11,6 +12,7 @@ import FAQ from "./pages/FAQ";
 import Contact from "./pages/Contact";
 import MortgageCalculator from "./pages/MortgageCalculator";
 import Blog from "./pages/Blog";
+import TeamMember from "./pages/TeamMember";
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminLayout from "./pages/admin/AdminLayout";
 import AdminDashboard from "./pages/admin/AdminDashboard";
@@ -30,11 +32,13 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/listings" element={<Listings />} />
           <Route path="/property/:id" element={<PropertyDetail />} />
           <Route path="/about" element={<About />} />
+          <Route path="/team/:id" element={<TeamMember />} />
           <Route path="/faq" element={<FAQ />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/mortgage-calculator" element={<MortgageCalculator />} />

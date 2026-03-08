@@ -3,8 +3,20 @@ import { PageHero } from "@/components/PageHero";
 import { ScrollAnimation } from "@/components/ScrollAnimation";
 import { Diamond, Eye } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
 
 const About = () => {
+  const { data: teamMembers } = useQuery({
+    queryKey: ["team-members"],
+    queryFn: async () => {
+      const { data } = await supabase.from("team_members").select("*").order("created_at");
+      return data || [];
+    },
+  });
+
   return (
     <PublicLayout>
       <PageHero title="About Us" subtitle="Your Investing Partner Since 2019" />
@@ -78,7 +90,7 @@ const About = () => {
 
         {/* Core Values */}
         <ScrollAnimation direction="up">
-          <div className="text-center">
+          <div className="text-center mb-16">
             <h2 className="text-3xl font-display font-bold text-foreground mb-6">Our Core Values</h2>
             <div className="flex justify-center gap-3 flex-wrap">
               {["Customer Satisfaction", "Integrity", "Excellence"].map((v) => (
@@ -87,6 +99,51 @@ const About = () => {
             </div>
           </div>
         </ScrollAnimation>
+
+        {/* Meet The Team */}
+        <ScrollAnimation direction="up">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl font-display font-bold text-foreground mb-4">Meet The Team</h2>
+            <p className="text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              Our combined experience provides us with lots of know how in various situations. Our Realtors meet stringent conditions. Friendly, courteous, honest, diligent, hardworking and integral. We help each other out. It's not a competition! Talk to any team member today and have a pleasant and prosperous real estate experience! We're easy to talk to, just a call away.
+            </p>
+            <div className="flex justify-end mt-4">
+              <Link to="/about">
+                <Button className="btn-primary">View All Members</Button>
+              </Link>
+            </div>
+          </div>
+        </ScrollAnimation>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {teamMembers?.map((m, i) => (
+            <ScrollAnimation key={m.id} direction="up" delay={i * 100}>
+              <div className="text-center">
+                <div className="w-40 h-40 mx-auto mb-4 rounded-full overflow-hidden border-4 border-border bg-secondary">
+                  {m.image_url ? (
+                    <img src={m.image_url} alt={m.name} className="w-full h-full object-cover" />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center text-3xl font-display font-bold text-muted-foreground">
+                      {m.name.charAt(0)}
+                    </div>
+                  )}
+                </div>
+                <h3 className="font-display font-bold text-foreground">{m.name}</h3>
+                <p className="text-sm text-primary mb-2">{m.role}</p>
+                {m.bio && (
+                  <p className="text-sm text-muted-foreground line-clamp-3 mb-3 max-w-xs mx-auto">{m.bio}</p>
+                )}
+                <Link to={`/team/${m.id}`}>
+                  <Button variant="outline" size="sm">View Profile</Button>
+                </Link>
+              </div>
+            </ScrollAnimation>
+          ))}
+        </div>
+
+        {(!teamMembers || teamMembers.length === 0) && (
+          <p className="text-center text-muted-foreground py-8">Team members coming soon.</p>
+        )}
       </section>
     </PublicLayout>
   );
