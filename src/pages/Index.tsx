@@ -189,8 +189,10 @@ const Index = () => {
       </section>
 
       {/* Explore Popular Areas */}
-      <section className="bg-primary/95 py-16">
-        <div className="section-container">
+      <section className="relative py-16 overflow-hidden">
+        <img src={heroBg} alt="" className="absolute inset-0 w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-primary/80" />
+        <div className="relative z-10 section-container">
           <ScrollAnimation direction="left">
             <h2 className="text-3xl font-display font-bold text-primary-foreground mb-4">Explore Our Most Popular Areas</h2>
             <p className="text-primary-foreground/70 mb-8">See what these areas have to offer and buy your perfect home</p>
