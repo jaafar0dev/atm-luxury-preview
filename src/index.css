@@ -136,7 +136,7 @@
 
   .btn-gold {
     background: var(--gold-gradient);
-    @apply text-primary font-semibold transition-all duration-300 hover:opacity-90;
+    @apply text-white font-semibold transition-all duration-300 hover:opacity-90;
   }
 
   .gold-text {
