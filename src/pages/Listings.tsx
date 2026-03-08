@@ -52,16 +52,21 @@ const Listings = () => {
               <SelectItem value="for-rent">For Rent</SelectItem>
             </SelectContent>
           </Select>
-          <Select value={typeFilter} onValueChange={setTypeFilter}>
+          <Select value={typeFilter} onValueChange={(v) => { setTypeFilter(v); setPage(1); }}>
             <SelectTrigger className="w-[130px]"><SelectValue placeholder="Type" /></SelectTrigger>
             <SelectContent>
               <SelectItem value="land">Land</SelectItem>
               <SelectItem value="houses">Houses</SelectItem>
             </SelectContent>
           </Select>
-          <Button onClick={() => refetch()} className="btn-primary">
-            <Search size={16} className="mr-2" /> Search
-          </Button>
+          <Select value={cityFilter} onValueChange={(v) => { setCityFilter(v); setPage(1); }}>
+            <SelectTrigger className="w-[130px]"><SelectValue placeholder="City" /></SelectTrigger>
+            <SelectContent>
+              <SelectItem value="abuja">Abuja</SelectItem>
+              <SelectItem value="lagos">Lagos</SelectItem>
+              <SelectItem value="ibadan">Ibadan</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
 
         {/* Grid */}
