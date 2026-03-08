@@ -8,6 +8,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Link } from "react-router-dom";
 import { Search, Shield, Eye, Award } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import heroBg from "@/assets/hero-bg.jpg";
+import sectionBg from "@/assets/section-bg.jpg";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -51,7 +53,8 @@ const Index = () => {
     <PublicLayout>
       {/* Hero */}
       <section className="relative h-[70vh] min-h-[500px] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/90 to-primary/70" />
+        <img src={heroBg} alt="" className="absolute inset-0 w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/80 via-primary/70 to-primary/60" />
         <div className="relative z-10 text-center px-4">
           <h1 className="text-4xl md:text-6xl font-display font-bold text-primary-foreground mb-4 animate-bounce-text">
             Welcome To ATM Luxury Properties
@@ -133,8 +136,10 @@ const Index = () => {
       </section>
 
       {/* Why Choose Us + Inquiry */}
-      <section className="bg-primary py-16">
-        <div className="section-container grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <section className="relative py-16 overflow-hidden">
+        <img src={sectionBg} alt="" className="absolute inset-0 w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-primary/75" />
+        <div className="relative z-10 section-container grid grid-cols-1 lg:grid-cols-2 gap-12">
           <ScrollAnimation direction="left">
             <h2 className="text-3xl font-display font-bold text-primary-foreground mb-8">Why Should You Deal With Us?</h2>
             <div className="space-y-6">
@@ -184,8 +189,10 @@ const Index = () => {
       </section>
 
       {/* Explore Popular Areas */}
-      <section className="bg-primary/95 py-16">
-        <div className="section-container">
+      <section className="relative py-16 overflow-hidden">
+        <img src={heroBg} alt="" className="absolute inset-0 w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-primary/80" />
+        <div className="relative z-10 section-container">
           <ScrollAnimation direction="left">
             <h2 className="text-3xl font-display font-bold text-primary-foreground mb-4">Explore Our Most Popular Areas</h2>
             <p className="text-primary-foreground/70 mb-8">See what these areas have to offer and buy your perfect home</p>
