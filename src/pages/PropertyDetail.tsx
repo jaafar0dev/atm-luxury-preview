@@ -34,6 +34,12 @@ const PropertyDetail = () => {
     enabled: !!id,
   });
 
+  const [isFavorited, setIsFavorited] = useState(false);
+
+  useEffect(() => {
+    if (id) setIsFavorited(getFavorites().includes(id));
+  }, [id]);
+
   if (!property) {
     return (
       <PublicLayout>
