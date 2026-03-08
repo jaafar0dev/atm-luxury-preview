@@ -8,6 +8,19 @@ import { MapPin, Bed, Bath, Heart } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+
+const getFavorites = (): string[] => {
+  try { return JSON.parse(localStorage.getItem("atm-favorites") || "[]"); } catch { return []; }
+};
+
+const toggleFavorite = (id: string): boolean => {
+  const favs = getFavorites();
+  const idx = favs.indexOf(id);
+  if (idx >= 0) { favs.splice(idx, 1); } else { favs.push(id); }
+  localStorage.setItem("atm-favorites", JSON.stringify(favs));
+  return idx < 0;
+};
 
 const PropertyDetail = () => {
   const { id } = useParams();
