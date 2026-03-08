@@ -66,7 +66,7 @@ export const FloatingHelp = () => {
         className={`w-14 h-14 rounded-full shadow-lg flex items-center justify-center transition-all hover:scale-105 ${shouldVibrate ? "animate-vibrate" : ""}`}
         style={{ background: "var(--gold-gradient)" }}
       >
-        {isOpen ? <X size={22} className="text-primary" /> : <MessageCircle size={22} className="text-primary" />}
+        {isOpen ? <X size={22} className="text-white" /> : <MessageCircle size={22} className="text-white" />}
       </button>
     </div>
   );
