@@ -64,7 +64,7 @@ const Index = () => {
       {/* Hero */}
       <section className="relative h-[85vh] min-h-[600px] flex items-center justify-center overflow-hidden">
         <img src={heroBg} alt="" className="absolute inset-0 w-full h-full object-cover scale-105" />
-        <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, hsla(215,60%,12%,0.82), hsla(215,50%,8%,0.75))" }} />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, hsla(212,60%,16%,0.82), hsla(207,80%,20%,0.75))" }} />
         
         {/* Decorative elements */}
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
