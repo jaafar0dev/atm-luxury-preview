@@ -45,7 +45,7 @@ export const Footer = () => {
 
           {/* Contact */}
           <div>
-            <h3 className="font-display font-bold text-sm tracking-[0.1em] uppercase mb-5 text-accent">Contact</h3>
+            <h3 className="font-display font-bold text-sm tracking-[0.1em] uppercase mb-5 text-white">Contact</h3>
             <ul className="space-y-4 text-sm text-primary-foreground/60">
               <li className="flex items-start gap-2.5">
                 <MapPin size={14} className="mt-1 shrink-0 text-accent/60" />
