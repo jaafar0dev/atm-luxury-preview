@@ -249,7 +249,7 @@ const Index = () => {
       {/* Explore Popular Areas */}
       <section className="relative section-padding overflow-hidden">
         <img src={heroBg} alt="" className="absolute inset-0 w-full h-full object-cover" />
-        <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, hsla(215,60%,12%,0.9), hsla(215,50%,8%,0.85))" }} />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, hsla(212,60%,16%,0.9), hsla(207,80%,20%,0.85))" }} />
         <div className="relative z-10 section-container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <ScrollAnimation direction="left">
