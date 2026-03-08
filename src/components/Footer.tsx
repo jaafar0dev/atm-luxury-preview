@@ -48,11 +48,11 @@ export const Footer = () => {
             <h3 className="font-display font-bold text-sm tracking-[0.1em] uppercase mb-5 text-white">Contact</h3>
             <ul className="space-y-4 text-sm text-primary-foreground/60">
               <li className="flex items-start gap-2.5">
-                <MapPin size={14} className="mt-1 shrink-0 text-accent/60" />
+                <MapPin size={14} className="mt-1 shrink-0 text-white/60" />
                 <span>Suite D 47, Anon Plaza Gudu District, Abuja</span>
               </li>
               <li className="flex items-start gap-2.5">
-                <Phone size={14} className="mt-1 shrink-0 text-accent/60" />
+                <Phone size={14} className="mt-1 shrink-0 text-white/60" />
                 <div className="space-y-1">
                   <a href="tel:+2348106815300" className="hover:text-accent block transition-colors">+234-810-681-5300</a>
                   <a href="tel:+2349037075934" className="hover:text-accent block transition-colors">+234-903-707-5934</a>
