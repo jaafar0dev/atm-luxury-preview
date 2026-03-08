@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ConsultationDialog } from "@/components/ConsultationDialog";
+import logo from "@/assets/logo.png";
 
 const navLinks = [
   { label: "HOME", path: "/" },
