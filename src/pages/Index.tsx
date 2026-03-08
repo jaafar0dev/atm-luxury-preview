@@ -285,27 +285,27 @@ const Index = () => {
             <ScrollAnimation direction="right">
               <div className="hidden lg:grid grid-cols-2 gap-4">
                 <div className="space-y-4">
-                  <div className="bg-accent/10 border border-accent/20 rounded-sm p-6 text-center">
-                    <Building2 size={28} className="text-accent mx-auto mb-3" />
-                    <div className="text-2xl font-display font-bold text-secondary">120+</div>
-                    <div className="text-xs text-secondary/50 tracking-wider uppercase mt-1">Lekki Properties</div>
+                  <div className="bg-white/10 border border-white/20 rounded-sm p-6 text-center">
+                    <Building2 size={28} className="text-white mx-auto mb-3" />
+                    <div className="text-2xl font-display font-bold text-white">120+</div>
+                    <div className="text-xs text-white/50 tracking-wider uppercase mt-1">Lekki Properties</div>
                   </div>
-                  <div className="bg-accent/10 border border-accent/20 rounded-sm p-6 text-center">
-                    <Building2 size={28} className="text-accent mx-auto mb-3" />
-                    <div className="text-2xl font-display font-bold text-secondary">85+</div>
-                    <div className="text-xs text-secondary/50 tracking-wider uppercase mt-1">Maitama Properties</div>
+                  <div className="bg-white/10 border border-white/20 rounded-sm p-6 text-center">
+                    <Building2 size={28} className="text-white mx-auto mb-3" />
+                    <div className="text-2xl font-display font-bold text-white">85+</div>
+                    <div className="text-xs text-white/50 tracking-wider uppercase mt-1">Maitama Properties</div>
                   </div>
                 </div>
                 <div className="space-y-4 mt-8">
-                  <div className="bg-accent/10 border border-accent/20 rounded-sm p-6 text-center">
-                    <Building2 size={28} className="text-accent mx-auto mb-3" />
-                    <div className="text-2xl font-display font-bold text-secondary">60+</div>
-                    <div className="text-xs text-secondary/50 tracking-wider uppercase mt-1">Asokoro Properties</div>
+                  <div className="bg-white/10 border border-white/20 rounded-sm p-6 text-center">
+                    <Building2 size={28} className="text-white mx-auto mb-3" />
+                    <div className="text-2xl font-display font-bold text-white">60+</div>
+                    <div className="text-xs text-white/50 tracking-wider uppercase mt-1">Asokoro Properties</div>
                   </div>
-                  <div className="bg-accent/10 border border-accent/20 rounded-sm p-6 text-center">
-                    <Phone size={28} className="text-accent mx-auto mb-3" />
-                    <div className="text-sm font-display font-semibold text-secondary">Get Expert Advice</div>
-                    <div className="text-xs text-secondary/50 mt-1">+234-810-681-5300</div>
+                  <div className="bg-white/10 border border-white/20 rounded-sm p-6 text-center">
+                    <Phone size={28} className="text-white mx-auto mb-3" />
+                    <div className="text-sm font-display font-semibold text-white">Get Expert Advice</div>
+                    <div className="text-xs text-white/50 mt-1">+234-810-681-5300</div>
                   </div>
                 </div>
               </div>
