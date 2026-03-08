@@ -23,7 +23,7 @@ export const Footer = () => {
 
           {/* Discover */}
           <div>
-            <h3 className="font-display font-bold text-sm tracking-[0.1em] uppercase mb-5 text-accent">Discover</h3>
+            <h3 className="font-display font-bold text-sm tracking-[0.1em] uppercase mb-5 text-white">Discover</h3>
             <ul className="space-y-3 text-sm text-primary-foreground/60">
               <li><Link to="/listings?city=Abuja" className="hover:text-accent transition-colors">Abuja</Link></li>
               <li><Link to="/listings?city=Lagos" className="hover:text-accent transition-colors">Lagos</Link></li>
