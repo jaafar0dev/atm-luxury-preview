@@ -77,11 +77,11 @@ const Index = () => {
           <div className="luxury-divider mb-6">
             <span className="text-white/80 font-accent text-sm tracking-[0.3em] uppercase">Luxury Real Estate</span>
           </div>
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold text-secondary mb-6 leading-tight animate-bounce-text">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold text-white mb-6 leading-tight animate-bounce-text">
             ATM Luxury Properties
           </h1>
-          <p className="text-lg md:text-xl font-accent text-secondary/70 mb-4 italic tracking-wide">Choosing The Right Luxury</p>
-          <p className="text-sm text-secondary/50 max-w-xl mx-auto mb-10">
+          <p className="text-lg md:text-xl font-accent text-white/70 mb-4 italic tracking-wide">Choosing The Right Luxury</p>
+          <p className="text-sm text-white/50 max-w-xl mx-auto mb-10">
             Nigeria's premier destination for exclusive residential and commercial properties. Experience real estate excellence.
           </p>
 
