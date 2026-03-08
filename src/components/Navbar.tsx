@@ -33,7 +33,7 @@ export const Navbar = () => {
       <nav className="sticky top-0 z-40 glass-nav">
         <div className="section-container flex items-center justify-between h-18 py-4">
           <Link to="/" className="flex items-center gap-2">
-            <img src={logo} alt="ATM Luxury Properties" className="h-12 w-auto bg-white rounded-sm p-1" />
+            <img src={logo} alt="ATM Luxury Properties" className="h-12 w-auto" />
           </Link>
 
           {/* Desktop nav */}
