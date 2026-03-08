@@ -8,6 +8,19 @@ import { MapPin, Bed, Bath, Heart } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+
+const getFavorites = (): string[] => {
+  try { return JSON.parse(localStorage.getItem("atm-favorites") || "[]"); } catch { return []; }
+};
+
+const toggleFavorite = (id: string): boolean => {
+  const favs = getFavorites();
+  const idx = favs.indexOf(id);
+  if (idx >= 0) { favs.splice(idx, 1); } else { favs.push(id); }
+  localStorage.setItem("atm-favorites", JSON.stringify(favs));
+  return idx < 0;
+};
 
 const PropertyDetail = () => {
   const { id } = useParams();
@@ -20,6 +33,12 @@ const PropertyDetail = () => {
     },
     enabled: !!id,
   });
+
+  const [isFavorited, setIsFavorited] = useState(false);
+
+  useEffect(() => {
+    if (id) setIsFavorited(getFavorites().includes(id));
+  }, [id]);
 
   if (!property) {
     return (
@@ -73,8 +92,8 @@ const PropertyDetail = () => {
                 <Link to="/contact">
                   <Button className="btn-primary">Contact Us About This Property</Button>
                 </Link>
-                <Button variant="outline" size="icon">
-                  <Heart size={18} />
+                <Button variant="outline" size="icon" onClick={() => setIsFavorited(toggleFavorite(property.id))}>
+                  <Heart size={18} className={isFavorited ? "fill-destructive text-destructive" : ""} />
                 </Button>
               </div>
             </div>

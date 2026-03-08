@@ -32,7 +32,7 @@ const Favorites = () => {
     setLoading(true);
     try {
       // Get favorite IDs from localStorage
-      const savedFavorites: string[] = JSON.parse(localStorage.getItem("favorites") || "[]");
+      const savedFavorites: string[] = JSON.parse(localStorage.getItem("atm-favorites") || "[]");
       
       if (savedFavorites.length === 0) {
         setFavorites([]);
