@@ -16,6 +16,7 @@ const Listings = () => {
   const [keyword, setKeyword] = useState("");
   const [statusFilter, setStatusFilter] = useState(searchParams.get("status") || "");
   const [typeFilter, setTypeFilter] = useState(searchParams.get("type") || "");
+  const [cityFilter, setCityFilter] = useState(searchParams.get("city") || "");
   const [page, setPage] = useState(1);
   const perPage = 6;
 
