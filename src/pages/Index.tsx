@@ -194,7 +194,7 @@ const Index = () => {
             <div className="luxury-divider justify-start mb-4">
               <span className="text-white/80 font-accent text-sm tracking-[0.2em] uppercase">Our Promise</span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-secondary mb-10">Why Should You<br />Deal With Us?</h2>
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-10">Why Should You<br />Deal With Us?</h2>
             <div className="space-y-8">
               {[
                 { icon: Shield, num: "01", title: "Amazing Attention To Detail", desc: "Our meticulous approach ensures nothing is overlooked. The relationship we maintain between quality investment is unparalleled in the industry." },
