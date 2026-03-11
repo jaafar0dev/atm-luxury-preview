@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Link } from "react-router-dom";
-import { Search, Shield, Eye, Award, ArrowRight, Building2, MapPin, Phone } from "lucide-react";
+import { Search, ArrowRight, Building2, MapPin, Phone } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import heroBg from "@/assets/hero-bg.jpg";
 import sectionBg from "@/assets/section-bg.jpg";
@@ -21,12 +21,30 @@ const stats = [
   { num: "50+", label: "Expert Agents" },
 ];
 
+const propertyTypes = [
+  "Apartment", "Bungalow", "Detached Bungalow", "Semi-Detached Bungalow", "Terrace Bungalow",
+  "Detached Duplex", "Duplex", "Maisonette", "Penthouse", "Semi-Detached Duplex", "Terrace Duplex",
+  "Residential Land", "Commercial Land", "Office/Suite", "Luxury Home", "Mansion",
+];
+
+const budgetOptions = [
+  { label: "₦50,000", value: "50000" },
+  { label: "₦100,000", value: "100000" },
+  { label: "₦200,000", value: "200000" },
+  { label: "₦500,000", value: "500000" },
+  { label: "₦1,000,000", value: "1000000" },
+  { label: "₦2,000,000", value: "2000000" },
+  { label: "₦5,000,000", value: "5000000" },
+  { label: "₦10,000,000", value: "10000000" },
+];
+
 const Index = () => {
   const [inquiryForm, setInquiryForm] = useState({ name: "", email: "", phone: "", whatsapp: "", propertyType: "", subject: "", usagePurpose: "", message: "" });
   const [sending, setSending] = useState(false);
   const [heroType, setHeroType] = useState("");
   const [heroCity, setHeroCity] = useState("");
-  const [heroStatus, setHeroStatus] = useState("");
+  const [heroBedrooms, setHeroBedrooms] = useState("");
+  const [heroBudget, setHeroBudget] = useState("");
 
   const { data: properties } = useQuery({
     queryKey: ["featured-properties"],
@@ -59,14 +77,22 @@ const Index = () => {
     }
   };
 
+  const buildSearchUrl = () => {
+    const params = new URLSearchParams();
+    if (heroType) params.set("type", heroType);
+    if (heroCity) params.set("city", heroCity);
+    if (heroBedrooms) params.set("bedrooms", heroBedrooms);
+    if (heroBudget) params.set("maxPrice", heroBudget);
+    return `/listings?${params.toString()}`;
+  };
+
   return (
     <PublicLayout>
       {/* Hero */}
       <section className="relative h-[85vh] min-h-[600px] flex items-center justify-center overflow-hidden">
         <img src={heroBg} alt="" className="absolute inset-0 w-full h-full object-cover scale-105" />
-        <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, hsla(212,60%,16%,0.82), hsla(207,80%,20%,0.75))" }} />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, hsla(222,60%,16%,0.82), hsla(222,80%,20%,0.75))" }} />
         
-        {/* Decorative elements */}
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
           <div className="absolute top-20 left-10 w-px h-32 bg-white/20" />
           <div className="absolute bottom-20 right-10 w-px h-32 bg-white/20" />
@@ -80,38 +106,48 @@ const Index = () => {
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold text-white mb-6 leading-tight animate-bounce-text">
             ATM Luxury Properties
           </h1>
-          <p className="text-lg md:text-xl font-accent text-white/70 mb-4 italic tracking-wide">Choosing The Right Luxury</p>
+          <p className="text-lg md:text-xl font-accent text-white/70 mb-4 italic tracking-wide">...Your Investing Partner</p>
           <p className="text-sm text-white/50 max-w-xl mx-auto mb-10">
             Nigeria's premier destination for exclusive residential and commercial properties. Experience real estate excellence.
           </p>
 
           {/* Search bar */}
-          <div className="bg-card/95 backdrop-blur-sm rounded-sm p-5 max-w-3xl mx-auto" style={{ boxShadow: "var(--shadow-luxury)" }}>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+          <div className="bg-card/95 backdrop-blur-sm rounded-xl p-5 max-w-4xl mx-auto" style={{ boxShadow: "var(--shadow-luxury)" }}>
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
               <Select value={heroType} onValueChange={setHeroType}>
-                <SelectTrigger className="border-border/50 bg-background"><SelectValue placeholder="Property Type" /></SelectTrigger>
+                <SelectTrigger className="border-border/50 bg-background rounded-lg"><SelectValue placeholder="Property Type" /></SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="land">Land</SelectItem>
-                  <SelectItem value="houses">Houses</SelectItem>
+                  {propertyTypes.map((t) => (
+                    <SelectItem key={t} value={t}>{t}</SelectItem>
+                  ))}
                 </SelectContent>
               </Select>
               <Select value={heroCity} onValueChange={setHeroCity}>
-                <SelectTrigger className="border-border/50 bg-background"><SelectValue placeholder="City" /></SelectTrigger>
+                <SelectTrigger className="border-border/50 bg-background rounded-lg"><SelectValue placeholder="All Cities" /></SelectTrigger>
                 <SelectContent>
                   <SelectItem value="abuja">Abuja</SelectItem>
                   <SelectItem value="lagos">Lagos</SelectItem>
                   <SelectItem value="ibadan">Ibadan</SelectItem>
                 </SelectContent>
               </Select>
-              <Select value={heroStatus} onValueChange={setHeroStatus}>
-                <SelectTrigger className="border-border/50 bg-background"><SelectValue placeholder="Status" /></SelectTrigger>
+              <Select value={heroBedrooms} onValueChange={setHeroBedrooms}>
+                <SelectTrigger className="border-border/50 bg-background rounded-lg"><SelectValue placeholder="Bedrooms" /></SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="for-sale">For Sale</SelectItem>
-                  <SelectItem value="for-rent">For Rent</SelectItem>
+                  {Array.from({ length: 10 }, (_, i) => (
+                    <SelectItem key={i + 1} value={String(i + 1)}>{i + 1} Bedroom{i > 0 ? "s" : ""}</SelectItem>
+                  ))}
                 </SelectContent>
               </Select>
-              <Link to={`/listings?type=${heroType}&status=${heroStatus}&city=${heroCity}`}>
-                <Button className="w-full h-10 btn-gold rounded-sm">
+              <Select value={heroBudget} onValueChange={setHeroBudget}>
+                <SelectTrigger className="border-border/50 bg-background rounded-lg"><SelectValue placeholder="Max Price" /></SelectTrigger>
+                <SelectContent>
+                  {budgetOptions.map((b) => (
+                    <SelectItem key={b.value} value={b.value}>{b.label}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <Link to={buildSearchUrl()}>
+                <Button className="w-full h-10 btn-gold rounded-lg">
                   <Search size={16} className="mr-2" /> Search
                 </Button>
               </Link>
@@ -119,7 +155,6 @@ const Index = () => {
           </div>
         </div>
 
-        {/* Scroll indicator */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/40 animate-bounce-text">
           <span className="text-xs tracking-widest uppercase font-accent">Scroll</span>
           <div className="w-px h-8 bg-white/30" />
@@ -177,7 +212,7 @@ const Index = () => {
           )}
           <div className="text-center mt-12">
             <Link to="/listings">
-              <Button variant="outline" className="rounded-sm border-primary text-primary hover:bg-primary hover:text-primary-foreground px-8 h-11 tracking-wide">
+              <Button variant="outline" className="rounded-full border-primary text-primary hover:bg-primary hover:text-primary-foreground px-8 h-11 tracking-wide">
                 View All Listings <ArrowRight size={16} className="ml-2" />
               </Button>
             </Link>
@@ -188,25 +223,23 @@ const Index = () => {
       {/* Why Choose Us + Inquiry */}
       <section className="relative section-padding overflow-hidden">
         <img src={sectionBg} alt="" className="absolute inset-0 w-full h-full object-cover" />
-        <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, hsla(212,60%,16%,0.88), hsla(207,80%,20%,0.92))" }} />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, hsla(222,60%,16%,0.88), hsla(222,80%,20%,0.92))" }} />
         <div className="relative z-10 section-container grid grid-cols-1 lg:grid-cols-2 gap-16">
           <ScrollAnimation direction="left">
-            <div className="luxury-divider justify-start mb-4">
-              <span className="text-white/80 font-accent text-sm tracking-[0.2em] uppercase">Our Promise</span>
-            </div>
             <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-10">Why Should You<br />Deal With Us?</h2>
-            <div className="space-y-8">
+            <div className="space-y-10">
               {[
-                { icon: Shield, num: "01", title: "Amazing Attention To Detail", desc: "Our meticulous approach ensures nothing is overlooked. The relationship we maintain between quality investment is unparalleled in the industry." },
-                { icon: Eye, num: "02", title: "Expert Property Evaluation", desc: "We understand what searching for the perfect property means to a prospective investor. Our verifications are carefully and thoroughly carried out." },
-                { icon: Award, num: "03", title: "Superior Negotiating Skills", desc: "We fight for the best deal by acquiring a price that fits an affordable budget for our clients, ensuring maximum value for every transaction." },
+                { num: "01", title: "Attention To Detail", desc: "Our Attention to Detail ensures nothing is left to chance. We meticulously navigate every step so you have the smoothest experience possible. From first Consultation to key handover, NOTHING IS MISSED!" },
+                { num: "02", title: "We Know What To Look For", desc: "We focus on identifying the correct property that is on a upward valuation trajectory. Even when providing rent services, our attention to investment potential is significant. In addition, that the seller and structure of the property are well vetted. In order words, the transaction has minimal risk of reversal." },
+                { num: "03", title: "We Have Superior Negotiating Skills", desc: "We fight for clients like negotiating what you can afford to maximize your best price. We've represented buyers and sellers, bringing a unique perspective to each. We also help Landlords get the best leases and help tenants get the best value properties as well as helping lease out and sell properties for land or development." },
               ].map((item) => (
-                <div key={item.num} className="flex gap-5 group">
-                  <div className="shrink-0 w-12 h-12 rounded-sm bg-white/10 border border-white/20 flex items-center justify-center group-hover:bg-white/20 transition-colors">
-                    <item.icon size={20} className="text-white" />
+                <div key={item.num} className="flex gap-5">
+                  <div className="shrink-0 flex flex-col items-center">
+                    <span className="text-2xl font-display font-bold text-white">{item.num}</span>
+                    <div className="w-0.5 flex-1 bg-white/20 mt-2 min-h-[40px]" />
                   </div>
                   <div>
-                    <h3 className="font-display font-semibold text-white mb-1.5 text-lg">{item.title}</h3>
+                    <h3 className="font-display font-semibold text-white mb-2 text-lg">{item.title}</h3>
                     <p className="text-sm text-white/60 leading-relaxed">{item.desc}</p>
                   </div>
                 </div>
@@ -215,29 +248,29 @@ const Index = () => {
           </ScrollAnimation>
 
           <ScrollAnimation direction="right">
-            <div className="bg-card rounded-sm p-8" style={{ boxShadow: "var(--shadow-luxury)" }}>
+            <div className="bg-card rounded-xl p-8" style={{ boxShadow: "var(--shadow-luxury)" }}>
               <div className="luxury-divider justify-start mb-3">
                 <span className="text-accent font-accent text-xs tracking-[0.2em] uppercase">Get In Touch</span>
               </div>
               <h3 className="font-display font-bold text-xl text-foreground mb-6">Got Any Enquiry?</h3>
               <form onSubmit={handleInquiry} className="space-y-4">
                 <div className="grid grid-cols-2 gap-3">
-                  <Input className="rounded-sm border-border/60" placeholder="Full Name *" value={inquiryForm.name} onChange={(e) => setInquiryForm({ ...inquiryForm, name: e.target.value })} required />
-                  <Input className="rounded-sm border-border/60" type="email" placeholder="Email Address *" value={inquiryForm.email} onChange={(e) => setInquiryForm({ ...inquiryForm, email: e.target.value })} required />
-                  <Input className="rounded-sm border-border/60" placeholder="Phone Number" value={inquiryForm.phone} onChange={(e) => setInquiryForm({ ...inquiryForm, phone: e.target.value })} />
-                  <Input className="rounded-sm border-border/60" placeholder="WhatsApp (Optional)" value={inquiryForm.whatsapp} onChange={(e) => setInquiryForm({ ...inquiryForm, whatsapp: e.target.value })} />
+                  <Input className="rounded-lg border-border/60" placeholder="Full Name *" value={inquiryForm.name} onChange={(e) => setInquiryForm({ ...inquiryForm, name: e.target.value })} required />
+                  <Input className="rounded-lg border-border/60" type="email" placeholder="Email Address *" value={inquiryForm.email} onChange={(e) => setInquiryForm({ ...inquiryForm, email: e.target.value })} required />
+                  <Input className="rounded-lg border-border/60" placeholder="Phone Number" value={inquiryForm.phone} onChange={(e) => setInquiryForm({ ...inquiryForm, phone: e.target.value })} />
+                  <Input className="rounded-lg border-border/60" placeholder="WhatsApp (Optional)" value={inquiryForm.whatsapp} onChange={(e) => setInquiryForm({ ...inquiryForm, whatsapp: e.target.value })} />
                 </div>
                 <Select onValueChange={(v) => setInquiryForm({ ...inquiryForm, propertyType: v })}>
-                  <SelectTrigger className="rounded-sm border-border/60"><SelectValue placeholder="Property Type" /></SelectTrigger>
+                  <SelectTrigger className="rounded-lg border-border/60"><SelectValue placeholder="Property Type" /></SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="residential-land">Residential Land</SelectItem>
-                    <SelectItem value="commercial-land">Commercial Land</SelectItem>
-                    <SelectItem value="house">House</SelectItem>
+                    {propertyTypes.map((t) => (
+                      <SelectItem key={t} value={t}>{t}</SelectItem>
+                    ))}
                   </SelectContent>
                 </Select>
-                <Input className="rounded-sm border-border/60" placeholder="Purpose (Use / Living / Rental)" value={inquiryForm.usagePurpose} onChange={(e) => setInquiryForm({ ...inquiryForm, usagePurpose: e.target.value })} />
-                <Textarea className="rounded-sm border-border/60 min-h-[100px]" placeholder="Additional information" value={inquiryForm.message} onChange={(e) => setInquiryForm({ ...inquiryForm, message: e.target.value })} />
-                <Button type="submit" disabled={sending} className="w-full btn-gold rounded-sm h-11 tracking-wide">
+                <Input className="rounded-lg border-border/60" placeholder="Purpose (Use / Living / Rental)" value={inquiryForm.usagePurpose} onChange={(e) => setInquiryForm({ ...inquiryForm, usagePurpose: e.target.value })} />
+                <Textarea className="rounded-lg border-border/60 min-h-[100px]" placeholder="Additional information" value={inquiryForm.message} onChange={(e) => setInquiryForm({ ...inquiryForm, message: e.target.value })} />
+                <Button type="submit" disabled={sending} className="w-full btn-gold rounded-full h-11 tracking-wide">
                   {sending ? "Sending..." : "Submit Enquiry"}
                 </Button>
               </form>
@@ -249,7 +282,7 @@ const Index = () => {
       {/* Explore Popular Areas */}
       <section className="relative section-padding overflow-hidden">
         <img src={heroBg} alt="" className="absolute inset-0 w-full h-full object-cover" />
-        <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, hsla(212,60%,16%,0.9), hsla(207,80%,20%,0.85))" }} />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, hsla(222,60%,16%,0.9), hsla(222,80%,20%,0.85))" }} />
         <div className="relative z-10 section-container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <ScrollAnimation direction="left">
@@ -265,7 +298,7 @@ const Index = () => {
                   { name: "Asokoro, Abuja", desc: "Premium residential district with world-class amenities" },
                 ].map((area) => (
                   <div key={area.name} className="flex items-start gap-4 group cursor-pointer">
-                    <div className="shrink-0 w-10 h-10 rounded-sm bg-white/10 border border-white/20 flex items-center justify-center">
+                    <div className="shrink-0 w-10 h-10 rounded-full bg-white/10 border border-white/20 flex items-center justify-center">
                       <MapPin size={16} className="text-white" />
                     </div>
                     <div>
@@ -276,7 +309,7 @@ const Index = () => {
                 ))}
               </div>
               <Link to="/listings">
-                <Button className="rounded-sm border border-white/30 bg-transparent text-white hover:bg-white/10 hover:text-white px-8 h-11 tracking-wide">
+                <Button className="rounded-full border border-white/30 bg-transparent text-white hover:bg-white/10 hover:text-white px-8 h-11 tracking-wide">
                   View All Areas <ArrowRight size={16} className="ml-2" />
                 </Button>
               </Link>
@@ -285,24 +318,24 @@ const Index = () => {
             <ScrollAnimation direction="right">
               <div className="hidden lg:grid grid-cols-2 gap-4">
                 <div className="space-y-4">
-                  <div className="bg-white/10 border border-white/20 rounded-sm p-6 text-center">
+                  <div className="bg-white/10 border border-white/20 rounded-xl p-6 text-center">
                     <Building2 size={28} className="text-white mx-auto mb-3" />
                     <div className="text-2xl font-display font-bold text-white">120+</div>
                     <div className="text-xs text-white/50 tracking-wider uppercase mt-1">Lekki Properties</div>
                   </div>
-                  <div className="bg-white/10 border border-white/20 rounded-sm p-6 text-center">
+                  <div className="bg-white/10 border border-white/20 rounded-xl p-6 text-center">
                     <Building2 size={28} className="text-white mx-auto mb-3" />
                     <div className="text-2xl font-display font-bold text-white">85+</div>
                     <div className="text-xs text-white/50 tracking-wider uppercase mt-1">Maitama Properties</div>
                   </div>
                 </div>
                 <div className="space-y-4 mt-8">
-                  <div className="bg-white/10 border border-white/20 rounded-sm p-6 text-center">
+                  <div className="bg-white/10 border border-white/20 rounded-xl p-6 text-center">
                     <Building2 size={28} className="text-white mx-auto mb-3" />
                     <div className="text-2xl font-display font-bold text-white">60+</div>
                     <div className="text-xs text-white/50 tracking-wider uppercase mt-1">Asokoro Properties</div>
                   </div>
-                  <div className="bg-white/10 border border-white/20 rounded-sm p-6 text-center">
+                  <div className="bg-white/10 border border-white/20 rounded-xl p-6 text-center">
                     <Phone size={28} className="text-white mx-auto mb-3" />
                     <div className="text-sm font-display font-semibold text-white">Get Expert Advice</div>
                     <div className="text-xs text-white/50 mt-1">+234-810-681-5300</div>
@@ -327,12 +360,12 @@ const Index = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/listings">
-                <Button className="btn-gold rounded-sm px-8 h-12 tracking-wide">
+                <Button className="btn-gold rounded-full px-8 h-12 tracking-wide">
                   Browse Properties <ArrowRight size={16} className="ml-2" />
                 </Button>
               </Link>
               <Link to="/contact">
-                <Button variant="outline" className="rounded-sm border-primary text-primary hover:bg-primary hover:text-primary-foreground px-8 h-12 tracking-wide">
+                <Button variant="outline" className="rounded-full border-primary text-primary hover:bg-primary hover:text-primary-foreground px-8 h-12 tracking-wide">
                   Contact Us
                 </Button>
               </Link>
