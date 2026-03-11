@@ -50,10 +50,10 @@
     --warning: 38 92% 50%;
     --warning-foreground: 0 0% 100%;
 
-    --gold: 207 100% 44%;
-    --gold-light: 199 100% 65%;
-    --navy: 207 90% 54%;
-    --navy-light: 199 85% 62%;
+    --gold: 222 99% 53%;
+    --gold-light: 222 90% 62%;
+    --navy: 222 99% 53%;
+    --navy-light: 222 85% 62%;
 
     --hero-gradient: linear-gradient(135deg, hsl(212 60% 16%), hsl(207 80% 30%));
     --overlay-gradient: linear-gradient(180deg, hsla(212, 60%, 16%, 0.75), hsla(207, 80%, 20%, 0.85));
