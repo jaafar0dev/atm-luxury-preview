@@ -14,6 +14,8 @@ import MortgageCalculator from "./pages/MortgageCalculator";
 import Blog from "./pages/Blog";
 import TeamMember from "./pages/TeamMember";
 import Favorites from "./pages/Favorites";
+import BookConsultation from "./pages/BookConsultation";
+import BookInspection from "./pages/BookInspection";
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminLayout from "./pages/admin/AdminLayout";
 import AdminDashboard from "./pages/admin/AdminDashboard";
@@ -45,6 +47,8 @@ const App = () => (
           <Route path="/mortgage-calculator" element={<MortgageCalculator />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/favorites" element={<Favorites />} />
+          <Route path="/book-consultation" element={<BookConsultation />} />
+          <Route path="/book-inspection" element={<BookInspection />} />
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin" element={<AdminLayout />}>
             <Route index element={<AdminDashboard />} />

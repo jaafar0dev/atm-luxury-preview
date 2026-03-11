@@ -141,11 +141,22 @@ const AdminProperties = () => {
               <Select value={form.property_type} onValueChange={(v) => setForm({ ...form, property_type: v })}>
                 <SelectTrigger><SelectValue /></SelectTrigger>
                 <SelectContent>
+                  <SelectItem value="Apartment">Apartment</SelectItem>
+                  <SelectItem value="Bungalow">Bungalow</SelectItem>
+                  <SelectItem value="Detached Bungalow">Detached Bungalow</SelectItem>
+                  <SelectItem value="Semi-Detached Bungalow">Semi-Detached Bungalow</SelectItem>
+                  <SelectItem value="Terrace Bungalow">Terrace Bungalow</SelectItem>
+                  <SelectItem value="Detached Duplex">Detached Duplex</SelectItem>
+                  <SelectItem value="Duplex">Duplex</SelectItem>
+                  <SelectItem value="Maisonette">Maisonette</SelectItem>
+                  <SelectItem value="Penthouse">Penthouse</SelectItem>
+                  <SelectItem value="Semi-Detached Duplex">Semi-Detached Duplex</SelectItem>
+                  <SelectItem value="Terrace Duplex">Terrace Duplex</SelectItem>
                   <SelectItem value="Residential Land">Residential Land</SelectItem>
                   <SelectItem value="Commercial Land">Commercial Land</SelectItem>
-                  <SelectItem value="Detached Duplex">Detached Duplex</SelectItem>
-                  <SelectItem value="Terrace Duplex">Terrace Duplex</SelectItem>
-                  <SelectItem value="Semi-Detached">Semi-Detached</SelectItem>
+                  <SelectItem value="Office/Suite">Office/Suite</SelectItem>
+                  <SelectItem value="Luxury Home">Luxury Home</SelectItem>
+                  <SelectItem value="Mansion">Mansion</SelectItem>
                 </SelectContent>
               </Select>
               <Select value={form.status} onValueChange={(v) => setForm({ ...form, status: v })}>
@@ -153,6 +164,7 @@ const AdminProperties = () => {
                 <SelectContent>
                   <SelectItem value="for-sale">For Sale</SelectItem>
                   <SelectItem value="for-rent">For Rent</SelectItem>
+                  <SelectItem value="investment">Investment</SelectItem>
                   <SelectItem value="sold">Sold</SelectItem>
                 </SelectContent>
               </Select>

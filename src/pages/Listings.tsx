@@ -50,6 +50,7 @@ const Listings = () => {
             <SelectContent>
               <SelectItem value="for-sale">For Sale</SelectItem>
               <SelectItem value="for-rent">For Rent</SelectItem>
+              <SelectItem value="investment">Investment</SelectItem>
             </SelectContent>
           </Select>
           <Select value={typeFilter} onValueChange={(v) => { setTypeFilter(v); setPage(1); }}>
