@@ -1,73 +1,69 @@
 import { useState, useEffect } from "react";
-import { MessageCircle, X, Phone, Mail } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { MessageCircle, X } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 
 export const FloatingHelp = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [shouldVibrate, setShouldVibrate] = useState(false);
+  const [showBubble, setShowBubble] = useState(false);
 
+  // Pop up the message bubble 3 seconds after the page loads
   useEffect(() => {
-    const interval = setInterval(() => {
-      setShouldVibrate(true);
-      setTimeout(() => setShouldVibrate(false), 1000);
-    }, 10000);
-
-    const initialTimeout = setTimeout(() => {
-      setShouldVibrate(true);
-      setTimeout(() => setShouldVibrate(false), 1000);
+    const timer = setTimeout(() => {
+      setShowBubble(true);
     }, 3000);
 
-    return () => {
-      clearInterval(interval);
-      clearTimeout(initialTimeout);
-    };
+    return () => clearTimeout(timer);
   }, []);
 
   return (
-    <div className="fixed bottom-6 right-6 z-50">
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: 20, scale: 0.9 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 20, scale: 0.9 }}
-            className="mb-4 bg-card border border-border rounded-sm w-80"
-            style={{ boxShadow: "var(--shadow-luxury)" }}
+    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
+      {/* The pop-up chat bubble */}
+      {showBubble && (
+        <div
+          className="bg-card border border-border rounded-2xl rounded-br-sm shadow-xl p-4 w-60 animate-slide-in-up relative"
+          style={{ boxShadow: "var(--shadow-luxury)" }}
+        >
+          <button
+            onClick={() => setShowBubble(false)}
+            className="absolute top-2 right-2 text-muted-foreground hover:text-foreground transition-colors"
           >
-            <div className="p-5 border-b border-border">
-              <div className="flex items-center justify-between mb-1">
-                <h3 className="font-display font-bold text-foreground text-lg">Need Assistance?</h3>
-                <button onClick={() => setIsOpen(false)} className="text-muted-foreground hover:text-foreground transition-colors">
-                  <X size={18} />
-                </button>
-              </div>
-              <p className="text-xs text-muted-foreground">Our team is ready to help with your real estate needs.</p>
-            </div>
-            <div className="p-5 space-y-3">
-              <a href="/contact" className="flex items-center gap-3 w-full text-left bg-primary text-primary-foreground py-3 px-4 rounded-sm text-sm font-medium hover:bg-primary/90 transition-colors">
-                <Mail size={16} />
-                Contact Us
-              </a>
-              <a href="tel:+2348106815300" className="flex items-center gap-3 w-full text-left border border-border text-foreground py-3 px-4 rounded-sm text-sm font-medium hover:bg-muted transition-colors">
-                <Phone size={16} className="text-accent" />
-                +234-810-681-5300
-              </a>
-              <a href="https://wa.me/2348106815300" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 w-full text-left border border-border text-foreground py-3 px-4 rounded-sm text-sm font-medium hover:bg-muted transition-colors">
-                <MessageCircle size={16} className="text-success" />
-                WhatsApp Us
-              </a>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            <X size={14} />
+          </button>
+          <div className="flex items-center gap-2 mb-2">
+            <span className="text-xl">👋</span>
+            <h4 className="font-display font-bold text-sm text-foreground">
+              Need help?
+            </h4>
+          </div>
+          <p className="text-xs text-muted-foreground mb-3 leading-relaxed">
+            Our Consultants are available to assist you.
+          </p>
+          <Link to="/contact">
+            <Button
+              size="sm"
+              className="w-full btn-gold rounded-full text-xs h-8"
+            >
+              Chat With Us
+            </Button>
+          </Link>
+        </div>
+      )}
 
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className={`w-14 h-14 rounded-full shadow-lg flex items-center justify-center transition-all hover:scale-105 ${shouldVibrate ? "animate-vibrate" : ""}`}
-        style={{ background: "var(--gold-gradient)" }}
-      >
-        {isOpen ? <X size={22} className="text-white" /> : <MessageCircle size={22} className="text-white" />}
-      </button>
+      {/* The Floating Icon */}
+      <div className="relative group">
+        <Link to="/contact">
+          {/* Pulsing red notification dot */}
+          <div className="absolute -top-1 -right-1 flex h-4 w-4 z-10">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-destructive opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-4 w-4 bg-destructive border-2 border-background"></span>
+          </div>
+
+          {/* Main Button */}
+          <div className="bg-primary text-white p-4 rounded-full shadow-lg group-hover:scale-110 transition-transform duration-300 animate-pulse-help flex items-center justify-center">
+            <MessageCircle size={28} />
+          </div>
+        </Link>
+      </div>
     </div>
   );
 };

@@ -1,23 +1,31 @@
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { PublicLayout } from "@/components/PublicLayout";
 import { PropertyCarousel } from "@/components/PropertyCarousel";
+import { PropertyCard } from "@/components/PropertyCard";
 import { ScrollAnimation } from "@/components/ScrollAnimation";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { MapPin, Bed, Bath, Heart } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useQuery } from "@tanstack/react-query";
-import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 const getFavorites = (): string[] => {
-  try { return JSON.parse(localStorage.getItem("atm-favorites") || "[]"); } catch { return []; }
+  try {
+    return JSON.parse(localStorage.getItem("atm-favorites") || "[]");
+  } catch {
+    return [];
+  }
 };
 
 const toggleFavorite = (id: string): boolean => {
   const favs = getFavorites();
   const idx = favs.indexOf(id);
-  if (idx >= 0) { favs.splice(idx, 1); } else { favs.push(id); }
+  if (idx >= 0) {
+    favs.splice(idx, 1);
+  } else {
+    favs.push(id);
+  }
   localStorage.setItem("atm-favorites", JSON.stringify(favs));
   return idx < 0;
 };
@@ -25,13 +33,33 @@ const toggleFavorite = (id: string): boolean => {
 const PropertyDetail = () => {
   const { id } = useParams();
 
+  // Fetch current property
   const { data: property } = useQuery({
     queryKey: ["property", id],
     queryFn: async () => {
-      const { data } = await supabase.from("properties").select("*").eq("id", id!).single();
+      const { data } = await supabase
+        .from("properties")
+        .select("*")
+        .eq("id", id!)
+        .single();
       return data;
     },
     enabled: !!id,
+  });
+
+  // Fetch related properties (same property type, excluding current property)
+  const { data: relatedProperties } = useQuery({
+    queryKey: ["related-properties", property?.property_type, id],
+    queryFn: async () => {
+      const { data } = await supabase
+        .from("properties")
+        .select("*")
+        .eq("property_type", property!.property_type)
+        .neq("id", id!) // Exclude the one we are currently viewing
+        .limit(3); // Fetch 3 related properties
+      return data || [];
+    },
+    enabled: !!property?.property_type && !!id,
   });
 
   const [isFavorited, setIsFavorited] = useState(false);
@@ -43,7 +71,9 @@ const PropertyDetail = () => {
   if (!property) {
     return (
       <PublicLayout>
-        <div className="section-container py-20 text-center text-muted-foreground">Loading property...</div>
+        <div className="section-container py-20 text-center text-muted-foreground">
+          Loading property...
+        </div>
       </PublicLayout>
     );
   }
@@ -56,44 +86,77 @@ const PropertyDetail = () => {
         <ScrollAnimation direction="up">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Images */}
-            <PropertyCarousel images={property.images || []} autoPlay className="rounded-lg overflow-hidden" />
+            <PropertyCarousel
+              images={property.images || []}
+              autoPlay
+              className="rounded-lg overflow-hidden"
+            />
 
             {/* Details */}
             <div>
               <div className="flex items-center gap-2 mb-3">
-                {property.is_featured && <Badge className="bg-primary text-primary-foreground">FEATURED</Badge>}
-                <Badge className="bg-success text-success-foreground uppercase">{property.status.replace("-", " ")}</Badge>
+                {property.is_featured && (
+                  <Badge className="bg-primary text-primary-foreground">
+                    FEATURED
+                  </Badge>
+                )}
+                <Badge className="bg-success text-success-foreground uppercase">
+                  {property.status.replace("-", " ")}
+                </Badge>
               </div>
-              <h1 className="text-2xl md:text-3xl font-display font-bold text-foreground mb-2">{property.title}</h1>
+              <h1 className="text-2xl md:text-3xl font-display font-bold text-foreground mb-2">
+                {property.title}
+              </h1>
               <p className="text-muted-foreground flex items-center gap-1 mb-4">
                 <MapPin size={16} /> {property.location || property.city}
               </p>
-              <div className="text-3xl font-bold text-primary mb-6">{formatPrice(property.price)}</div>
+              <div className="text-3xl font-bold text-primary mb-6">
+                {formatPrice(property.price)}
+              </div>
 
               <div className="flex gap-6 mb-6 text-muted-foreground">
                 {(property.bedrooms || 0) > 0 && (
-                  <span className="flex items-center gap-2"><Bed size={18} /> {property.bedrooms} Bedrooms</span>
+                  <span className="flex items-center gap-2">
+                    <Bed size={18} /> {property.bedrooms} Bedrooms
+                  </span>
                 )}
                 {(property.bathrooms || 0) > 0 && (
-                  <span className="flex items-center gap-2"><Bath size={18} /> {property.bathrooms} Bathrooms</span>
+                  <span className="flex items-center gap-2">
+                    <Bath size={18} /> {property.bathrooms} Bathrooms
+                  </span>
                 )}
               </div>
 
-              <div className="text-sm text-muted-foreground mb-2">Type: {property.property_type}</div>
+              <div className="text-sm text-muted-foreground mb-2">
+                Type: {property.property_type}
+              </div>
               {property.tags && property.tags.length > 0 && (
                 <div className="flex gap-2 mb-6 flex-wrap">
                   {property.tags.map((tag) => (
-                    <Badge key={tag} variant="secondary">{tag}</Badge>
+                    <Badge key={tag} variant="secondary">
+                      {tag}
+                    </Badge>
                   ))}
                 </div>
               )}
 
-              <div className="flex gap-3">
+              <div className="flex gap-3 mt-6">
                 <Link to="/contact">
-                  <Button className="btn-primary">Contact Us About This Property</Button>
+                  <Button className="btn-primary">
+                    Contact Us About This Property
+                  </Button>
                 </Link>
-                <Button variant="outline" size="icon" onClick={() => setIsFavorited(toggleFavorite(property.id))}>
-                  <Heart size={18} className={isFavorited ? "fill-destructive text-destructive" : ""} />
+                <Button
+                  variant="outline"
+                  size="icon"
+                  onClick={() => setIsFavorited(toggleFavorite(property.id))}
+                >
+                  <Heart
+                    size={18}
+                    className={
+                      isFavorited ? "fill-destructive text-destructive" : ""
+                    }
+                  />
                 </Button>
               </div>
             </div>
@@ -103,9 +166,42 @@ const PropertyDetail = () => {
         {/* Description */}
         {property.description && (
           <ScrollAnimation direction="up" className="mt-10">
-            <h2 className="text-xl font-display font-bold text-foreground mb-4">Description</h2>
+            <h2 className="text-xl font-display font-bold text-foreground mb-4">
+              Description
+            </h2>
             <div className="prose max-w-none text-muted-foreground whitespace-pre-line">
               {property.description}
+            </div>
+          </ScrollAnimation>
+        )}
+
+        {/* Related Properties Section */}
+        {relatedProperties && relatedProperties.length > 0 && (
+          <ScrollAnimation
+            direction="up"
+            className="mt-20 pt-10 border-t border-border"
+          >
+            <h2 className="text-2xl font-display font-bold text-foreground mb-8">
+              Similar Properties
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {relatedProperties.map((prop) => (
+                <PropertyCard
+                  key={prop.id}
+                  id={prop.id}
+                  title={prop.title}
+                  price={prop.price}
+                  location={prop.location || undefined}
+                  city={prop.city}
+                  bedrooms={prop.bedrooms || 0}
+                  bathrooms={prop.bathrooms || 0}
+                  propertyType={prop.property_type}
+                  status={prop.status}
+                  images={prop.images || []}
+                  tags={prop.tags || []}
+                  isFeatured={prop.is_featured || false}
+                />
+              ))}
             </div>
           </ScrollAnimation>
         )}

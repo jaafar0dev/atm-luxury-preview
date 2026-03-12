@@ -10,7 +10,6 @@ const navLinks = [
     label: "LISTINGS",
     path: "/listings",
     dropdown: [
-      { label: "All Listings", path: "/listings" },
       { label: "Land", path: "/listings?type=land" },
       { label: "Houses", path: "/listings?type=houses" },
       { label: "Investment", path: "/listings?status=investment" },
@@ -47,7 +46,10 @@ export const Navbar = () => {
   };
 
   const handleBookingLeave = () => {
-    bookingTimeoutRef.current = setTimeout(() => setBookingDropdownOpen(false), 150);
+    bookingTimeoutRef.current = setTimeout(
+      () => setBookingDropdownOpen(false),
+      150,
+    );
   };
 
   return (
@@ -63,7 +65,9 @@ export const Navbar = () => {
             <div
               key={link.label}
               className="relative"
-              onMouseEnter={() => link.dropdown && handleDropdownEnter(link.label)}
+              onMouseEnter={() =>
+                link.dropdown && handleDropdownEnter(link.label)
+              }
               onMouseLeave={() => link.dropdown && handleDropdownLeave()}
             >
               <Link
@@ -133,10 +137,23 @@ export const Navbar = () => {
 
         {/* Mobile toggle area */}
         <div className="flex lg:hidden items-center gap-3">
-          <Link to="/favorites" className="text-foreground hover:text-accent transition-colors">
-            <Heart size={22} className={location.pathname === "/favorites" ? "fill-accent text-accent" : ""} />
+          <Link
+            to="/favorites"
+            className="text-foreground hover:text-accent transition-colors"
+          >
+            <Heart
+              size={22}
+              className={
+                location.pathname === "/favorites"
+                  ? "fill-accent text-accent"
+                  : ""
+              }
+            />
           </Link>
-          <button className="text-foreground" onClick={() => setMobileOpen(!mobileOpen)}>
+          <button
+            className="text-foreground"
+            onClick={() => setMobileOpen(!mobileOpen)}
+          >
             {mobileOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
@@ -168,11 +185,21 @@ export const Navbar = () => {
               </div>
             ))}
             <div className="space-y-2 pt-2">
-              <Link to="/book-consultation" onClick={() => setMobileOpen(false)}>
-                <Button className="btn-gold rounded-full w-full tracking-wide">Book Consultation</Button>
+              <Link
+                to="/book-consultation"
+                onClick={() => setMobileOpen(false)}
+              >
+                <Button className="btn-gold rounded-full w-full tracking-wide">
+                  Book Consultation
+                </Button>
               </Link>
               <Link to="/book-inspection" onClick={() => setMobileOpen(false)}>
-                <Button variant="outline" className="rounded-full w-full tracking-wide border-primary text-primary">Book Inspection</Button>
+                <Button
+                  variant="outline"
+                  className="rounded-full w-full tracking-wide border-primary text-primary"
+                >
+                  Book Inspection
+                </Button>
               </Link>
             </div>
           </div>

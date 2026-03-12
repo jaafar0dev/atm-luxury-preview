@@ -4,32 +4,57 @@ import { PropertyCard } from "@/components/PropertyCard";
 import { ScrollAnimation } from "@/components/ScrollAnimation";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Search } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 
 const Listings = () => {
   const [searchParams] = useSearchParams();
   const [keyword, setKeyword] = useState("");
-  const [statusFilter, setStatusFilter] = useState(searchParams.get("status") || "");
+  const [statusFilter, setStatusFilter] = useState(
+    searchParams.get("status") || "",
+  );
   const [typeFilter, setTypeFilter] = useState(searchParams.get("type") || "");
   const [cityFilter, setCityFilter] = useState(searchParams.get("city") || "");
   const [page, setPage] = useState(1);
   const perPage = 6;
 
+  // NEW: Listen for URL changes (like clicking the Navbar dropdowns) and update filters
+  useEffect(() => {
+    setTypeFilter(searchParams.get("type") || "");
+    setStatusFilter(searchParams.get("status") || "");
+    setPage(1); // Reset to page 1 when a navbar filter is clicked
+  }, [searchParams]);
+
   const { data } = useQuery({
-    queryKey: ["properties", keyword, statusFilter, typeFilter, cityFilter, page],
+    queryKey: [
+      "properties",
+      keyword,
+      statusFilter,
+      typeFilter,
+      cityFilter,
+      page,
+    ],
     queryFn: async () => {
       let query = supabase.from("properties").select("*", { count: "exact" });
       if (keyword) query = query.ilike("title", `%${keyword}%`);
       if (statusFilter) query = query.eq("status", statusFilter);
       if (typeFilter === "land") query = query.ilike("property_type", "%Land%");
-      if (typeFilter === "houses") query = query.not("property_type", "ilike", "%Land%");
+      if (typeFilter === "houses")
+        query = query.not("property_type", "ilike", "%Land%");
       if (cityFilter) query = query.ilike("city", `%${cityFilter}%`);
-      query = query.order("created_at", { ascending: false }).range((page - 1) * perPage, page * perPage - 1);
+      query = query
+        .order("created_at", { ascending: false })
+        .range((page - 1) * perPage, page * perPage - 1);
       const { data, count } = await query;
       return { properties: data || [], total: count || 0 };
     },
@@ -39,29 +64,64 @@ const Listings = () => {
 
   return (
     <PublicLayout>
-      <PageHero title="Property Listings" subtitle="Explore our curated selection of premium properties" />
+      <PageHero
+        title="Property Listings"
+        subtitle="Explore our curated selection of premium properties"
+      />
 
       <section className="section-container py-10">
         {/* Filters */}
         <div className="flex flex-wrap gap-3 mb-8 items-center">
-          <Input placeholder="Enter Keyword..." value={keyword} onChange={(e) => { setKeyword(e.target.value); setPage(1); }} className="max-w-[200px]" />
-          <Select value={statusFilter} onValueChange={(v) => { setStatusFilter(v); setPage(1); }}>
-            <SelectTrigger className="w-[130px]"><SelectValue placeholder="Status" /></SelectTrigger>
+          <Input
+            placeholder="Enter Keyword..."
+            value={keyword}
+            onChange={(e) => {
+              setKeyword(e.target.value);
+              setPage(1);
+            }}
+            className="max-w-[200px]"
+          />
+          <Select
+            value={statusFilter}
+            onValueChange={(v) => {
+              setStatusFilter(v);
+              setPage(1);
+            }}
+          >
+            <SelectTrigger className="w-[130px]">
+              <SelectValue placeholder="Status" />
+            </SelectTrigger>
             <SelectContent>
               <SelectItem value="for-sale">For Sale</SelectItem>
               <SelectItem value="for-rent">For Rent</SelectItem>
               <SelectItem value="investment">Investment</SelectItem>
             </SelectContent>
           </Select>
-          <Select value={typeFilter} onValueChange={(v) => { setTypeFilter(v); setPage(1); }}>
-            <SelectTrigger className="w-[130px]"><SelectValue placeholder="Type" /></SelectTrigger>
+          <Select
+            value={typeFilter}
+            onValueChange={(v) => {
+              setTypeFilter(v);
+              setPage(1);
+            }}
+          >
+            <SelectTrigger className="w-[130px]">
+              <SelectValue placeholder="Type" />
+            </SelectTrigger>
             <SelectContent>
               <SelectItem value="land">Land</SelectItem>
               <SelectItem value="houses">Houses</SelectItem>
             </SelectContent>
           </Select>
-          <Select value={cityFilter} onValueChange={(v) => { setCityFilter(v); setPage(1); }}>
-            <SelectTrigger className="w-[130px]"><SelectValue placeholder="City" /></SelectTrigger>
+          <Select
+            value={cityFilter}
+            onValueChange={(v) => {
+              setCityFilter(v);
+              setPage(1);
+            }}
+          >
+            <SelectTrigger className="w-[130px]">
+              <SelectValue placeholder="City" />
+            </SelectTrigger>
             <SelectContent>
               <SelectItem value="abuja">Abuja</SelectItem>
               <SelectItem value="lagos">Lagos</SelectItem>
@@ -93,19 +153,38 @@ const Listings = () => {
         </div>
 
         {data?.properties.length === 0 && (
-          <p className="text-center text-muted-foreground py-16">No properties found.</p>
+          <p className="text-center text-muted-foreground py-16">
+            No properties found.
+          </p>
         )}
 
         {/* Pagination */}
         {totalPages > 1 && (
           <div className="flex items-center justify-center gap-2 mt-10">
-            <Button variant="outline" disabled={page === 1} onClick={() => setPage(page - 1)}>Previous</Button>
+            <Button
+              variant="outline"
+              disabled={page === 1}
+              onClick={() => setPage(page - 1)}
+            >
+              Previous
+            </Button>
             {Array.from({ length: totalPages }, (_, i) => (
-              <Button key={i} variant={page === i + 1 ? "default" : "outline"} onClick={() => setPage(i + 1)} size="sm">
+              <Button
+                key={i}
+                variant={page === i + 1 ? "default" : "outline"}
+                onClick={() => setPage(i + 1)}
+                size="sm"
+              >
                 {i + 1}
               </Button>
             ))}
-            <Button variant="outline" disabled={page === totalPages} onClick={() => setPage(page + 1)}>Next</Button>
+            <Button
+              variant="outline"
+              disabled={page === totalPages}
+              onClick={() => setPage(page + 1)}
+            >
+              Next
+            </Button>
           </div>
         )}
       </section>
