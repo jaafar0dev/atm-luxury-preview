@@ -23,7 +23,7 @@ import { toast } from "sonner";
 
 const stats = [
   { num: "500+", label: "Properties Sold" },
-  { num: "15+", label: "Years Experience" },
+  { num: "5+", label: "Years Experience" },
   { num: "98%", label: "Client Satisfaction" },
   { num: "50+", label: "Expert Agents" },
 ];
