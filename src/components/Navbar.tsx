@@ -73,10 +73,10 @@ export const Navbar = () => {
               <Phone size={12} className="text-primary" /> +234-810-681-5300
             </a>
           </div>
-          <div className="flex items-center gap-1.5">
+          {/* <div className="flex items-center gap-1.5">
             <Clock size={12} className="text-primary" /> Mon - Sat: 9:00 AM -
             5:00 PM
-          </div>
+          </div> */}
         </div>
       </div>
 
