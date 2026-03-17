@@ -1,6 +1,6 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState, useRef } from "react";
-import { Menu, X, ChevronDown, Heart, Mail, Phone, Clock } from "lucide-react";
+import { Menu, X, ChevronDown, Heart, Mail, Phone, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/logo.png";
 
@@ -55,28 +55,28 @@ export const Navbar = () => {
 
   return (
     <header className="sticky top-0 z-50 w-full flex flex-col shadow-sm">
-      {/* TOP UTILITY BAR */}
-      <div className="bg-[#0a0a0a] text-white/80 py-2 hidden lg:block border-b border-white/5">
-        <div className="section-container flex justify-between items-center text-xs font-medium tracking-wide">
-          <div className="flex items-center gap-6">
-            <a
-              href="mailto:Info@atmluxuryproperties.com"
-              className="flex items-center gap-1.5 hover:text-white transition-colors"
-            >
-              <Mail size={12} className="text-primary" />{" "}
-              Info@atmluxuryproperties.com
-            </a>
-            <a
-              href="tel:+2348106815300"
-              className="flex items-center gap-1.5 hover:text-white transition-colors"
-            >
-              <Phone size={12} className="text-primary" /> +234-810-681-5300
-            </a>
+      {/* TOP UTILITY BAR - Updated to Brand Blue, Thicker Border, Centered, Reordered */}
+      <div className="bg-primary text-white py-3 hidden lg:block border-b-4 border-black/10">
+        <div className="section-container flex justify-center items-center gap-6 text-xs font-medium tracking-wide">
+          <a
+            href="tel:+2348106815300"
+            className="flex items-center gap-1.5 hover:text-white/80 transition-colors"
+          >
+            <Phone size={14} className="text-white/70" /> +234-810-681-5300
+          </a>
+          <span className="text-white/30">|</span>
+          <a
+            href="mailto:Info@atmluxuryproperties.com"
+            className="flex items-center gap-1.5 hover:text-white/80 transition-colors"
+          >
+            <Mail size={14} className="text-white/70" />{" "}
+            Info@atmluxuryproperties.com
+          </a>
+          <span className="text-white/30">|</span>
+          <div className="flex items-center gap-1.5">
+            <MapPin size={14} className="text-white/70" /> Suite D 47, Anon
+            Plaza, Gudu District, Abuja
           </div>
-          {/* <div className="flex items-center gap-1.5">
-            <Clock size={12} className="text-primary" /> Mon - Sat: 9:00 AM -
-            5:00 PM
-          </div> */}
         </div>
       </div>
 
