@@ -62,19 +62,19 @@ export const Navbar = () => {
             href="tel:+2348106815300"
             className="flex items-center gap-1.5 hover:text-white/80 transition-colors"
           >
-            <Phone size={14} className="text-white/70" /> +234-810-681-5300
+            <Phone size={16} className="text-white/70" /> +234-810-681-5300
           </a>
           <span className="text-white/30">|</span>
           <a
             href="mailto:Info@atmluxuryproperties.com"
             className="flex items-center gap-1.5 hover:text-white/80 transition-colors"
           >
-            <Mail size={14} className="text-white/70" />{" "}
+            <Mail size={16} className="text-white/70" />{" "}
             Info@atmluxuryproperties.com
           </a>
           <span className="text-white/30">|</span>
           <div className="flex items-center gap-1.5">
-            <MapPin size={14} className="text-white/70" /> Suite D 47, Anon
+            <MapPin size={16} className="text-white/70" /> Suite D 47, Anon
             Plaza, Gudu District, Abuja
           </div>
         </div>
