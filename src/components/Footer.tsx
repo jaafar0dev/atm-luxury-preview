@@ -56,7 +56,6 @@ export const Footer = () => {
       {/* Top accent line */}
       <div className="h-1" style={{ background: "var(--gold-gradient)" }} />
 
-      {/* UPDATED: Added lg:px-16 xl:px-24 to push the content inward from the edges perfectly */}
       <div className="section-container py-16 lg:px-16 xl:px-24">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-10">
           {/* Brand */}
@@ -245,12 +244,12 @@ export const Footer = () => {
                   </a>
                 </div>
               </li>
-              <li className="flex items-start gap-2.5">
-                <Mail size={14} className="mt-1 shrink-0 text-white" />
-                {/* UPDATED: Added break-all so the email wraps neatly if screen is tight */}
+              {/* UPDATED: Changed items-start to items-center and added whitespace-nowrap */}
+              <li className="flex items-center gap-2.5">
+                <Mail size={14} className="shrink-0 text-white" />
                 <a
                   href="mailto:Info@atmluxuryproperties.com"
-                  className="hover:text-white transition-colors break-all"
+                  className="hover:text-white transition-colors whitespace-nowrap"
                 >
                   Info@atmluxuryproperties.com
                 </a>
