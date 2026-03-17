@@ -89,19 +89,24 @@ const Index = () => {
   const [heroBudget, setHeroBudget] = useState("");
 
   const [typedText, setTypedText] = useState("");
+  const [isTyping, setIsTyping] = useState(true); // Add this line
   const fullText = "Welcome";
 
   // NEW: State for current background image index
   const [currentBgIndex, setCurrentBgIndex] = useState(0);
 
-  // Typing effect logic
+  // NEW: Typing effect logic
   useEffect(() => {
     let i = 0;
     setTypedText("");
+    setIsTyping(true); // Reset it just in case
     const timer = setInterval(() => {
       setTypedText(fullText.slice(0, i + 1));
       i++;
-      if (i >= fullText.length) clearInterval(timer);
+      if (i >= fullText.length) {
+        clearInterval(timer);
+        setIsTyping(false); // Hide the cursor when done
+      }
     }, 150);
     return () => clearInterval(timer);
   }, []);
@@ -203,7 +208,7 @@ const Index = () => {
           <div className="luxury-divider mb-6">
             <span className="text-white/80 font-accent text-sm tracking-[0.3em] uppercase min-w-[75px] inline-block text-center">
               {typedText}
-              <span className="animate-pulse ml-[2px]">|</span>
+              {isTyping && <span className="animate-pulse ml-[2px]">|</span>}
             </span>
           </div>
 
