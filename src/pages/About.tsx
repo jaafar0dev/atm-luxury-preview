@@ -23,7 +23,7 @@ const About = () => {
 
   return (
     <PublicLayout>
-      <PageHero title="About Us" subtitle="Your Investing Partner Since 2019" />
+      <PageHero title="About Us" subtitle="Your Investing Partner Since 2020" />
 
       <section className="section-container py-16">
         {/* Expanding Your Dream section with image */}
