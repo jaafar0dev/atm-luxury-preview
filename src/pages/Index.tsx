@@ -17,13 +17,17 @@ import { Search, ArrowRight, Building2, MapPin, Phone } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import heroBg from "@/assets/hero-bg.jpg";
 import sectionBg from "@/assets/section-bg.jpg";
+import abuja from "@/assets/abuja.jpg";
+import lagos from "@/assets/lagos.jpg";
+import fountain from "@/assets/fountain.jpg";
+
 import { useQuery } from "@tanstack/react-query";
 import { useState, useEffect } from "react";
 import { toast } from "sonner";
 
 const stats = [
   { num: "500+", label: "Properties Sold" },
-  { num: "5+", label: "Years Experience" },
+  { num: "15+", label: "Years Experience" },
   { num: "98%", label: "Client Satisfaction" },
   { num: "50+", label: "Expert Agents" },
 ];
@@ -64,6 +68,9 @@ const budgetOptions = [
   { label: "₦10,000,000", value: "10000000" },
 ];
 
+// NEW: Array of background images for the slider
+const heroImages = [heroBg, lagos, abuja, fountain];
+
 const Index = () => {
   const [inquiryForm, setInquiryForm] = useState({
     name: "",
@@ -81,11 +88,13 @@ const Index = () => {
   const [heroBedrooms, setHeroBedrooms] = useState("");
   const [heroBudget, setHeroBudget] = useState("");
 
-  // NEW: Typing effect state
   const [typedText, setTypedText] = useState("");
   const fullText = "Welcome";
 
-  // NEW: Typing effect logic
+  // NEW: State for current background image index
+  const [currentBgIndex, setCurrentBgIndex] = useState(0);
+
+  // Typing effect logic
   useEffect(() => {
     let i = 0;
     setTypedText("");
@@ -93,8 +102,16 @@ const Index = () => {
       setTypedText(fullText.slice(0, i + 1));
       i++;
       if (i >= fullText.length) clearInterval(timer);
-    }, 150); // Speed of typing (150ms per letter)
+    }, 150);
     return () => clearInterval(timer);
+  }, []);
+
+  // NEW: Background Slider logic (Changes image every 5 seconds)
+  useEffect(() => {
+    const bgTimer = setInterval(() => {
+      setCurrentBgIndex((prev) => (prev + 1) % heroImages.length);
+    }, 5000);
+    return () => clearInterval(bgTimer);
   }, []);
 
   const { data: properties } = useQuery({
@@ -154,28 +171,35 @@ const Index = () => {
   return (
     <PublicLayout>
       {/* Hero */}
-      <section className="relative h-[85vh] min-h-[600px] flex items-center justify-center overflow-hidden">
-        <img
-          src={heroBg}
-          alt=""
-          className="absolute inset-0 w-full h-full object-cover scale-105"
-        />
+      {/* UPDATED: Added bg-black so transitions look clean without flashing white */}
+      <section className="relative h-[85vh] min-h-[600px] flex items-center justify-center overflow-hidden bg-black">
+        {/* UPDATED: Map through the images and apply opacity transition based on the active index */}
+        {heroImages.map((img, index) => (
+          <img
+            key={index}
+            src={img}
+            alt="Luxury Property"
+            className={`absolute inset-0 w-full h-full object-cover scale-105 transition-opacity duration-1000 ease-in-out ${
+              index === currentBgIndex ? "opacity-100" : "opacity-0"
+            }`}
+          />
+        ))}
+
         <div
-          className="absolute inset-0"
+          className="absolute inset-0 z-0"
           style={{
             background:
               "linear-gradient(135deg, hsla(222,60%,16%,0.82), hsla(222,80%,20%,0.75))",
           }}
         />
 
-        <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+        <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
           <div className="absolute top-20 left-10 w-px h-32 bg-white/20" />
           <div className="absolute bottom-20 right-10 w-px h-32 bg-white/20" />
           <div className="absolute top-1/4 right-20 w-24 h-px bg-white/20" />
         </div>
 
         <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
-          {/* UPDATED: Welcome Text with Typing Animation */}
           <div className="luxury-divider mb-6">
             <span className="text-white/80 font-accent text-sm tracking-[0.3em] uppercase min-w-[75px] inline-block text-center">
               {typedText}
@@ -183,12 +207,10 @@ const Index = () => {
             </span>
           </div>
 
-          {/* UPDATED: Margin changed from mb-6 to mb-2 to pull the subtitle up */}
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold text-white mb-2 leading-tight animate-bounce-text">
             ATM Luxury Properties
           </h1>
 
-          {/* UPDATED: Added mt-0 and changed mb-4 to mb-8 to keep distance from the search bar */}
           <p className="text-lg md:text-xl font-accent text-white/70 mb-8 italic tracking-wide mt-0">
             ...Your Investing Partner
           </p>
@@ -254,7 +276,7 @@ const Index = () => {
           </div>
         </div>
 
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/40 animate-bounce-text">
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/40 animate-bounce-text z-10">
           <span className="text-xs tracking-widest uppercase font-accent">
             Scroll
           </span>
