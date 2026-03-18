@@ -25,6 +25,8 @@ import AdminBlog from "./pages/admin/AdminBlog";
 import AdminInquiries from "./pages/admin/AdminInquiries";
 import AdminMessages from "./pages/admin/AdminMessages";
 import AdminConsultations from "./pages/admin/AdminConsultations";
+import AdminGallery from "./pages/admin/AdminGallery";
+import Gallery from "./pages/Gallery";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -49,6 +51,7 @@ const App = () => (
           <Route path="/favorites" element={<Favorites />} />
           <Route path="/book-consultation" element={<BookConsultation />} />
           <Route path="/book-inspection" element={<BookInspection />} />
+          <Route path="/gallery" element={<Gallery />} />
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin" element={<AdminLayout />}>
             <Route index element={<AdminDashboard />} />
@@ -58,6 +61,7 @@ const App = () => (
             <Route path="inquiries" element={<AdminInquiries />} />
             <Route path="messages" element={<AdminMessages />} />
             <Route path="consultations" element={<AdminConsultations />} />
+            <Route path="gallery" element={<AdminGallery />} />
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>

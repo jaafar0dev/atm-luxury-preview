@@ -1,5 +1,5 @@
 import { Link, useLocation, useNavigate, Outlet } from "react-router-dom";
-import { Home, Building2, Users, FileText, MessageSquare, Mail, Calendar, LogOut } from "lucide-react";
+import { Home, Building2, Users, FileText, MessageSquare, Mail, Calendar, Image, LogOut } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
@@ -12,6 +12,7 @@ const links = [
   { label: "Inquiries", path: "/admin/inquiries", icon: MessageSquare },
   { label: "Messages", path: "/admin/messages", icon: Mail },
   { label: "Consultations", path: "/admin/consultations", icon: Calendar },
+  { label: "Gallery", path: "/admin/gallery", icon: Image },
 ];
 
 const AdminLayout = () => {
