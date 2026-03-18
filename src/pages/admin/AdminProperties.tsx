@@ -13,12 +13,12 @@ import { toast } from "sonner";
 
 interface PropertyForm {
   title: string; description: string; price: string; property_type: string; status: string;
-  city: string; location: string; bedrooms: string; bathrooms: string; images: string; tags: string; is_featured: boolean;
+  city: string; location: string; bedrooms: string; bathrooms: string; images: string; tags: string; is_featured: boolean; video_link: string;
 }
 
 const emptyForm: PropertyForm = {
   title: "", description: "", price: "", property_type: "Residential Land", status: "for-sale",
-  city: "Abuja", location: "", bedrooms: "0", bathrooms: "0", images: "", tags: "", is_featured: true,
+  city: "Abuja", location: "", bedrooms: "0", bathrooms: "0", images: "", tags: "", is_featured: true, video_link: "",
 };
 
 const AdminProperties = () => {
@@ -42,7 +42,7 @@ const AdminProperties = () => {
       title: p.title, description: p.description || "", price: String(p.price),
       property_type: p.property_type, status: p.status, city: p.city,
       location: p.location || "", bedrooms: String(p.bedrooms || 0), bathrooms: String(p.bathrooms || 0),
-      images: (p.images || []).join("\n"), tags: (p.tags || []).join(", "), is_featured: p.is_featured || false,
+      images: (p.images || []).join("\n"), tags: (p.tags || []).join(", "), is_featured: p.is_featured || false, video_link: (p as any).video_link || "",
     });
     setDialogOpen(true);
   };
@@ -62,7 +62,8 @@ const AdminProperties = () => {
       images: form.images.split("\n").map((s) => s.trim()).filter(Boolean),
       tags: form.tags.split(",").map((s) => s.trim()).filter(Boolean),
       is_featured: form.is_featured,
-    };
+      video_link: form.video_link.trim() || null,
+    } as any;
 
     let error;
     if (editId) {
@@ -186,6 +187,7 @@ const AdminProperties = () => {
             </div>
             <Textarea placeholder="Image URLs (one per line)" rows={3} value={form.images} onChange={(e) => setForm({ ...form, images: e.target.value })} />
             <Input placeholder="Tags (comma separated)" value={form.tags} onChange={(e) => setForm({ ...form, tags: e.target.value })} />
+            <Input placeholder="Video Link (optional, e.g. YouTube URL)" value={form.video_link} onChange={(e) => setForm({ ...form, video_link: e.target.value })} />
             <label className="flex items-center gap-2 text-sm">
               <input type="checkbox" checked={form.is_featured} onChange={(e) => setForm({ ...form, is_featured: e.target.checked })} />
               Featured property

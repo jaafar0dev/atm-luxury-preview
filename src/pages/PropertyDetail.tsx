@@ -5,7 +5,7 @@ import { PropertyCard } from "@/components/PropertyCard";
 import { ScrollAnimation } from "@/components/ScrollAnimation";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { MapPin, Bed, Bath, Heart } from "lucide-react";
+import { MapPin, Bed, Bath, Heart, Video } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useQuery } from "@tanstack/react-query";
 import { useState, useEffect } from "react";
@@ -171,6 +171,24 @@ const PropertyDetail = () => {
             </h2>
             <div className="prose max-w-none text-muted-foreground whitespace-pre-line">
               {property.description}
+            </div>
+          </ScrollAnimation>
+        )}
+
+        {/* Video */}
+        {(property as any).video_link && (
+          <ScrollAnimation direction="up" className="mt-10">
+            <h2 className="text-xl font-display font-bold text-foreground mb-4 flex items-center gap-2">
+              <Video size={20} className="text-primary" /> Property Video
+            </h2>
+            <div className="aspect-video rounded-lg overflow-hidden">
+              <iframe
+                src={(property as any).video_link.replace("watch?v=", "embed/").replace("youtu.be/", "youtube.com/embed/")}
+                title="Property Video"
+                className="w-full h-full"
+                allowFullScreen
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              />
             </div>
           </ScrollAnimation>
         )}
