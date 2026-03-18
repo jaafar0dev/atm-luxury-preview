@@ -13,12 +13,12 @@ import { toast } from "sonner";
 
 interface PropertyForm {
   title: string; description: string; price: string; property_type: string; status: string;
-  city: string; location: string; bedrooms: string; bathrooms: string; images: string; tags: string; is_featured: boolean;
+  city: string; location: string; bedrooms: string; bathrooms: string; images: string; tags: string; is_featured: boolean; video_link: string;
 }
 
 const emptyForm: PropertyForm = {
   title: "", description: "", price: "", property_type: "Residential Land", status: "for-sale",
-  city: "Abuja", location: "", bedrooms: "0", bathrooms: "0", images: "", tags: "", is_featured: true,
+  city: "Abuja", location: "", bedrooms: "0", bathrooms: "0", images: "", tags: "", is_featured: true, video_link: "",
 };
 
 const AdminProperties = () => {
