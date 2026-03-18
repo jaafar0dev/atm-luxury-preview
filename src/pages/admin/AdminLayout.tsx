@@ -1,5 +1,5 @@
 import { Link, useLocation, useNavigate, Outlet } from "react-router-dom";
-import { Home, Building2, Users, FileText, MessageSquare, Mail, Calendar, LogOut } from "lucide-react";
+import { Home, Building2, Users, FileText, MessageSquare, Mail, Calendar, Image, LogOut } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
