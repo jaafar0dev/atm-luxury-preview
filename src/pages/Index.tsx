@@ -27,6 +27,7 @@ import heroBg from "@/assets/hero-bg.jpg";
 import sectionBg from "@/assets/section-bg.jpg";
 import abuja from "@/assets/abuja.jpg";
 import lagos from "@/assets/lagos.jpg";
+import ibadan from "@/assets/ibadan.jpg";
 import fountain from "@/assets/fountain.jpg";
 
 import { useQuery } from "@tanstack/react-query";
@@ -77,7 +78,7 @@ const budgetOptions = [
 ];
 
 // NEW: Array of background images for the slider
-const heroImages = [heroBg, lagos, abuja, fountain];
+const heroImages = [heroBg, lagos, abuja, ibadan, fountain];
 
 const testimonials = [
   {
