@@ -57,15 +57,16 @@ export const Footer = () => {
       <div className="h-1" style={{ background: "var(--gold-gradient)" }} />
 
       <div className="section-container py-16 lg:px-16 xl:px-24">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-10">
-          {/* Brand */}
-          <div className="lg:col-span-2">
+        {/* UPDATED: Converted to a 12-column grid for precise responsive control */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-x-6 gap-y-12">
+          {/* Brand - Takes 4 cols on lg, 3 cols on xl */}
+          <div className="sm:col-span-2 lg:col-span-4 xl:col-span-3">
             <img
               src={logo}
               alt="ATM Luxury Properties"
               className="h-16 w-auto mb-4 bg-white rounded-lg p-2"
             />
-            <p className="text-sm text-white/70 leading-relaxed max-w-sm mb-6 pr-4">
+            <p className="text-sm text-white/70 leading-relaxed mb-6 lg:pr-4">
               Your premier luxury real estate marketing agency. We specialize in
               exclusive properties across Nigeria's most prestigious locations.
             </p>
@@ -92,8 +93,8 @@ export const Footer = () => {
             </div>
           </div>
 
-          {/* Discover */}
-          <div>
+          {/* Discover - Takes 2 cols */}
+          <div className="lg:col-span-2">
             <h3 className="font-display font-bold text-sm tracking-[0.1em] uppercase mb-5 text-white">
               Discover
             </h3>
@@ -125,8 +126,8 @@ export const Footer = () => {
             </ul>
           </div>
 
-          {/* Quick Links */}
-          <div>
+          {/* Quick Links - Takes 2 cols */}
+          <div className="lg:col-span-2">
             <h3 className="font-display font-bold text-sm tracking-[0.1em] uppercase mb-5 text-white">
               Quick Links
             </h3>
@@ -176,8 +177,8 @@ export const Footer = () => {
             </ul>
           </div>
 
-          {/* Services */}
-          <div>
+          {/* Services - Takes 2 cols */}
+          <div className="lg:col-span-2">
             <h3 className="font-display font-bold text-sm tracking-[0.1em] uppercase mb-5 text-white">
               Services
             </h3>
@@ -209,47 +210,51 @@ export const Footer = () => {
             </ul>
           </div>
 
-          {/* Contact */}
-          <div>
+          {/* Contact - Takes 4 cols on lg (wraps to next line), 3 cols on xl (stays on same line) */}
+          <div className="sm:col-span-2 lg:col-span-4 xl:col-span-3">
             <h3 className="font-display font-bold text-sm tracking-[0.1em] uppercase mb-5 text-white">
               Contact
             </h3>
-            <ul className="space-y-4 text-sm text-white/70">
-              <li className="flex items-start gap-2.5">
-                <MapPin size={14} className="mt-1 shrink-0 text-white" />
-                <span className="leading-tight">
-                  Suite D 47, Anon Plaza Gudu District, Abuja
-                </span>
+            <ul className="space-y-5 text-sm text-white/70">
+              <li className="flex items-start gap-3">
+                <MapPin size={16} className="mt-0.5 shrink-0 text-white" />
+                {/* UPDATED: Address strictly formatted onto two lines */}
+                <div className="leading-relaxed">
+                  Suite D47, Anon Plaza,
+                  <br />
+                  Gudu District, Abuja.
+                </div>
               </li>
-              <li className="flex items-start gap-2.5">
-                <Phone size={14} className="mt-1 shrink-0 text-white" />
-                <div className="space-y-1">
+
+              <li className="flex items-start gap-3">
+                <Phone size={16} className="mt-0.5 shrink-0 text-white" />
+                <div className="space-y-1.5">
                   <a
                     href="tel:+2348106815300"
-                    className="hover:text-white block transition-colors"
+                    className="hover:text-white block transition-colors whitespace-nowrap"
                   >
                     +234-810-681-5300
                   </a>
                   <a
                     href="tel:+2349037075934"
-                    className="hover:text-white block transition-colors"
+                    className="hover:text-white block transition-colors whitespace-nowrap"
                   >
                     +234-903-707-5934
                   </a>
                   <a
                     href="tel:+2348159160550"
-                    className="hover:text-white block transition-colors"
+                    className="hover:text-white block transition-colors whitespace-nowrap"
                   >
                     +234-815-916-0550
                   </a>
                 </div>
               </li>
-              {/* UPDATED: Changed items-start to items-center and added whitespace-nowrap */}
-              <li className="flex items-center gap-2.5">
-                <Mail size={14} className="shrink-0 text-white" />
+
+              <li className="flex items-start gap-3">
+                <Mail size={16} className="mt-0.5 shrink-0 text-white" />
                 <a
                   href="mailto:Info@atmluxuryproperties.com"
-                  className="hover:text-white transition-colors whitespace-nowrap"
+                  className="hover:text-white transition-colors break-words"
                 >
                   Info@atmluxuryproperties.com
                 </a>
