@@ -334,21 +334,28 @@ const BookConsultation = () => {
             </p>
           </div>
         </ScrollAnimation>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {[
             {
-              initials: "JD",
-              name: "John Doe",
+              initials: "MU",
+              name: "M. U",
               role: "Property Investor",
               quote:
-                "The consultation with ATM Luxury Properties completely transformed my approach to property investment. Their market insights helped me identify opportunities I would have otherwise missed.",
+                "In 2020, I reached out to ATM Luxury Properties after seeing one of their listings online. They took me on inspections in Wuye, Mabushi, and Guzape, and I eventually settled for a plot in Guzape. With their help, I secureda 600 SQM plot for ₦28 million on a 12-month,interest-free plan, instead of the ₦30 millionasking price. By 2022, I started building, and in 2024 myfamily moved into our home. Today, that sameplot is worth ₦300 million — that’s a 971% ROIin just four years. Since then, ATM LuxuryProperties has become our family’s go-to brokerage firm, and I’ve recommended themto friends and relatives, especially those in thediaspora who want a trustworthy partner.",
             },
             {
-              initials: "MS",
-              name: "Mary Smith",
-              role: "Home Buyer",
+              initials: "WE",
+              name: "W. E",
+              role: "Property Investor",
               quote:
-                "Exceptional service from start to finish. Their personalized approach made all the difference in finding my dream home.",
+                "I’ve known Mr. Matthew, the Managing Partner of ATM Luxury Properties, for over seven years,and his professionalism has always impressed me. In 2023, I had idle funds and wanted to earn returns without the responsibility of direct property ownership. After a detailed conversation, I decided to invest ₦17 million in their Cashback Program, which offered a 35% ROI per annum. I received all necessary documentation — including an Investment Certificate, Deed of Assignment (with land as security), and a post-dated cheque — which gave me complete confidence. By 2024, I withdrew my profit while reinvesting my capital. Since then, I’ve also partnered with friends,and together we’ve invested over ₦100 million with ATM Luxury Properties. Their transparency, customer service, and consistency have made them my go-to investment partner. I highly recommend them to anyone seeking a safe and profitable real estate investment.",
+            },
+            {
+              initials: "OO",
+              name: "O. O",
+              role: "Property Investor",
+              quote:
+                "I live in Germany but proudly call Ibadan home. In 2023, I bought a plot in Ibeju Lekki for ₦16 million through ATM Luxury Properties.The location — directly on the Lekki-Epe expressway and close to the approved Lekki InternationalAirport — made it a strategic choice, and it came with a Certificate of Occupancy for added security.Today, that same plot is valued at ₦40 million, giving me a 150% ROI in just two years.Encouraged by this success, I’ve since expanded my portfolio in both Lagos and Ibadan and recommended ATM Luxury Properties to friends and family abroad. They’ve proven to be a dependable partner for anyone looking to invest back home.",
             },
           ].map((t) => (
             <ScrollAnimation key={t.initials} direction="up">

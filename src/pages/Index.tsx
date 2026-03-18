@@ -13,7 +13,15 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Link } from "react-router-dom";
-import { Search, ArrowRight, Building2, MapPin, Phone } from "lucide-react";
+import {
+  Search,
+  ArrowRight,
+  Building2,
+  MapPin,
+  Phone,
+  Star,
+  Quote,
+} from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import heroBg from "@/assets/hero-bg.jpg";
 import sectionBg from "@/assets/section-bg.jpg";
@@ -70,6 +78,29 @@ const budgetOptions = [
 
 // NEW: Array of background images for the slider
 const heroImages = [heroBg, lagos, abuja, fountain];
+
+const testimonials = [
+  {
+    name: "Kamal O.",
+    rating: 5,
+    text: "I recently completed a 3-year investment with ATM Luxury properties, and I'm thrilled with the experience. The team's expertise, professionalism, and transparency exceeded my expectations. Key highlights: Exceptional returns on investment, regular updates and clear communication, prompt issue resolution. Friendly and knowledgeable staff.",
+  },
+  {
+    name: "Annabell S.",
+    rating: 4,
+    text: "It was a delightful experience partnering with ATM Luxury Property Ltd for the real estate cash back investment. I received my payment in full which was worth the wait duration. I highly recommend them any day, anytime.",
+  },
+  {
+    name: "Jessica O.",
+    rating: 5,
+    text: "Good customer service. No matter how much you have, ATM luxury Properties gives you the best investment idea for your money. I am happy I invested with them because my ROI was huge and worth it.",
+  },
+  {
+    name: "Adebayo M.",
+    rating: 3,
+    text: "ATM Luxury Properties has earned my trust. I've done land banking and also purchased land through them, and everything has been smooth, secure and professional. If you're looking for a company that truly delivers what it promises, this is it. I highly recommend them to anyone.",
+  },
+];
 
 const Index = () => {
   const [inquiryForm, setInquiryForm] = useState({
@@ -642,6 +673,70 @@ const Index = () => {
                 </div>
               </div>
             </ScrollAnimation>
+          </div>
+        </div>
+      </section>
+
+      {/* NEW: Testimonials Section */}
+      <section className="section-padding bg-background/50 border-t border-border">
+        <div className="section-container">
+          <ScrollAnimation direction="up">
+            <div className="text-center mb-14">
+              <div className="luxury-divider mb-4">
+                <span className="text-accent font-accent text-sm tracking-[0.2em] uppercase">
+                  Testimonials
+                </span>
+              </div>
+              <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-3">
+                What Our Clients Say
+              </h2>
+              <p className="text-muted-foreground max-w-lg mx-auto">
+                Don't just take our word for it. Read what our satisfied
+                investors and home buyers have experienced.
+              </p>
+            </div>
+          </ScrollAnimation>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {testimonials.map((t, index) => (
+              <ScrollAnimation key={index} direction="up" delay={index * 100}>
+                <div className="bg-card border border-border rounded-xl p-6 h-full flex flex-col relative shadow-sm hover:shadow-md transition-shadow">
+                  {/* Decorative background quote */}
+                  <Quote
+                    className="absolute top-4 right-4 text-border/40"
+                    size={40}
+                    strokeWidth={1}
+                  />
+
+                  <div className="flex items-center gap-1 mb-4 relative z-10">
+                    {[...Array(5)].map((_, i) => (
+                      <Star
+                        key={i}
+                        size={16}
+                        className={
+                          i < t.rating
+                            ? "fill-accent text-accent"
+                            : "text-muted-foreground/30"
+                        }
+                      />
+                    ))}
+                  </div>
+
+                  <p className="text-muted-foreground text-sm flex-grow mb-6 relative z-10 leading-relaxed italic">
+                    "{t.text}"
+                  </p>
+
+                  <div className="pt-4 border-t border-border/50 relative z-10">
+                    <h4 className="font-display font-bold text-foreground">
+                      {t.name}
+                    </h4>
+                    <p className="text-xs text-primary mt-1 uppercase tracking-wider font-semibold">
+                      Client
+                    </p>
+                  </div>
+                </div>
+              </ScrollAnimation>
+            ))}
           </div>
         </div>
       </section>
