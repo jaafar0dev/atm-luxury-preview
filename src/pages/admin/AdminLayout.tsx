@@ -12,6 +12,7 @@ const links = [
   { label: "Inquiries", path: "/admin/inquiries", icon: MessageSquare },
   { label: "Messages", path: "/admin/messages", icon: Mail },
   { label: "Consultations", path: "/admin/consultations", icon: Calendar },
+  { label: "Gallery", path: "/admin/gallery", icon: Image },
 ];
 
 const AdminLayout = () => {

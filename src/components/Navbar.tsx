@@ -20,6 +20,7 @@ const navLinks = [
   { label: "ABOUT", path: "/about" },
   { label: "FAQ", path: "/faq" },
   { label: "CONTACT", path: "/contact" },
+  { label: "GALLERY", path: "/gallery" },
   { label: "MORTGAGE CALCULATOR", path: "/mortgage-calculator" },
 ];
 
