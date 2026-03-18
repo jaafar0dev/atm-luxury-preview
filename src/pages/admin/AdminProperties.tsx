@@ -187,6 +187,7 @@ const AdminProperties = () => {
             </div>
             <Textarea placeholder="Image URLs (one per line)" rows={3} value={form.images} onChange={(e) => setForm({ ...form, images: e.target.value })} />
             <Input placeholder="Tags (comma separated)" value={form.tags} onChange={(e) => setForm({ ...form, tags: e.target.value })} />
+            <Input placeholder="Video Link (optional, e.g. YouTube URL)" value={form.video_link} onChange={(e) => setForm({ ...form, video_link: e.target.value })} />
             <label className="flex items-center gap-2 text-sm">
               <input type="checkbox" checked={form.is_featured} onChange={(e) => setForm({ ...form, is_featured: e.target.checked })} />
               Featured property
