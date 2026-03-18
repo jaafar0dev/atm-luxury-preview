@@ -175,6 +175,24 @@ const PropertyDetail = () => {
           </ScrollAnimation>
         )}
 
+        {/* Video */}
+        {(property as any).video_link && (
+          <ScrollAnimation direction="up" className="mt-10">
+            <h2 className="text-xl font-display font-bold text-foreground mb-4 flex items-center gap-2">
+              <Video size={20} className="text-primary" /> Property Video
+            </h2>
+            <div className="aspect-video rounded-lg overflow-hidden">
+              <iframe
+                src={(property as any).video_link.replace("watch?v=", "embed/").replace("youtu.be/", "youtube.com/embed/")}
+                title="Property Video"
+                className="w-full h-full"
+                allowFullScreen
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              />
+            </div>
+          </ScrollAnimation>
+        )}
+
         {/* Related Properties Section */}
         {relatedProperties && relatedProperties.length > 0 && (
           <ScrollAnimation
