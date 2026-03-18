@@ -88,7 +88,7 @@ export const Navbar = () => {
             <img
               src={logo}
               alt="ATM Luxury Properties"
-              className="h-12 w-auto"
+              className="h-16 w-auto"
             />
           </Link>
 
