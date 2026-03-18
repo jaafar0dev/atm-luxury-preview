@@ -53,14 +53,13 @@ const socialLinks = [
 export const Footer = () => {
   return (
     <footer className="bg-primary text-primary-foreground overflow-hidden">
-      {/* Top accent line */}
       <div className="h-1" style={{ background: "var(--gold-gradient)" }} />
 
-      <div className="section-container py-16 lg:px-16 xl:px-24">
-        {/* UPDATED: Converted to a 12-column grid for precise responsive control */}
+      {/* UPDATED: Decreased side padding on lg screens (lg:px-8) to give columns more breathing room */}
+      <div className="section-container py-16 lg:px-8 xl:px-24">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-x-6 gap-y-12">
-          {/* Brand - Takes 4 cols on lg, 3 cols on xl */}
-          <div className="sm:col-span-2 lg:col-span-4 xl:col-span-3">
+          {/* UPDATED: Brand now safely takes 3 columns */}
+          <div className="sm:col-span-2 lg:col-span-3">
             <img
               src={logo}
               alt="ATM Luxury Properties"
@@ -76,7 +75,6 @@ export const Footer = () => {
             >
               View Our Properties <ArrowRight size={14} />
             </Link>
-            {/* Social links */}
             <div className="flex items-center gap-4 mt-6">
               {socialLinks.map((social) => (
                 <a
@@ -93,7 +91,6 @@ export const Footer = () => {
             </div>
           </div>
 
-          {/* Discover - Takes 2 cols */}
           <div className="lg:col-span-2">
             <h3 className="font-display font-bold text-sm tracking-[0.1em] uppercase mb-5 text-white">
               Discover
@@ -126,7 +123,6 @@ export const Footer = () => {
             </ul>
           </div>
 
-          {/* Quick Links - Takes 2 cols */}
           <div className="lg:col-span-2">
             <h3 className="font-display font-bold text-sm tracking-[0.1em] uppercase mb-5 text-white">
               Quick Links
@@ -177,7 +173,6 @@ export const Footer = () => {
             </ul>
           </div>
 
-          {/* Services - Takes 2 cols */}
           <div className="lg:col-span-2">
             <h3 className="font-display font-bold text-sm tracking-[0.1em] uppercase mb-5 text-white">
               Services
@@ -210,16 +205,16 @@ export const Footer = () => {
             </ul>
           </div>
 
-          {/* Contact - Takes 4 cols on lg (wraps to next line), 3 cols on xl (stays on same line) */}
-          <div className="sm:col-span-2 lg:col-span-4 xl:col-span-3">
+          {/* UPDATED: Contact now safely takes 3 columns */}
+          <div className="sm:col-span-2 lg:col-span-3">
             <h3 className="font-display font-bold text-sm tracking-[0.1em] uppercase mb-5 text-white">
               Contact
             </h3>
             <ul className="space-y-5 text-sm text-white/70">
               <li className="flex items-start gap-3">
                 <MapPin size={16} className="mt-0.5 shrink-0 text-white" />
-                {/* UPDATED: Address strictly formatted onto two lines */}
-                <div className="leading-relaxed">
+                {/* UPDATED: Added whitespace-nowrap to prevent odd line breaks, maintaining exactly 2 lines */}
+                <div className="leading-relaxed whitespace-nowrap">
                   Suite D47, Anon Plaza,
                   <br />
                   Gudu District, Abuja.

@@ -7,7 +7,10 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Skeleton } from "@/components/ui/skeleton";
 
 const Gallery = () => {
-  const [selectedImage, setSelectedImage] = useState<{ url: string; title: string } | null>(null);
+  const [selectedImage, setSelectedImage] = useState<{
+    url: string;
+    title: string;
+  } | null>(null);
   const [filter, setFilter] = useState("all");
 
   const { data: items, isLoading } = useQuery({
@@ -22,12 +25,19 @@ const Gallery = () => {
     },
   });
 
-  const categories = ["all", ...new Set(items?.map((i) => i.category || "general") ?? [])];
-  const filtered = filter === "all" ? items : items?.filter((i) => i.category === filter);
+  const categories = [
+    "all",
+    ...new Set(items?.map((i) => i.category || "general") ?? []),
+  ];
+  const filtered =
+    filter === "all" ? items : items?.filter((i) => i.category === filter);
 
   return (
     <PublicLayout>
-      <PageHero title="Gallery" subtitle="Explore our collection of premium properties and developments" />
+      <PageHero
+        title="Gallery"
+        subtitle="Here are a few pictorial excerpts from some of our events."
+      />
 
       <section className="section-container py-16">
         {/* Category filter */}
@@ -59,7 +69,9 @@ const Gallery = () => {
               <div
                 key={item.id}
                 className="group relative overflow-hidden rounded-xl cursor-pointer shadow-md hover:shadow-xl transition-shadow"
-                onClick={() => setSelectedImage({ url: item.image_url, title: item.title })}
+                onClick={() =>
+                  setSelectedImage({ url: item.image_url, title: item.title })
+                }
               >
                 <img
                   src={item.image_url}
@@ -68,21 +80,30 @@ const Gallery = () => {
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5">
-                  <h3 className="text-white font-semibold text-lg">{item.title}</h3>
+                  <h3 className="text-white font-semibold text-lg">
+                    {item.title}
+                  </h3>
                   {item.description && (
-                    <p className="text-white/80 text-sm mt-1 line-clamp-2">{item.description}</p>
+                    <p className="text-white/80 text-sm mt-1 line-clamp-2">
+                      {item.description}
+                    </p>
                   )}
                 </div>
               </div>
             ))}
           </div>
         ) : (
-          <p className="text-center text-muted-foreground py-20">No gallery items yet.</p>
+          <p className="text-center text-muted-foreground py-20">
+            No gallery items yet.
+          </p>
         )}
       </section>
 
       {/* Lightbox */}
-      <Dialog open={!!selectedImage} onOpenChange={() => setSelectedImage(null)}>
+      <Dialog
+        open={!!selectedImage}
+        onOpenChange={() => setSelectedImage(null)}
+      >
         <DialogContent className="max-w-4xl p-2 bg-black/95 border-none">
           {selectedImage && (
             <img
