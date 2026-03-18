@@ -62,7 +62,8 @@ const AdminProperties = () => {
       images: form.images.split("\n").map((s) => s.trim()).filter(Boolean),
       tags: form.tags.split(",").map((s) => s.trim()).filter(Boolean),
       is_featured: form.is_featured,
-    };
+      video_link: form.video_link.trim() || null,
+    } as any;
 
     let error;
     if (editId) {
