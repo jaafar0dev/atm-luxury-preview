@@ -19,7 +19,7 @@ interface PropertyForm {
 
 const emptyForm: PropertyForm = {
   title: "", description: "", price: "", property_type: "Residential Land", status: "for-sale",
-  city: "Abuja", location: "", bedrooms: "0", bathrooms: "0", images: "", tags: "", is_featured: true, video_link: "",
+  city: "Abuja", location: "", bedrooms: "0", bathrooms: "0", images: [], tags: "", is_featured: true, video_link: "",
 };
 
 const AdminProperties = () => {
