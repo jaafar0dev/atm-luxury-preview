@@ -43,7 +43,7 @@ const AdminProperties = () => {
       title: p.title, description: p.description || "", price: String(p.price),
       property_type: p.property_type, status: p.status, city: p.city,
       location: p.location || "", bedrooms: String(p.bedrooms || 0), bathrooms: String(p.bathrooms || 0),
-      images: (p.images || []).join("\n"), tags: (p.tags || []).join(", "), is_featured: p.is_featured || false, video_link: (p as any).video_link || "",
+      images: p.images || [], tags: (p.tags || []).join(", "), is_featured: p.is_featured || false, video_link: (p as any).video_link || "",
     });
     setDialogOpen(true);
   };
