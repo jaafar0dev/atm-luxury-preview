@@ -10,6 +10,7 @@ import { Pencil, Trash2, Plus } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 import { formatDistanceToNow } from "date-fns";
+import { ImageUpload } from "@/components/ImageUpload";
 
 const AdminBlog = () => {
   const queryClient = useQueryClient();
