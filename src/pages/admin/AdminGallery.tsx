@@ -7,6 +7,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { Trash2, Plus } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
+import { ImageUpload } from "@/components/ImageUpload";
 
 interface GalleryForm {
   title: string;
