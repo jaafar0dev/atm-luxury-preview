@@ -10,15 +10,16 @@ import { Badge } from "@/components/ui/badge";
 import { Pencil, Trash2, Plus } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
+import { MultiImageUpload } from "@/components/ImageUpload";
 
 interface PropertyForm {
   title: string; description: string; price: string; property_type: string; status: string;
-  city: string; location: string; bedrooms: string; bathrooms: string; images: string; tags: string; is_featured: boolean; video_link: string;
+  city: string; location: string; bedrooms: string; bathrooms: string; images: string[]; tags: string; is_featured: boolean; video_link: string;
 }
 
 const emptyForm: PropertyForm = {
   title: "", description: "", price: "", property_type: "Residential Land", status: "for-sale",
-  city: "Abuja", location: "", bedrooms: "0", bathrooms: "0", images: "", tags: "", is_featured: true, video_link: "",
+  city: "Abuja", location: "", bedrooms: "0", bathrooms: "0", images: [], tags: "", is_featured: true, video_link: "",
 };
 
 const AdminProperties = () => {
@@ -42,7 +43,7 @@ const AdminProperties = () => {
       title: p.title, description: p.description || "", price: String(p.price),
       property_type: p.property_type, status: p.status, city: p.city,
       location: p.location || "", bedrooms: String(p.bedrooms || 0), bathrooms: String(p.bathrooms || 0),
-      images: (p.images || []).join("\n"), tags: (p.tags || []).join(", "), is_featured: p.is_featured || false, video_link: (p as any).video_link || "",
+      images: p.images || [], tags: (p.tags || []).join(", "), is_featured: p.is_featured || false, video_link: (p as any).video_link || "",
     });
     setDialogOpen(true);
   };
@@ -59,7 +60,7 @@ const AdminProperties = () => {
       location: form.location.trim() || null,
       bedrooms: parseInt(form.bedrooms) || 0,
       bathrooms: parseInt(form.bathrooms) || 0,
-      images: form.images.split("\n").map((s) => s.trim()).filter(Boolean),
+      images: form.images,
       tags: form.tags.split(",").map((s) => s.trim()).filter(Boolean),
       is_featured: form.is_featured,
       video_link: form.video_link.trim() || null,
@@ -185,7 +186,10 @@ const AdminProperties = () => {
               <Input placeholder="Bedrooms" type="number" value={form.bedrooms} onChange={(e) => setForm({ ...form, bedrooms: e.target.value })} />
               <Input placeholder="Bathrooms" type="number" value={form.bathrooms} onChange={(e) => setForm({ ...form, bathrooms: e.target.value })} />
             </div>
-            <Textarea placeholder="Image URLs (one per line)" rows={3} value={form.images} onChange={(e) => setForm({ ...form, images: e.target.value })} />
+            <div>
+              <label className="text-sm font-medium mb-1 block">Property Images</label>
+              <MultiImageUpload value={form.images} onChange={(urls) => setForm({ ...form, images: urls })} />
+            </div>
             <Input placeholder="Tags (comma separated)" value={form.tags} onChange={(e) => setForm({ ...form, tags: e.target.value })} />
             <Input placeholder="Video Link (optional, e.g. YouTube URL)" value={form.video_link} onChange={(e) => setForm({ ...form, video_link: e.target.value })} />
             <label className="flex items-center gap-2 text-sm">

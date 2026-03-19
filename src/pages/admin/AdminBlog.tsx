@@ -10,6 +10,7 @@ import { Pencil, Trash2, Plus } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 import { formatDistanceToNow } from "date-fns";
+import { ImageUpload } from "@/components/ImageUpload";
 
 const AdminBlog = () => {
   const queryClient = useQueryClient();
@@ -84,7 +85,10 @@ const AdminBlog = () => {
             <Input placeholder="Title *" value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} />
             <Input placeholder="Slug (auto-generated if empty)" value={form.slug} onChange={(e) => setForm({ ...form, slug: e.target.value })} />
             <Input placeholder="Author" value={form.author} onChange={(e) => setForm({ ...form, author: e.target.value })} />
-            <Input placeholder="Image URL" value={form.image_url} onChange={(e) => setForm({ ...form, image_url: e.target.value })} />
+            <div>
+              <label className="text-sm font-medium mb-1 block">Cover Image</label>
+              <ImageUpload value={form.image_url} onChange={(url) => setForm({ ...form, image_url: url })} folder="blog" placeholder="Upload cover image" />
+            </div>
             <Textarea placeholder="Content (supports paragraphs)" rows={8} value={form.content} onChange={(e) => setForm({ ...form, content: e.target.value })} />
             <div className="flex items-center gap-2">
               <Switch checked={form.published} onCheckedChange={(v) => setForm({ ...form, published: v })} />

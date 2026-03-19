@@ -7,6 +7,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { Trash2, Plus } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
+import { ImageUpload } from "@/components/ImageUpload";
 
 interface GalleryForm {
   title: string;
@@ -100,7 +101,10 @@ const AdminGallery = () => {
           </DialogHeader>
           <div className="space-y-4">
             <Input placeholder="Title" value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} />
-            <Input placeholder="Image URL" value={form.image_url} onChange={(e) => setForm({ ...form, image_url: e.target.value })} />
+            <div>
+              <label className="text-sm font-medium mb-1 block">Image</label>
+              <ImageUpload value={form.image_url} onChange={(url) => setForm({ ...form, image_url: url })} folder="gallery" placeholder="Upload image" />
+            </div>
             <Input placeholder="Category (e.g. properties, developments)" value={form.category} onChange={(e) => setForm({ ...form, category: e.target.value })} />
             <Textarea placeholder="Description (optional)" value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} />
             <Button onClick={handleSubmit} className="w-full rounded-full">Add Item</Button>
