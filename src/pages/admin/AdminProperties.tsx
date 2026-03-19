@@ -186,7 +186,10 @@ const AdminProperties = () => {
               <Input placeholder="Bedrooms" type="number" value={form.bedrooms} onChange={(e) => setForm({ ...form, bedrooms: e.target.value })} />
               <Input placeholder="Bathrooms" type="number" value={form.bathrooms} onChange={(e) => setForm({ ...form, bathrooms: e.target.value })} />
             </div>
-            <Textarea placeholder="Image URLs (one per line)" rows={3} value={form.images} onChange={(e) => setForm({ ...form, images: e.target.value })} />
+            <div>
+              <label className="text-sm font-medium mb-1 block">Property Images</label>
+              <MultiImageUpload value={form.images} onChange={(urls) => setForm({ ...form, images: urls })} />
+            </div>
             <Input placeholder="Tags (comma separated)" value={form.tags} onChange={(e) => setForm({ ...form, tags: e.target.value })} />
             <Input placeholder="Video Link (optional, e.g. YouTube URL)" value={form.video_link} onChange={(e) => setForm({ ...form, video_link: e.target.value })} />
             <label className="flex items-center gap-2 text-sm">

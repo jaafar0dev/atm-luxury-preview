@@ -86,7 +86,10 @@ const AdminTeam = () => {
             <Input placeholder="Email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} />
             <Input placeholder="Phone" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} />
             <Textarea placeholder="Bio" value={form.bio} onChange={(e) => setForm({ ...form, bio: e.target.value })} />
-            <Input placeholder="Image URL" value={form.image_url} onChange={(e) => setForm({ ...form, image_url: e.target.value })} />
+            <div>
+              <label className="text-sm font-medium mb-1 block">Photo</label>
+              <ImageUpload value={form.image_url} onChange={(url) => setForm({ ...form, image_url: url })} folder="team" placeholder="Upload photo" />
+            </div>
             <Button onClick={handleSave} className="w-full btn-primary">{editId ? "Update" : "Add"}</Button>
           </div>
         </DialogContent>
