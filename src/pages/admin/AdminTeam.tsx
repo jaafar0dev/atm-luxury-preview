@@ -8,6 +8,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Pencil, Trash2, Plus } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
+import { ImageUpload } from "@/components/ImageUpload";
 
 const AdminTeam = () => {
   const queryClient = useQueryClient();
