@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { Pencil, Trash2, Plus } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
+import { MultiImageUpload } from "@/components/ImageUpload";
 
 interface PropertyForm {
   title: string; description: string; price: string; property_type: string; status: string;
