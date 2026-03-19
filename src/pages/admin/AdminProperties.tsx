@@ -14,7 +14,7 @@ import { MultiImageUpload } from "@/components/ImageUpload";
 
 interface PropertyForm {
   title: string; description: string; price: string; property_type: string; status: string;
-  city: string; location: string; bedrooms: string; bathrooms: string; images: string; tags: string; is_featured: boolean; video_link: string;
+  city: string; location: string; bedrooms: string; bathrooms: string; images: string[]; tags: string; is_featured: boolean; video_link: string;
 }
 
 const emptyForm: PropertyForm = {
