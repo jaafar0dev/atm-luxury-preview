@@ -60,7 +60,7 @@ const AdminProperties = () => {
       location: form.location.trim() || null,
       bedrooms: parseInt(form.bedrooms) || 0,
       bathrooms: parseInt(form.bathrooms) || 0,
-      images: form.images.split("\n").map((s) => s.trim()).filter(Boolean),
+      images: form.images,
       tags: form.tags.split(",").map((s) => s.trim()).filter(Boolean),
       is_featured: form.is_featured,
       video_link: form.video_link.trim() || null,
