@@ -1,0 +1,1 @@
+UPDATE auth.users SET email = 'admin@atmluxuryproperties.com' WHERE email = 'admin@atmluxury.com';
