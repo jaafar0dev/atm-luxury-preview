@@ -5,7 +5,13 @@ import { PropertyCard } from "@/components/PropertyCard";
 import { ScrollAnimation } from "@/components/ScrollAnimation";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { MapPin, Bed, Bath, Heart, Video } from "lucide-react";
+import { MapPin, Bed, Bath, Heart, Video, Share2, Copy, Check } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { supabase } from "@/integrations/supabase/client";
 import { useQuery } from "@tanstack/react-query";
 import { useState, useEffect } from "react";
@@ -63,10 +69,29 @@ const PropertyDetail = () => {
   });
 
   const [isFavorited, setIsFavorited] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     if (id) setIsFavorited(getFavorites().includes(id));
   }, [id]);
+
+  const propertyUrl = `${window.location.origin}/property/${id}`;
+
+  const handleCopyLink = async () => {
+    await navigator.clipboard.writeText(propertyUrl);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  const handleShare = (platform: string) => {
+    const title = property?.title || "Check out this property";
+    const urls: Record<string, string> = {
+      whatsapp: `https://wa.me/?text=${encodeURIComponent(title + " " + propertyUrl)}`,
+      twitter: `https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(propertyUrl)}`,
+      facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(propertyUrl)}`,
+    };
+    window.open(urls[platform], "_blank");
+  };
 
   if (!property) {
     return (
@@ -158,6 +183,28 @@ const PropertyDetail = () => {
                     }
                   />
                 </Button>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="outline" size="icon">
+                      <Share2 size={18} />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end">
+                    <DropdownMenuItem onClick={handleCopyLink}>
+                      {copied ? <Check size={16} className="mr-2" /> : <Copy size={16} className="mr-2" />}
+                      {copied ? "Link Copied!" : "Copy Link"}
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => handleShare("whatsapp")}>
+                      WhatsApp
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => handleShare("facebook")}>
+                      Facebook
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => handleShare("twitter")}>
+                      X (Twitter)
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
               </div>
             </div>
           </div>
