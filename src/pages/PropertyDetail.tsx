@@ -69,10 +69,29 @@ const PropertyDetail = () => {
   });
 
   const [isFavorited, setIsFavorited] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     if (id) setIsFavorited(getFavorites().includes(id));
   }, [id]);
+
+  const propertyUrl = `${window.location.origin}/property/${id}`;
+
+  const handleCopyLink = async () => {
+    await navigator.clipboard.writeText(propertyUrl);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  const handleShare = (platform: string) => {
+    const title = property?.title || "Check out this property";
+    const urls: Record<string, string> = {
+      whatsapp: `https://wa.me/?text=${encodeURIComponent(title + " " + propertyUrl)}`,
+      twitter: `https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(propertyUrl)}`,
+      facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(propertyUrl)}`,
+    };
+    window.open(urls[platform], "_blank");
+  };
 
   if (!property) {
     return (
