@@ -183,6 +183,28 @@ const PropertyDetail = () => {
                     }
                   />
                 </Button>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="outline" size="icon">
+                      <Share2 size={18} />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end">
+                    <DropdownMenuItem onClick={handleCopyLink}>
+                      {copied ? <Check size={16} className="mr-2" /> : <Copy size={16} className="mr-2" />}
+                      {copied ? "Link Copied!" : "Copy Link"}
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => handleShare("whatsapp")}>
+                      WhatsApp
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => handleShare("facebook")}>
+                      Facebook
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => handleShare("twitter")}>
+                      X (Twitter)
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
               </div>
             </div>
           </div>
