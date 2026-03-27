@@ -1,0 +1,1 @@
+ALTER TABLE public.properties ALTER COLUMN bathrooms TYPE numeric USING bathrooms::numeric;

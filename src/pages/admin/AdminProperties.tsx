@@ -59,7 +59,7 @@ const AdminProperties = () => {
       city: form.city,
       location: form.location.trim() || null,
       bedrooms: parseInt(form.bedrooms) || 0,
-      bathrooms: parseInt(form.bathrooms) || 0,
+      bathrooms: parseFloat(form.bathrooms) || 0,
       images: form.images,
       tags: form.tags.split(",").map((s) => s.trim()).filter(Boolean),
       is_featured: form.is_featured,
@@ -188,7 +188,7 @@ const AdminProperties = () => {
             </div>
             <div className="grid grid-cols-2 gap-3">
               <Input placeholder="Bedrooms" type="number" value={form.bedrooms} onChange={(e) => setForm({ ...form, bedrooms: e.target.value })} />
-              <Input placeholder="Bathrooms" type="number" value={form.bathrooms} onChange={(e) => setForm({ ...form, bathrooms: e.target.value })} />
+              <Input placeholder="Bathrooms" type="number" step="0.5" value={form.bathrooms} onChange={(e) => setForm({ ...form, bathrooms: e.target.value })} />
             </div>
             <div>
               <label className="text-sm font-medium mb-1 block">Property Images</label>
