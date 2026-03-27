@@ -89,7 +89,10 @@ const AdminBlog = () => {
               <label className="text-sm font-medium mb-1 block">Cover Image</label>
               <ImageUpload value={form.image_url} onChange={(url) => setForm({ ...form, image_url: url })} folder="blog" placeholder="Upload cover image" />
             </div>
-            <Textarea placeholder="Content (supports paragraphs)" rows={8} value={form.content} onChange={(e) => setForm({ ...form, content: e.target.value })} />
+            <div>
+              <label className="text-sm font-medium mb-1 block">Content</label>
+              <RichTextEditor value={form.content} onChange={(html) => setForm({ ...form, content: html })} placeholder="Write your blog post..." />
+            </div>
             <div className="flex items-center gap-2">
               <Switch checked={form.published} onCheckedChange={(v) => setForm({ ...form, published: v })} />
               <span className="text-sm text-muted-foreground">Published</span>
