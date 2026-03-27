@@ -132,7 +132,11 @@ const PropertyDetail = () => {
                     FEATURED
                   </Badge>
                 )}
-                <Badge className="bg-success text-success-foreground uppercase">
+                <Badge className={`uppercase ${
+                  property.status === "sold" ? "bg-destructive text-destructive-foreground" :
+                  property.status === "sales-closed" ? "bg-muted text-muted-foreground" :
+                  "bg-success text-success-foreground"
+                }`}>
                   {property.status.replace("-", " ")}
                 </Badge>
               </div>
