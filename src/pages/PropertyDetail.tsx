@@ -89,8 +89,15 @@ const PropertyDetail = () => {
       whatsapp: `https://wa.me/?text=${encodeURIComponent(title + " " + propertyUrl)}`,
       twitter: `https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(propertyUrl)}`,
       facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(propertyUrl)}`,
+      linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(propertyUrl)}`,
+      telegram: `https://t.me/share/url?url=${encodeURIComponent(propertyUrl)}&text=${encodeURIComponent(title)}`,
+      email: `mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent("Check out this property: " + propertyUrl)}`,
     };
-    window.open(urls[platform], "_blank");
+    if (platform === "email") {
+      window.location.href = urls[platform];
+    } else {
+      window.open(urls[platform], "_blank");
+    }
   };
 
   if (!property) {
@@ -194,15 +201,24 @@ const PropertyDetail = () => {
                       {copied ? <Check size={16} className="mr-2" /> : <Copy size={16} className="mr-2" />}
                       {copied ? "Link Copied!" : "Copy Link"}
                     </DropdownMenuItem>
-                    <DropdownMenuItem onClick={() => handleShare("whatsapp")}>
-                      WhatsApp
-                    </DropdownMenuItem>
-                    <DropdownMenuItem onClick={() => handleShare("facebook")}>
-                      Facebook
-                    </DropdownMenuItem>
-                    <DropdownMenuItem onClick={() => handleShare("twitter")}>
-                      X (Twitter)
-                    </DropdownMenuItem>
+                     <DropdownMenuItem onClick={() => handleShare("whatsapp")}>
+                       WhatsApp
+                     </DropdownMenuItem>
+                     <DropdownMenuItem onClick={() => handleShare("facebook")}>
+                       Facebook
+                     </DropdownMenuItem>
+                     <DropdownMenuItem onClick={() => handleShare("twitter")}>
+                       X (Twitter)
+                     </DropdownMenuItem>
+                     <DropdownMenuItem onClick={() => handleShare("linkedin")}>
+                       LinkedIn
+                     </DropdownMenuItem>
+                     <DropdownMenuItem onClick={() => handleShare("telegram")}>
+                       Telegram
+                     </DropdownMenuItem>
+                     <DropdownMenuItem onClick={() => handleShare("email")}>
+                       Email
+                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
               </div>
@@ -216,9 +232,9 @@ const PropertyDetail = () => {
             <h2 className="text-xl font-display font-bold text-foreground mb-4">
               Description
             </h2>
-            <div className="prose max-w-none text-muted-foreground whitespace-pre-line">
-              {property.description}
-            </div>
+            <div className="prose max-w-none text-muted-foreground prose-headings:text-foreground prose-headings:font-display prose-strong:text-foreground prose-a:text-primary prose-img:rounded-lg"
+              dangerouslySetInnerHTML={{ __html: property.description }}
+            />
           </ScrollAnimation>
         )}
 
