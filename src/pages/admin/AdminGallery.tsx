@@ -7,21 +7,15 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { Trash2, Plus } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
-import { ImageUpload } from "@/components/ImageUpload";
-
-interface GalleryForm {
-  title: string;
-  description: string;
-  image_url: string;
-  category: string;
-}
-
-const emptyForm: GalleryForm = { title: "", description: "", image_url: "", category: "general" };
+import { MultiImageUpload } from "@/components/ImageUpload";
 
 const AdminGallery = () => {
   const queryClient = useQueryClient();
   const [dialogOpen, setDialogOpen] = useState(false);
-  const [form, setForm] = useState<GalleryForm>(emptyForm);
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [category, setCategory] = useState("general");
+  const [imageUrls, setImageUrls] = useState<string[]>([]);
 
   const { data: items } = useQuery({
     queryKey: ["admin-gallery"],
@@ -33,24 +27,26 @@ const AdminGallery = () => {
   });
 
   const handleSubmit = async () => {
-    if (!form.title || !form.image_url) {
-      toast.error("Title and image URL are required");
+    if (!title || imageUrls.length === 0) {
+      toast.error("Title and at least one image are required");
       return;
     }
-    const { error } = await supabase.from("gallery").insert({
-      title: form.title,
-      description: form.description || null,
-      image_url: form.image_url,
-      category: form.category || "general",
-    });
+    // Insert one gallery item per image
+    const items = imageUrls.map((url) => ({
+      title,
+      description: description || null,
+      image_url: url,
+      category: category || "general",
+    }));
+    const { error } = await supabase.from("gallery").insert(items);
     if (error) {
       toast.error(error.message);
       return;
     }
-    toast.success("Gallery item added");
+    toast.success(`${imageUrls.length} gallery item(s) added`);
     queryClient.invalidateQueries({ queryKey: ["admin-gallery"] });
     setDialogOpen(false);
-    setForm(emptyForm);
+    setTitle(""); setDescription(""); setCategory("general"); setImageUrls([]);
   };
 
   const handleDelete = async (id: string) => {
@@ -67,8 +63,8 @@ const AdminGallery = () => {
     <div>
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-2xl font-bold">Gallery</h1>
-        <Button onClick={() => { setForm(emptyForm); setDialogOpen(true); }} className="rounded-full">
-          <Plus size={16} className="mr-2" /> Add Item
+        <Button onClick={() => { setTitle(""); setDescription(""); setCategory("general"); setImageUrls([]); setDialogOpen(true); }} className="rounded-full">
+          <Plus size={16} className="mr-2" /> Add Items
         </Button>
       </div>
 
@@ -97,17 +93,17 @@ const AdminGallery = () => {
       <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Add Gallery Item</DialogTitle>
+            <DialogTitle>Add Gallery Items</DialogTitle>
           </DialogHeader>
           <div className="space-y-4">
-            <Input placeholder="Title" value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} />
+            <Input placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
             <div>
-              <label className="text-sm font-medium mb-1 block">Image</label>
-              <ImageUpload value={form.image_url} onChange={(url) => setForm({ ...form, image_url: url })} folder="gallery" placeholder="Upload image" />
+              <label className="text-sm font-medium mb-1 block">Images (upload multiple at once)</label>
+              <MultiImageUpload value={imageUrls} onChange={setImageUrls} bucket="uploads" folder="gallery" />
             </div>
-            <Input placeholder="Category (e.g. properties, developments)" value={form.category} onChange={(e) => setForm({ ...form, category: e.target.value })} />
-            <Textarea placeholder="Description (optional)" value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} />
-            <Button onClick={handleSubmit} className="w-full rounded-full">Add Item</Button>
+            <Input placeholder="Category (e.g. properties, developments)" value={category} onChange={(e) => setCategory(e.target.value)} />
+            <Textarea placeholder="Description (optional)" value={description} onChange={(e) => setDescription(e.target.value)} />
+            <Button onClick={handleSubmit} className="w-full rounded-full">Add {imageUrls.length > 1 ? `${imageUrls.length} Items` : "Item"}</Button>
           </div>
         </DialogContent>
       </Dialog>

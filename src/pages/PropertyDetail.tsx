@@ -5,7 +5,7 @@ import { PropertyCard } from "@/components/PropertyCard";
 import { ScrollAnimation } from "@/components/ScrollAnimation";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { MapPin, Bed, Bath, Heart, Video, Share2, Copy, Check } from "lucide-react";
+import { MapPin, Bed, Bath, Heart, Video, Share2, Copy, Check, Phone, Mail, MessageCircle } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -255,6 +255,45 @@ const PropertyDetail = () => {
             </div>
           </ScrollAnimation>
         )}
+
+        {/* Contact Information */}
+        <ScrollAnimation direction="up" className="mt-12">
+          <div className="bg-card border border-border rounded-lg p-6 md:p-8">
+            <h2 className="text-xl font-display font-bold text-foreground mb-6">Contact Us About This Property</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="flex items-start gap-3">
+                <Phone size={20} className="text-primary mt-0.5 shrink-0" />
+                <div>
+                  <p className="font-medium text-foreground text-sm mb-1">Phone</p>
+                  <a href="tel:+2348106815300" className="block text-sm text-muted-foreground hover:text-primary transition-colors">+234-810-681-5300</a>
+                  <a href="tel:+2349037075934" className="block text-sm text-muted-foreground hover:text-primary transition-colors">+234-903-707-5934</a>
+                  <a href="tel:+2348159160550" className="block text-sm text-muted-foreground hover:text-primary transition-colors">+234-815-916-0550</a>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <MessageCircle size={20} className="text-primary mt-0.5 shrink-0" />
+                <div>
+                  <p className="font-medium text-foreground text-sm mb-1">WhatsApp</p>
+                  <a href="https://wa.me/2348106815300" target="_blank" rel="noopener noreferrer" className="block text-sm text-muted-foreground hover:text-primary transition-colors">+234-810-681-5300</a>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <Mail size={20} className="text-primary mt-0.5 shrink-0" />
+                <div>
+                  <p className="font-medium text-foreground text-sm mb-1">Email</p>
+                  <a href="mailto:Info@atmluxuryproperties.com" className="block text-sm text-muted-foreground hover:text-primary transition-colors">Info@atmluxuryproperties.com</a>
+                </div>
+              </div>
+            </div>
+            <div className="mt-4 pt-4 border-t border-border flex items-start gap-3">
+              <MapPin size={20} className="text-primary mt-0.5 shrink-0" />
+              <div>
+                <p className="font-medium text-foreground text-sm mb-1">Office</p>
+                <p className="text-sm text-muted-foreground">Suite D47, Anon Plaza, Gudu District, Abuja.</p>
+              </div>
+            </div>
+          </div>
+        </ScrollAnimation>
 
         {/* Related Properties Section */}
         {relatedProperties && relatedProperties.length > 0 && (
