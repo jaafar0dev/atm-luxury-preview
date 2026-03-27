@@ -2,7 +2,7 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+import { RichTextEditor } from "@/components/RichTextEditor";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
@@ -137,7 +137,10 @@ const AdminProperties = () => {
           </DialogHeader>
           <div className="space-y-3">
             <Input placeholder="Title *" value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} />
-            <Textarea placeholder="Description (supports multiple paragraphs)" rows={4} value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} />
+            <div>
+              <label className="text-sm font-medium mb-1 block">Description</label>
+              <RichTextEditor value={form.description} onChange={(html) => setForm({ ...form, description: html })} placeholder="Write property description..." />
+            </div>
             <Input placeholder="Price" type="number" value={form.price} onChange={(e) => setForm({ ...form, price: e.target.value })} />
             <div className="grid grid-cols-2 gap-3">
               <Select value={form.property_type} onValueChange={(v) => setForm({ ...form, property_type: v })}>
@@ -168,6 +171,7 @@ const AdminProperties = () => {
                   <SelectItem value="for-rent">For Rent</SelectItem>
                   <SelectItem value="investment">Investment</SelectItem>
                   <SelectItem value="sold">Sold</SelectItem>
+                  <SelectItem value="sales-closed">Sales Closed</SelectItem>
                 </SelectContent>
               </Select>
             </div>

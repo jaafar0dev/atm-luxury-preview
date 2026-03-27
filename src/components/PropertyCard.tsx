@@ -97,7 +97,11 @@ export const PropertyCard = ({
             )}
           </div>
           <div className="absolute top-3 right-3 z-10">
-            <Badge className="bg-success text-success-foreground text-[10px] tracking-wider uppercase rounded-sm px-2.5">
+            <Badge className={`text-[10px] tracking-wider uppercase rounded-sm px-2.5 ${
+              status === "sold" ? "bg-destructive text-destructive-foreground" :
+              status === "sales-closed" ? "bg-muted text-muted-foreground" :
+              "bg-success text-success-foreground"
+            }`}>
               {status.replace("-", " ")}
             </Badge>
           </div>

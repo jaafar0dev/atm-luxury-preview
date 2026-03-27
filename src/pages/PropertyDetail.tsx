@@ -5,7 +5,7 @@ import { PropertyCard } from "@/components/PropertyCard";
 import { ScrollAnimation } from "@/components/ScrollAnimation";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { MapPin, Bed, Bath, Heart, Video, Share2, Copy, Check } from "lucide-react";
+import { MapPin, Bed, Bath, Heart, Video, Share2, Copy, Check, Phone, Mail, MessageCircle } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -89,8 +89,15 @@ const PropertyDetail = () => {
       whatsapp: `https://wa.me/?text=${encodeURIComponent(title + " " + propertyUrl)}`,
       twitter: `https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(propertyUrl)}`,
       facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(propertyUrl)}`,
+      linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(propertyUrl)}`,
+      telegram: `https://t.me/share/url?url=${encodeURIComponent(propertyUrl)}&text=${encodeURIComponent(title)}`,
+      email: `mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent("Check out this property: " + propertyUrl)}`,
     };
-    window.open(urls[platform], "_blank");
+    if (platform === "email") {
+      window.location.href = urls[platform];
+    } else {
+      window.open(urls[platform], "_blank");
+    }
   };
 
   if (!property) {
@@ -125,7 +132,11 @@ const PropertyDetail = () => {
                     FEATURED
                   </Badge>
                 )}
-                <Badge className="bg-success text-success-foreground uppercase">
+                <Badge className={`uppercase ${
+                  property.status === "sold" ? "bg-destructive text-destructive-foreground" :
+                  property.status === "sales-closed" ? "bg-muted text-muted-foreground" :
+                  "bg-success text-success-foreground"
+                }`}>
                   {property.status.replace("-", " ")}
                 </Badge>
               </div>
@@ -194,15 +205,24 @@ const PropertyDetail = () => {
                       {copied ? <Check size={16} className="mr-2" /> : <Copy size={16} className="mr-2" />}
                       {copied ? "Link Copied!" : "Copy Link"}
                     </DropdownMenuItem>
-                    <DropdownMenuItem onClick={() => handleShare("whatsapp")}>
-                      WhatsApp
-                    </DropdownMenuItem>
-                    <DropdownMenuItem onClick={() => handleShare("facebook")}>
-                      Facebook
-                    </DropdownMenuItem>
-                    <DropdownMenuItem onClick={() => handleShare("twitter")}>
-                      X (Twitter)
-                    </DropdownMenuItem>
+                     <DropdownMenuItem onClick={() => handleShare("whatsapp")}>
+                       WhatsApp
+                     </DropdownMenuItem>
+                     <DropdownMenuItem onClick={() => handleShare("facebook")}>
+                       Facebook
+                     </DropdownMenuItem>
+                     <DropdownMenuItem onClick={() => handleShare("twitter")}>
+                       X (Twitter)
+                     </DropdownMenuItem>
+                     <DropdownMenuItem onClick={() => handleShare("linkedin")}>
+                       LinkedIn
+                     </DropdownMenuItem>
+                     <DropdownMenuItem onClick={() => handleShare("telegram")}>
+                       Telegram
+                     </DropdownMenuItem>
+                     <DropdownMenuItem onClick={() => handleShare("email")}>
+                       Email
+                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
               </div>
@@ -216,9 +236,9 @@ const PropertyDetail = () => {
             <h2 className="text-xl font-display font-bold text-foreground mb-4">
               Description
             </h2>
-            <div className="prose max-w-none text-muted-foreground whitespace-pre-line">
-              {property.description}
-            </div>
+            <div className="prose max-w-none text-muted-foreground prose-headings:text-foreground prose-headings:font-display prose-strong:text-foreground prose-a:text-primary prose-img:rounded-lg"
+              dangerouslySetInnerHTML={{ __html: property.description }}
+            />
           </ScrollAnimation>
         )}
 
@@ -239,6 +259,45 @@ const PropertyDetail = () => {
             </div>
           </ScrollAnimation>
         )}
+
+        {/* Contact Information */}
+        <ScrollAnimation direction="up" className="mt-12">
+          <div className="bg-card border border-border rounded-lg p-6 md:p-8">
+            <h2 className="text-xl font-display font-bold text-foreground mb-6">Contact Us About This Property</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="flex items-start gap-3">
+                <Phone size={20} className="text-primary mt-0.5 shrink-0" />
+                <div>
+                  <p className="font-medium text-foreground text-sm mb-1">Phone</p>
+                  <a href="tel:+2348106815300" className="block text-sm text-muted-foreground hover:text-primary transition-colors">+234-810-681-5300</a>
+                  <a href="tel:+2349037075934" className="block text-sm text-muted-foreground hover:text-primary transition-colors">+234-903-707-5934</a>
+                  <a href="tel:+2348159160550" className="block text-sm text-muted-foreground hover:text-primary transition-colors">+234-815-916-0550</a>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <MessageCircle size={20} className="text-primary mt-0.5 shrink-0" />
+                <div>
+                  <p className="font-medium text-foreground text-sm mb-1">WhatsApp</p>
+                  <a href="https://wa.me/2348106815300" target="_blank" rel="noopener noreferrer" className="block text-sm text-muted-foreground hover:text-primary transition-colors">+234-810-681-5300</a>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <Mail size={20} className="text-primary mt-0.5 shrink-0" />
+                <div>
+                  <p className="font-medium text-foreground text-sm mb-1">Email</p>
+                  <a href="mailto:Info@atmluxuryproperties.com" className="block text-sm text-muted-foreground hover:text-primary transition-colors">Info@atmluxuryproperties.com</a>
+                </div>
+              </div>
+            </div>
+            <div className="mt-4 pt-4 border-t border-border flex items-start gap-3">
+              <MapPin size={20} className="text-primary mt-0.5 shrink-0" />
+              <div>
+                <p className="font-medium text-foreground text-sm mb-1">Office</p>
+                <p className="text-sm text-muted-foreground">Suite D47, Anon Plaza, Gudu District, Abuja.</p>
+              </div>
+            </div>
+          </div>
+        </ScrollAnimation>
 
         {/* Related Properties Section */}
         {relatedProperties && relatedProperties.length > 0 && (
