@@ -24,7 +24,11 @@ export const RichTextEditor = ({ value, onChange, placeholder = "Start writing..
 
   const editor = useEditor({
     extensions: [
-      StarterKit,
+      StarterKit.configure({
+        heading: {
+          levels: [1, 2, 3],
+        },
+      }),
       Underline,
       Image.configure({ inline: false, allowBase64: false }),
     ],
@@ -34,7 +38,7 @@ export const RichTextEditor = ({ value, onChange, placeholder = "Start writing..
     },
     editorProps: {
       attributes: {
-        class: "prose prose-sm max-w-none min-h-[200px] p-3 focus:outline-none text-foreground",
+        class: "prose prose-sm max-w-none min-h-[200px] p-3 focus:outline-none text-foreground prose-headings:text-foreground prose-h1:text-2xl prose-h2:text-xl prose-h3:text-lg",
       },
     },
   });
