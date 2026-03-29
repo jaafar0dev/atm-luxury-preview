@@ -7,7 +7,7 @@ import {
   Bold, Italic, Underline as UnderlineIcon, Heading1, Heading2, Heading3,
   List, ListOrdered, Quote, ImagePlus, Undo, Redo, Minus,
 } from "lucide-react";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
@@ -55,6 +55,13 @@ export const RichTextEditor = ({ value, onChange, placeholder = "Start writing..
     setUploading(false);
     if (imageInputRef.current) imageInputRef.current.value = "";
   };
+
+  // Sync editor content when value prop changes externally (e.g. loading existing data)
+  useEffect(() => {
+    if (editor && value !== editor.getHTML()) {
+      editor.commands.setContent(value || "");
+    }
+  }, [editor, value]);
 
   if (!editor) return null;
 
