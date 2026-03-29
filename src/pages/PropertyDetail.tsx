@@ -236,7 +236,7 @@ const PropertyDetail = () => {
             <h2 className="text-xl font-display font-bold text-foreground mb-4">
               Description
             </h2>
-            <div className="prose prose-lg max-w-none text-muted-foreground prose-headings:text-foreground prose-headings:font-display prose-h1:text-2xl prose-h2:text-xl prose-h3:text-lg prose-p:leading-relaxed prose-strong:text-foreground prose-em:text-muted-foreground prose-a:text-primary prose-a:underline prose-img:rounded-lg prose-ul:list-disc prose-ol:list-decimal prose-blockquote:border-l-4 prose-blockquote:border-primary prose-blockquote:pl-4 prose-blockquote:italic prose-hr:border-border"
+            <div className="prose prose-lg max-w-none text-foreground prose-headings:text-foreground prose-headings:font-display prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl prose-p:text-foreground prose-p:leading-relaxed prose-strong:text-foreground prose-em:text-foreground prose-li:text-foreground prose-a:text-primary prose-a:underline prose-img:rounded-lg prose-ul:list-disc prose-ol:list-decimal prose-blockquote:border-l-4 prose-blockquote:border-primary prose-blockquote:pl-4 prose-blockquote:italic prose-hr:border-border"
               dangerouslySetInnerHTML={{ __html: property.description }}
             />
           </ScrollAnimation>
