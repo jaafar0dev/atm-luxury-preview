@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=DM+Sans:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=DM+Sans:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap");
 
 @layer base {
   :root {
@@ -55,9 +55,21 @@
     --navy: 222 99% 53%;
     --navy-light: 222 85% 62%;
 
-    --hero-gradient: linear-gradient(135deg, hsl(222 60% 16%), hsl(222 80% 30%));
-    --overlay-gradient: linear-gradient(180deg, hsla(222, 60%, 16%, 0.75), hsla(222, 80%, 20%, 0.85));
-    --gold-gradient: linear-gradient(135deg, hsl(222 99% 53%), hsl(222 90% 62%));
+    --hero-gradient: linear-gradient(
+      135deg,
+      hsl(222 60% 16%),
+      hsl(222 80% 30%)
+    );
+    --overlay-gradient: linear-gradient(
+      180deg,
+      hsla(222, 60%, 16%, 0.75),
+      hsla(222, 80%, 20%, 0.85)
+    );
+    --gold-gradient: linear-gradient(
+      135deg,
+      hsl(222 99% 53%),
+      hsl(222 90% 62%)
+    );
     --shadow-luxury: 0 20px 60px -15px hsla(222, 99%, 53%, 0.15);
     --shadow-card: 0 4px 20px -4px hsla(222, 99%, 53%, 0.08);
     --shadow-card-hover: 0 12px 40px -8px hsla(222, 99%, 53%, 0.15);
@@ -93,7 +105,10 @@
   body {
     @apply bg-background text-foreground font-body antialiased;
   }
-  h1, h2, h3, h4 {
+  h1,
+  h2,
+  h3,
+  h4 {
     @apply font-display;
   }
 }
@@ -104,7 +119,7 @@
     background: var(--hero-gradient);
   }
   .page-hero::before {
-    content: '';
+    content: "";
     @apply absolute inset-0;
     background: var(--overlay-gradient);
     z-index: 1;
@@ -151,7 +166,7 @@
   }
   .luxury-divider::before,
   .luxury-divider::after {
-    content: '';
+    content: "";
     @apply h-px w-12 bg-accent/50;
   }
 
@@ -171,51 +186,112 @@
   }
 
   @keyframes bounce-text {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-6px); }
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-6px);
+    }
   }
 
   @keyframes slide-in-left {
-    from { opacity: 0; transform: translateX(-40px); }
-    to { opacity: 1; transform: translateX(0); }
+    from {
+      opacity: 0;
+      transform: translateX(-40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
   }
 
   @keyframes slide-in-right {
-    from { opacity: 0; transform: translateX(40px); }
-    to { opacity: 1; transform: translateX(0); }
+    from {
+      opacity: 0;
+      transform: translateX(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
   }
 
   @keyframes slide-in-up {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   @keyframes pulse-help {
-    0%, 100% { transform: scale(1); box-shadow: 0 4px 15px hsla(38, 75%, 55%, 0.3); }
-    50% { transform: scale(1.05); box-shadow: 0 6px 25px hsla(38, 75%, 55%, 0.5); }
+    0%,
+    100% {
+      transform: scale(1);
+      box-shadow: 0 4px 15px hsla(38, 75%, 55%, 0.3);
+    }
+    50% {
+      transform: scale(1.05);
+      box-shadow: 0 6px 25px hsla(38, 75%, 55%, 0.5);
+    }
   }
 
   @keyframes vibrate {
-    0%, 100% { transform: translateX(0); }
-    10% { transform: translateX(-3px); }
-    20% { transform: translateX(3px); }
-    30% { transform: translateX(-3px); }
-    40% { transform: translateX(3px); }
-    50% { transform: translateX(-2px); }
-    60% { transform: translateX(2px); }
-    70% { transform: translateX(-1px); }
-    80% { transform: translateX(1px); }
-    90% { transform: translateX(0); }
+    0%,
+    100% {
+      transform: translateX(0);
+    }
+    10% {
+      transform: translateX(-3px);
+    }
+    20% {
+      transform: translateX(3px);
+    }
+    30% {
+      transform: translateX(-3px);
+    }
+    40% {
+      transform: translateX(3px);
+    }
+    50% {
+      transform: translateX(-2px);
+    }
+    60% {
+      transform: translateX(2px);
+    }
+    70% {
+      transform: translateX(-1px);
+    }
+    80% {
+      transform: translateX(1px);
+    }
+    90% {
+      transform: translateX(0);
+    }
   }
 
   @keyframes fade-in {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   @keyframes shimmer {
-    0% { background-position: -200% center; }
-    100% { background-position: 200% center; }
+    0% {
+      background-position: -200% center;
+    }
+    100% {
+      background-position: 200% center;
+    }
   }
 
   .animate-bounce-text {
@@ -250,4 +326,75 @@
     animation: shimmer 3s ease-in-out infinite;
     background-size: 200% auto;
   }
+}
+
+/*=========================================
+  RICH TEXT EDITOR & DISPLAY STYLES
+=========================================*/
+.ProseMirror,
+.rich-text-content {
+  ul {
+    list-style-type: disc !important;
+    padding-left: 1.5rem !important;
+    margin-bottom: 1rem;
+  }
+  ol {
+    list-style-type: decimal !important;
+    padding-left: 1.5rem !important;
+    margin-bottom: 1rem;
+  }
+  li {
+    margin-bottom: 0.25rem;
+  }
+  li > p {
+    margin-bottom: 0;
+  }
+  h1 {
+    font-size: 2rem !important;
+    font-weight: 700 !important;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+  h2 {
+    font-size: 1.5rem !important;
+    font-weight: 700 !important;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+  h3 {
+    font-size: 1.25rem !important;
+    font-weight: 700 !important;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+  blockquote {
+    border-left: 4px solid hsl(var(--primary));
+    padding-left: 1rem;
+    font-style: italic;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: hsl(var(--muted-foreground));
+  }
+  p {
+    margin-bottom: 1rem;
+    line-height: 1.7;
+  }
+  p:last-child {
+    margin-bottom: 0;
+  }
+  img {
+    border-radius: 0.5rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    max-width: 100%;
+    height: auto;
+  }
+  hr {
+    margin: 2rem 0;
+    border-color: hsl(var(--border));
+  }
+}
+
+.ProseMirror:focus {
+  outline: none;
 }

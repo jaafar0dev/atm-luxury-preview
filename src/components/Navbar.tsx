@@ -20,7 +20,6 @@ const navLinks = [
   { label: "ABOUT", path: "/about" },
   { label: "FAQ", path: "/faq" },
   { label: "CONTACT", path: "/contact" },
-  { label: "GALLERY", path: "/gallery" },
   { label: "MORTGAGE CALCULATOR", path: "/mortgage-calculator" },
 ];
 
@@ -56,27 +55,39 @@ export const Navbar = () => {
 
   return (
     <header className="sticky top-0 z-50 w-full flex flex-col shadow-sm">
-      {/* TOP UTILITY BAR - Updated to Brand Blue, Thicker Border, Centered, Reordered */}
-      <div className="bg-primary text-white py-3 hidden lg:block border-b-4 border-black/10">
-        <div className="section-container flex justify-center items-center gap-6 text-xs font-medium tracking-wide">
+      {/* TOP UTILITY BAR - Fixed for Mobile */}
+      {/* Removed "hidden lg:block" so it shows everywhere */}
+      <div className="bg-primary text-white py-2 lg:py-3 border-b-4 border-black/10">
+        {/* Changed layout to stack on mobile (flex-col) and row on desktop (md:flex-row) */}
+        <div className="section-container flex flex-col md:flex-row justify-center items-center gap-1.5 md:gap-6 text-[10px] md:text-xs font-medium tracking-wide">
           <a
             href="tel:+2348106815300"
             className="flex items-center gap-1.5 hover:text-white/80 transition-colors"
           >
-            <Phone size={16} className="text-white/70" /> +234-810-681-5300
+            <Phone size={12} className="text-white/70 lg:w-3.5 lg:h-3.5" />{" "}
+            +234-810-681-5300
           </a>
-          <span className="text-white/30">|</span>
+
+          {/* Vertical dividers only show on desktop */}
+          <span className="hidden md:block text-white/30">|</span>
+
           <a
             href="mailto:Info@atmluxuryproperties.com"
             className="flex items-center gap-1.5 hover:text-white/80 transition-colors"
           >
-            <Mail size={16} className="text-white/70" />{" "}
+            <Mail size={12} className="text-white/70 lg:w-3.5 lg:h-3.5" />{" "}
             Info@atmluxuryproperties.com
           </a>
-          <span className="text-white/30">|</span>
-          <div className="flex items-center gap-1.5">
-            <MapPin size={16} className="text-white/70" /> Suite D 47, Anon
-            Plaza, Gudu District, Abuja
+
+          {/* Vertical dividers only show on desktop */}
+          <span className="hidden md:block text-white/30">|</span>
+
+          <div className="flex items-center gap-1.5 text-center">
+            <MapPin
+              size={12}
+              className="text-white/70 shrink-0 lg:w-3.5 lg:h-3.5"
+            />
+            <span>Suite D 47, Anon Plaza, Gudu District, Abuja</span>
           </div>
         </div>
       </div>
@@ -88,7 +99,7 @@ export const Navbar = () => {
             <img
               src={logo}
               alt="ATM Luxury Properties"
-              className="h-16 w-auto"
+              className="h-12 w-auto"
             />
           </Link>
 
