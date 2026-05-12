@@ -18,6 +18,7 @@ const navLinks = [
   },
   { label: "BLOG", path: "/blog" },
   { label: "ABOUT", path: "/about" },
+  { label: "GALLERY", path: "/gallery" },
   { label: "FAQ", path: "/faq" },
   { label: "CONTACT", path: "/contact" },
   { label: "MORTGAGE CALCULATOR", path: "/mortgage-calculator" },
