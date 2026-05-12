@@ -382,6 +382,15 @@
   p:last-child {
     margin-bottom: 0;
   }
+  /* Preserve empty paragraphs as visible blank lines (spacing the user typed) */
+  p:empty::before {
+    content: "\00a0";
+    display: inline-block;
+  }
+  /* Don't collapse heading top margin when it follows an empty paragraph */
+  h1, h2, h3 {
+    line-height: 1.25;
+  }
   img {
     border-radius: 0.5rem;
     margin-top: 1.5rem;
