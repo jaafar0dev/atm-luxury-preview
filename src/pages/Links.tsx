@@ -1,127 +1,112 @@
-import { Link } from "react-router-dom";
 import logo from "@/assets/logo.png";
 import {
-  Home,
-  Instagram,
-  Facebook,
-  Music2,
-  Phone,
-  Mail,
-  List,
-  Calendar,
+  MapPin,
+  BookOpen,
+  ShoppingBag,
+  Newspaper,
+  Globe,
   MessageCircle,
   Linkedin,
-  Twitter,
+  Instagram,
   Youtube,
-  ExternalLink,
+  Facebook,
+  Music2,
   Heart,
+  ExternalLink,
 } from "lucide-react";
 
 interface LinkItem {
   label: string;
   title: string;
   href: string;
-  external: boolean;
   icon: React.ReactNode;
   color?: string;
 }
 
 const links: LinkItem[] = [
   {
-    label: "VISIT OUR WEBSITE",
-    title: "Official Homepage",
-    href: "/",
-    external: false,
-    icon: <Home className="w-6 h-6" />,
-    color: "bg-[#1877F2]",
+    label: "VISIT US",
+    title: "Visit Our Office",
+    href: "https://maps.app.goo.gl/ZuHQurgwFr9Ec1jb9?g_st=ic",
+    icon: <MapPin className="w-6 h-6" />,
+    color: "bg-[#EA4335]",
   },
   {
-    label: "CHAT WITH US ON",
-    title: "WhatsApp",
-    href: "https://wa.me/2348106815300",
-    external: true,
+    label: "GET THE BOOK",
+    title: "Nigerian Real Estate Decoded",
+    href: "https://selfany.com/RealEstateDecoded",
+    icon: <BookOpen className="w-6 h-6" />,
+    color: "bg-[#F7931E]",
+  },
+  {
+    label: "ORDER HARD COPY",
+    title: "Order The Nigerian Real Estate Decoded",
+    href: "https://wa.link/0lbddo",
+    icon: <ShoppingBag className="w-6 h-6" />,
+    color: "bg-[#25D366]",
+  },
+  {
+    label: "IN THE NEWS",
+    title: "ATM Luxury Properties secures double honors - Vanguard",
+    href: "https://www.vanguardngr.com/2026/01/atm-luxury-properties-secures-double-honors-at-brg-excellence-awards-7-0",
+    icon: <Newspaper className="w-6 h-6" />,
+    color: "bg-[#C4170C]",
+  },
+  {
+    label: "IN THE NEWS",
+    title: "ATM Luxury Properties receives double recognitions - THISDAY",
+    href: "https://www.thisdaylive.com/2026/01/13/atm-luxury-properties-ltd-honored-with-double-recognition-at-brg-excellence-awards-7-0",
+    icon: <Newspaper className="w-6 h-6" />,
+    color: "bg-[#C4170C]",
+  },
+  {
+    label: "OFFICIAL WEBSITE",
+    title: "Visit Our Website",
+    href: "http://www.atmluxuryproperties.com/",
+    icon: <Globe className="w-6 h-6" />,
+    color: "bg-primary",
+  },
+  {
+    label: "CHAT WITH US",
+    title: "Chat With Us On WhatsApp",
+    href: "https://wa.me/2347055558229",
     icon: <MessageCircle className="w-6 h-6" />,
     color: "bg-[#25D366]",
   },
   {
-    label: "FOLLOW US ON",
-    title: "Instagram",
-    href: "https://instagram.com/atmluxuryproperties",
-    external: true,
+    label: "CONNECT",
+    title: "Follow Us On LinkedIn",
+    href: "https://www.linkedin.com/company/atmluxuryproperties",
+    icon: <Linkedin className="w-6 h-6" />,
+    color: "bg-[#0A66C2]",
+  },
+  {
+    label: "FOLLOW US",
+    title: "Follow Us On Instagram",
+    href: "http://instagram.com/atmluxuryproperties/",
     icon: <Instagram className="w-6 h-6" />,
     color: "bg-gradient-to-tr from-[#F58529] via-[#DD2A7B] to-[#8134AF]",
   },
   {
-    label: "FOLLOW US ON",
-    title: "Facebook",
-    href: "https://facebook.com/atmluxuryproperties",
-    external: true,
+    label: "SUBSCRIBE",
+    title: "Subscribe to Our YouTube Channel",
+    href: "https://youtube.com/@atmluxurypropertiestv?si=MtH7Y9T-ajftNQsU&sub_confirmation=1",
+    icon: <Youtube className="w-6 h-6" />,
+    color: "bg-[#FF0000]",
+  },
+  {
+    label: "LIKE US",
+    title: "Like Us On Facebook",
+    href: "http://facebook.com/atmluxuryproperties/",
     icon: <Facebook className="w-6 h-6" />,
     color: "bg-[#1877F2]",
   },
   {
     label: "WATCH OUR VIDEOS",
-    title: "TikTok",
-    href: "https://tiktok.com/@atmluxuryproperties",
-    external: true,
+    title: "Follow Us On TikTok",
+    href: "https://www.tiktok.com/@atmluxuryproperties?_r=1&_t=zs-993luwnjoot",
     icon: <Music2 className="w-6 h-6" />,
     color: "bg-black",
-  },
-  {
-    label: "CONNECT WITH US ON",
-    title: "LinkedIn",
-    href: "https://linkedin.com/company/atmluxuryproperties",
-    external: true,
-    icon: <Linkedin className="w-6 h-6" />,
-    color: "bg-[#0A66C2]",
-  },
-  {
-    label: "FOLLOW US ON",
-    title: "X (Twitter)",
-    href: "https://twitter.com/atmluxuryprop",
-    external: true,
-    icon: <Twitter className="w-6 h-6" />,
-    color: "bg-black",
-  },
-  {
-    label: "SUBSCRIBE ON",
-    title: "YouTube",
-    href: "https://youtube.com/@atmluxuryproperties",
-    external: true,
-    icon: <Youtube className="w-6 h-6" />,
-    color: "bg-[#FF0000]",
-  },
-  {
-    label: "VIEW OUR PROPERTIES",
-    title: "Listings",
-    href: "/listings",
-    external: false,
-    icon: <List className="w-6 h-6" />,
-    color: "bg-primary",
-  },
-  {
-    label: "BOOK A SESSION",
-    title: "Book Consultation",
-    href: "/book-consultation",
-    external: false,
-    icon: <Calendar className="w-6 h-6" />,
-    color: "bg-primary",
-  },
-  {
-    label: "SEND US AN EMAIL",
-    title: "Email Us",
-    href: "mailto:Info@atmluxuryproperties.com",
-    external: true,
-    icon: <Mail className="w-6 h-6" />,
-    color: "bg-primary",
-  },
-  {
-    label: "CALL US NOW",
-    title: "+234 810 681 5300",
-    href: "tel:+2348106815300",
-    external: true,
-    icon: <Phone className="w-6 h-6" />,
-    color: "bg-primary",
   },
 ];
 
@@ -133,7 +118,7 @@ export default function Links() {
         background: `linear-gradient(135deg, hsl(207 90% 54%) 0%, hsl(215 80% 30%) 100%)`,
       }}
     >
-      {/* Background overlay pattern */}
+      {/* Subtle dot pattern overlay */}
       <div
         className="absolute inset-0 opacity-10 pointer-events-none"
         style={{
@@ -160,14 +145,20 @@ export default function Links() {
           Doing Real Estate The Right Way...
         </p>
         <p className="text-white/70 text-center text-xs md:text-sm mb-8 max-w-xs">
-          Get in touch with us or join our network using these links
+          Your Investing Partner. Brokerage, Investment & Advisory.
         </p>
 
         {/* Links */}
         <div className="w-full space-y-4">
-          {links.map((item, idx) => {
-            const Card = (
-              <div className="group flex items-center gap-4 w-full bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 rounded-xl p-4 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl">
+          {links.map((item, idx) => (
+            <a
+              key={idx}
+              href={item.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group block"
+            >
+              <div className="flex items-center gap-4 w-full bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 rounded-xl p-4 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl">
                 <div
                   className={`shrink-0 w-12 h-12 rounded-xl flex items-center justify-center text-white ${item.color}`}
                 >
@@ -177,36 +168,16 @@ export default function Links() {
                   <p className="text-[10px] md:text-xs font-semibold tracking-wider text-white/60 uppercase">
                     {item.label}
                   </p>
-                  <p className="text-sm md:text-base font-semibold text-white truncate">
+                  <p className="text-sm md:text-base font-semibold text-white line-clamp-2">
                     {item.title}
                   </p>
                 </div>
                 <div className="shrink-0 text-white/60 group-hover:text-white transition-colors">
-                  {item.external ? (
-                    <ExternalLink className="w-5 h-5" />
-                  ) : (
-                    <ExternalLink className="w-5 h-5" />
-                  )}
+                  <ExternalLink className="w-5 h-5" />
                 </div>
               </div>
-            );
-
-            return item.external ? (
-              <a
-                key={idx}
-                href={item.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block"
-              >
-                {Card}
-              </a>
-            ) : (
-              <Link key={idx} to={item.href} className="block">
-                {Card}
-              </Link>
-            );
-          })}
+            </a>
+          ))}
         </div>
 
         {/* Footer tag */}
