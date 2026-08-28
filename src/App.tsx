@@ -27,7 +27,7 @@ import AdminInquiries from "./pages/admin/AdminInquiries";
 import AdminMessages from "./pages/admin/AdminMessages";
 import AdminConsultations from "./pages/admin/AdminConsultations";
 import AdminGallery from "./pages/admin/AdminGallery";
-import Gallery from "./pages/Gallery";
+import Links from "./pages/Links";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -53,7 +53,7 @@ const App = () => (
           <Route path="/favorites" element={<Favorites />} />
           <Route path="/book-consultation" element={<BookConsultation />} />
           <Route path="/book-inspection" element={<BookInspection />} />
-          <Route path="/gallery" element={<Gallery />} />
+          <Route path="/links" element={<Links />} />
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin" element={<AdminLayout />}>
             <Route index element={<AdminDashboard />} />
