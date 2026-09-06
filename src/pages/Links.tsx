@@ -12,7 +12,7 @@ import {
   Facebook,
   Music2,
   Heart,
-  ExternalLink,
+  ChevronRight,
 } from "lucide-react";
 
 interface LinkItem {
@@ -20,80 +20,93 @@ interface LinkItem {
   title: string;
   href: string;
   icon: React.ReactNode;
+  bgColor: string;
 }
 
 const links: LinkItem[] = [
   {
-    label: "VISIT US",
+    label: "FIND US ON GOOGLE MAPS",
     title: "Visit Our Office",
     href: "https://maps.app.goo.gl/ZuHQurgwFr9Ec1jb9?g_st=ic",
-    icon: <MapPin className="w-6 h-6" color="#EA4335" />,
+    icon: <MapPin className="w-6 h-6 text-white" />,
+    bgColor: "#EA4335",
   },
   {
     label: "GET THE BOOK",
     title: "Nigerian Real Estate Decoded",
     href: "https://selfany.com/RealEstateDecoded",
-    icon: <BookOpen className="w-6 h-6" color="#FF9900" />,
+    icon: <BookOpen className="w-6 h-6 text-white" />,
+    bgColor: "#FF9900",
   },
   {
     label: "ORDER HARD COPY",
     title: "Order The Nigerian Real Estate Decoded",
     href: "https://wa.link/0lbddo",
-    icon: <ShoppingBag className="w-6 h-6" color="#FF9900" />,
+    icon: <ShoppingBag className="w-6 h-6 text-white" />,
+    bgColor: "#FF9900",
   },
   {
     label: "IN THE NEWS",
     title: "ATM Luxury Properties secures double honors - Vanguard",
     href: "https://www.vanguardngr.com/2026/01/atm-luxury-properties-secures-double-honors-at-brg-excellence-awards-7-0",
-    icon: <Newspaper className="w-6 h-6" color="#34A853" />,
+    icon: <Newspaper className="w-6 h-6 text-white" />,
+    bgColor: "#34A853",
   },
   {
     label: "IN THE NEWS",
     title: "ATM Luxury Properties receives double recognitions - THISDAY",
     href: "https://www.thisdaylive.com/2026/01/13/atm-luxury-properties-ltd-honored-with-double-recognition-at-brg-excellence-awards-7-0",
-    icon: <Newspaper className="w-6 h-6" color="#34A853" />,
+    icon: <Newspaper className="w-6 h-6 text-white" />,
+    bgColor: "#34A853",
   },
   {
-    label: "OFFICIAL WEBSITE",
-    title: "Visit Our Website",
+    label: "VISIT OUR WEBSITE",
+    title: "Official Homepage",
     href: "http://www.atmluxuryproperties.com/",
-    icon: <Globe className="w-6 h-6" color="#3B82F6" />,
+    icon: <Globe className="w-6 h-6 text-white" />,
+    bgColor: "#1B5E20",
   },
   {
-    label: "CHAT WITH US",
-    title: "Chat With Us On WhatsApp",
+    label: "CHAT WITH US ON",
+    title: "WhatsApp",
     href: "https://wa.me/2347055558229",
-    icon: <MessageCircle className="w-6 h-6" color="#25D366" />,
+    icon: <MessageCircle className="w-6 h-6 text-white" />,
+    bgColor: "#25D366",
   },
   {
-    label: "CONNECT",
-    title: "Follow Us On LinkedIn",
+    label: "FOLLOW US ON",
+    title: "LinkedIn",
     href: "https://www.linkedin.com/company/atmluxuryproperties",
-    icon: <Linkedin className="w-6 h-6" color="#0A66C2" />,
+    icon: <Linkedin className="w-6 h-6 text-white" />,
+    bgColor: "#0A66C2",
   },
   {
-    label: "FOLLOW US",
-    title: "Follow Us On Instagram",
+    label: "FOLLOW US ON",
+    title: "Instagram",
     href: "http://instagram.com/atmluxuryproperties/",
-    icon: <Instagram className="w-6 h-6" color="#E4405F" />,
+    icon: <Instagram className="w-6 h-6 text-white" />,
+    bgColor: "#E4405F",
   },
   {
-    label: "SUBSCRIBE",
-    title: "Subscribe to Our YouTube Channel",
+    label: "SUBSCRIBE NOW",
+    title: "YouTube Channel",
     href: "https://youtube.com/@atmluxurypropertiestv?si=MtH7Y9T-ajftNQsU&sub_confirmation=1",
-    icon: <Youtube className="w-6 h-6" color="#FF0000" />,
+    icon: <Youtube className="w-6 h-6 text-white" />,
+    bgColor: "#FF0000",
   },
   {
-    label: "LIKE US",
-    title: "Like Us On Facebook",
+    label: "FOLLOW US ON",
+    title: "Facebook",
     href: "http://facebook.com/atmluxuryproperties/",
-    icon: <Facebook className="w-6 h-6" color="#1877F2" />,
+    icon: <Facebook className="w-6 h-6 text-white" />,
+    bgColor: "#1877F2",
   },
   {
     label: "WATCH OUR VIDEOS",
-    title: "Follow Us On TikTok",
+    title: "TikTok",
     href: "https://www.tiktok.com/@atmluxuryproperties?_r=1&_t=zs-993luwnjoot",
-    icon: <Music2 className="w-6 h-6" color="#00F2EA" />,
+    icon: <Music2 className="w-6 h-6 text-white" />,
+    bgColor: "#000000",
   },
 ];
 
@@ -131,20 +144,23 @@ export default function Links() {
               rel="noopener noreferrer"
               className="group block"
             >
-              <div className="flex items-center gap-4 w-full bg-primary-foreground/10 hover:bg-primary-foreground/20 backdrop-blur-xl border border-primary-foreground/20 rounded-lg p-4 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl">
-                <div className="shrink-0 w-12 h-12 rounded-lg flex items-center justify-center text-primary-foreground bg-primary-foreground/15 border border-primary-foreground/20 backdrop-blur-md">
+              <div className="flex items-center gap-4 w-full bg-primary-foreground/10 hover:bg-primary-foreground/20 backdrop-blur-xl border border-primary-foreground/20 rounded-xl p-3.5 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl">
+                <div
+                  className="shrink-0 w-12 h-12 rounded-xl flex items-center justify-center shadow-lg"
+                  style={{ backgroundColor: item.bgColor }}
+                >
                   {item.icon}
                 </div>
                 <div className="flex-1 min-w-0 text-left">
-                  <p className="text-[10px] md:text-xs font-semibold tracking-wider text-primary-foreground/60 uppercase">
+                  <p className="text-[10px] font-semibold tracking-wider text-primary-foreground/60 uppercase">
                     {item.label}
                   </p>
-                  <p className="text-sm md:text-base font-semibold text-primary-foreground line-clamp-2">
+                  <p className="text-sm md:text-base font-bold text-primary-foreground line-clamp-2">
                     {item.title}
                   </p>
                 </div>
                 <div className="shrink-0 text-primary-foreground/60 group-hover:text-primary-foreground transition-colors">
-                  <ExternalLink className="w-5 h-5" />
+                  <ChevronRight className="w-5 h-5" />
                 </div>
               </div>
             </a>
