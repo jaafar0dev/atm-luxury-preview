@@ -20,7 +20,6 @@ interface LinkItem {
   title: string;
   href: string;
   icon: React.ReactNode;
-  color?: string;
 }
 
 const links: LinkItem[] = [
@@ -29,123 +28,97 @@ const links: LinkItem[] = [
     title: "Visit Our Office",
     href: "https://maps.app.goo.gl/ZuHQurgwFr9Ec1jb9?g_st=ic",
     icon: <MapPin className="w-6 h-6" />,
-    color: "bg-[#EA4335]",
   },
   {
     label: "GET THE BOOK",
     title: "Nigerian Real Estate Decoded",
     href: "https://selfany.com/RealEstateDecoded",
     icon: <BookOpen className="w-6 h-6" />,
-    color: "bg-[#F7931E]",
   },
   {
     label: "ORDER HARD COPY",
     title: "Order The Nigerian Real Estate Decoded",
     href: "https://wa.link/0lbddo",
     icon: <ShoppingBag className="w-6 h-6" />,
-    color: "bg-[#25D366]",
   },
   {
     label: "IN THE NEWS",
     title: "ATM Luxury Properties secures double honors - Vanguard",
     href: "https://www.vanguardngr.com/2026/01/atm-luxury-properties-secures-double-honors-at-brg-excellence-awards-7-0",
     icon: <Newspaper className="w-6 h-6" />,
-    color: "bg-[#C4170C]",
   },
   {
     label: "IN THE NEWS",
     title: "ATM Luxury Properties receives double recognitions - THISDAY",
     href: "https://www.thisdaylive.com/2026/01/13/atm-luxury-properties-ltd-honored-with-double-recognition-at-brg-excellence-awards-7-0",
     icon: <Newspaper className="w-6 h-6" />,
-    color: "bg-[#C4170C]",
   },
   {
     label: "OFFICIAL WEBSITE",
     title: "Visit Our Website",
     href: "http://www.atmluxuryproperties.com/",
     icon: <Globe className="w-6 h-6" />,
-    color: "bg-primary",
   },
   {
     label: "CHAT WITH US",
     title: "Chat With Us On WhatsApp",
     href: "https://wa.me/2347055558229",
     icon: <MessageCircle className="w-6 h-6" />,
-    color: "bg-[#25D366]",
   },
   {
     label: "CONNECT",
     title: "Follow Us On LinkedIn",
     href: "https://www.linkedin.com/company/atmluxuryproperties",
     icon: <Linkedin className="w-6 h-6" />,
-    color: "bg-[#0A66C2]",
   },
   {
     label: "FOLLOW US",
     title: "Follow Us On Instagram",
     href: "http://instagram.com/atmluxuryproperties/",
     icon: <Instagram className="w-6 h-6" />,
-    color: "bg-gradient-to-tr from-[#F58529] via-[#DD2A7B] to-[#8134AF]",
   },
   {
     label: "SUBSCRIBE",
     title: "Subscribe to Our YouTube Channel",
     href: "https://youtube.com/@atmluxurypropertiestv?si=MtH7Y9T-ajftNQsU&sub_confirmation=1",
     icon: <Youtube className="w-6 h-6" />,
-    color: "bg-[#FF0000]",
   },
   {
     label: "LIKE US",
     title: "Like Us On Facebook",
     href: "http://facebook.com/atmluxuryproperties/",
     icon: <Facebook className="w-6 h-6" />,
-    color: "bg-[#1877F2]",
   },
   {
     label: "WATCH OUR VIDEOS",
     title: "Follow Us On TikTok",
     href: "https://www.tiktok.com/@atmluxuryproperties?_r=1&_t=zs-993luwnjoot",
     icon: <Music2 className="w-6 h-6" />,
-    color: "bg-black",
   },
 ];
 
 export default function Links() {
   return (
     <main
-      className="min-h-screen w-full relative flex flex-col items-center py-10 px-4"
-      style={{
-        background: `linear-gradient(135deg, hsl(207 90% 54%) 0%, hsl(215 80% 30%) 100%)`,
-      }}
+      className="min-h-screen w-full relative flex flex-col items-center py-10 px-4 text-primary-foreground"
+      style={{ background: "var(--hero-gradient)" }}
     >
-      {/* Subtle dot pattern overlay */}
-      <div
-        className="absolute inset-0 opacity-10 pointer-events-none"
-        style={{
-          backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
-          backgroundSize: "32px 32px",
-        }}
-      />
-
       <div className="relative z-10 w-full max-w-md mx-auto flex flex-col items-center">
         {/* Logo */}
-        <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-4 shadow-lg mb-6">
-          <img
-            src={logo}
-            alt="ATM Luxury Properties"
-            className="h-16 w-auto object-contain"
-          />
-        </div>
+        <img
+          src={logo}
+          alt="ATM Luxury Properties"
+          className="h-24 w-auto object-contain mb-5"
+        />
 
         {/* Headline */}
-        <h1 className="font-display text-2xl md:text-3xl font-bold text-white text-center mb-2">
-          ATM Luxury Properties
+        <h1 className="font-body text-3xl md:text-4xl font-bold text-primary-foreground text-center mb-4">
+          ...Your Investing Partner
         </h1>
-        <p className="text-white/80 text-center text-sm md:text-base mb-1 max-w-sm">
-          Doing Real Estate The Right Way...
-        </p>
-        <p className="text-white/70 text-center text-xs md:text-sm mb-8 max-w-xs">
-          Your Investing Partner. Brokerage, Investment & Advisory.
+        <p className="text-primary-foreground/80 text-center text-sm md:text-base leading-relaxed mb-8 max-w-sm">
+          ATM Luxury Properties offers real estate Brokerage, Investment and
+          Advisory to individuals and organizations looking to build wealth
+          through real estate.
         </p>
 
         {/* Links */}
@@ -158,21 +131,19 @@ export default function Links() {
               rel="noopener noreferrer"
               className="group block"
             >
-              <div className="flex items-center gap-4 w-full bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 rounded-xl p-4 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl">
-                <div
-                  className={`shrink-0 w-12 h-12 rounded-xl flex items-center justify-center text-white ${item.color}`}
-                >
+              <div className="flex items-center gap-4 w-full bg-primary-foreground/10 hover:bg-primary-foreground/20 backdrop-blur-xl border border-primary-foreground/20 rounded-lg p-4 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl">
+                <div className="shrink-0 w-12 h-12 rounded-lg flex items-center justify-center text-primary-foreground bg-primary-foreground/15 border border-primary-foreground/20 backdrop-blur-md">
                   {item.icon}
                 </div>
                 <div className="flex-1 min-w-0 text-left">
-                  <p className="text-[10px] md:text-xs font-semibold tracking-wider text-white/60 uppercase">
+                  <p className="text-[10px] md:text-xs font-semibold tracking-wider text-primary-foreground/60 uppercase">
                     {item.label}
                   </p>
-                  <p className="text-sm md:text-base font-semibold text-white line-clamp-2">
+                  <p className="text-sm md:text-base font-semibold text-primary-foreground line-clamp-2">
                     {item.title}
                   </p>
                 </div>
-                <div className="shrink-0 text-white/60 group-hover:text-white transition-colors">
+                <div className="shrink-0 text-primary-foreground/60 group-hover:text-primary-foreground transition-colors">
                   <ExternalLink className="w-5 h-5" />
                 </div>
               </div>
@@ -180,11 +151,13 @@ export default function Links() {
           ))}
         </div>
 
-        {/* Footer tag */}
-        <div className="mt-10 flex items-center gap-2 text-white/60 text-xs">
-          <Heart className="w-4 h-4 fill-current" />
-          <span>ATM Luxury Properties</span>
-        </div>
+        <footer className="mt-10 text-center text-primary-foreground/60 text-xs leading-relaxed">
+          <Heart className="w-4 h-4 fill-current mx-auto mb-2" />
+          <span>2026 Atm Luxury Properties Ltd RC-8704771. All rights reserved - </span>
+          <a href="/" className="text-primary-foreground underline underline-offset-4 hover:text-primary-foreground/80 transition-colors">
+            Visit our website
+          </a>
+        </footer>
       </div>
     </main>
   );
